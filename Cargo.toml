@@ -3,7 +3,29 @@ name = "fast_matrix_market-rs"
 version = "0.1.0"
 edition = "2021"
 license = "BSD-2-Clause"
-description = "Rust translation scaffold for fast_matrix_market"
+description = "Rust translation of the fast_matrix_market Matrix Market I/O library"
+readme = "README.md"
+homepage = "https://github.com/alugowski/fast_matrix_market"
+documentation = "https://docs.rs/fast_matrix_market-rs"
+keywords = ["matrix-market", "sparse", "matrix", "io"]
+categories = ["science", "parser-implementations"]
+include = [
+    "Cargo.toml",
+    "LICENSE.txt",
+    "README.md",
+    "TODO.md",
+    "ccc_mapping.toml",
+    "src/**",
+    "tests/**",
+    "examples/**",
+    "tools/**",
+    "fast_matrix_market/CITATION.cff",
+    "fast_matrix_market/LICENSE.txt",
+    "fast_matrix_market/README.md",
+    "fast_matrix_market/include/**",
+    "fast_matrix_market/tests/matrices/**",
+    "fast_matrix_market/python/tests/matrices/**",
+]
 
 [lib]
 name = "fast_matrix_market"

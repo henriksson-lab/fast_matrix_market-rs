@@ -4,6 +4,61 @@ Rust translation of [`fast_matrix_market`](https://github.com/alugowski/fast_mat
 
 **undergoing translation**
 
+## Scope and delimitations
+
+This crate is a Rust translation of the core Matrix Market I/O logic from the
+upstream `fast_matrix_market` snapshot named above.
+
+In scope:
+
+* Reading sparse Matrix Market coordinate files into triplet/COO vectors with
+  `app_triplet::read_matrix_market_triplet_line_126`.
+* Reading dense Matrix Market array files with `app_array`.
+* Writing Matrix Market array, triplet, doublet, CSC/CSR-style, and generated
+  triplet data through the translated app APIs.
+* Matrix, vector, real, integer, complex, and pattern fields.
+* General, symmetric, skew-symmetric, and hermitian symmetry handling in the
+  translated core/app paths.
+* Single-threaded and multi-threaded reads for the supported core paths.
+
+Out of scope:
+
+* Direct bindings for Blaze, Eigen, CXSparse, GraphBLAS, and Armadillo. Stubs
+  for those upstream integration APIs may exist only to preserve the translated
+  function map.
+* A high-level sparse matrix type. Sparse reads return rows, columns, and values
+  rather than a CSR/CSC matrix object.
+* API polish. Function names intentionally retain source-line suffixes to make
+  audit against the upstream C++ snapshot easier.
+* Endorsement by the upstream `fast_matrix_market` author.
+
+Example sparse coordinate read:
+
+```rust
+use fast_matrix_market::app_triplet::read_matrix_market_triplet_line_126;
+use fast_matrix_market::types::{
+    generalize_coordinate_diagnonal_values_type, out_of_range_behavior, read_options,
+};
+use std::fs::File;
+use std::io::BufReader;
+
+let file = File::open("matrix.mtx")?;
+let mut reader = BufReader::new(file);
+let options = read_options {
+    chunk_size_bytes: 1 << 20,
+    generalize_symmetry: true,
+    generalize_symmetry_app: true,
+    generalize_coordinate_diagnonal_values:
+        generalize_coordinate_diagnonal_values_type::ExtraZeroElement,
+    parallel_ok: true,
+    num_threads: 0,
+    float_out_of_range_behavior: out_of_range_behavior::BestMatch,
+};
+
+let (nrows, ncols, rows, cols, values) =
+    read_matrix_market_triplet_line_126::<f64>(&mut reader, &options)?;
+```
+
 ## This is an LLM-mediated faithful (hopefully) translation, not the original code! 
 
 Most users should probably first see if the existing original code works for them, unless they have reason otherwise. The original source

@@ -1,0 +1,3144 @@
+# Generated from /tmp/fmm_cpp.json. Rust names include source lines where C++ overloads, template specializations, or nested classes collide by name.
+
+[[entries]]
+rust = "line_counts"
+rust_path = "src/lib.rs"
+other = "line_counts"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 14
+
+[[entries]]
+rust = "pattern_parse_adapter"
+rust_path = "src/lib.rs"
+other = "pattern_parse_adapter"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 26
+
+[[entries]]
+rust = "complex_parse_adapter"
+rust_path = "src/lib.rs"
+other = "complex_parse_adapter"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 60
+
+[[entries]]
+rust = "tuple_parse_handler"
+rust_path = "src/lib.rs"
+other = "tuple_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 42
+
+[[entries]]
+rust = "triplet_parse_handler"
+rust_path = "src/lib.rs"
+other = "triplet_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 70
+
+[[entries]]
+rust = "triplet_pattern_parse_handler"
+rust_path = "src/lib.rs"
+other = "triplet_pattern_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 120
+
+[[entries]]
+rust = "triplet_calling_parse_handler"
+rust_path = "src/lib.rs"
+other = "triplet_calling_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 154
+
+[[entries]]
+rust = "doublet_parse_handler"
+rust_path = "src/lib.rs"
+other = "doublet_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 189
+
+[[entries]]
+rust = "dense_2d_call_adding_parse_handler"
+rust_path = "src/lib.rs"
+other = "dense_2d_call_adding_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 223
+
+[[entries]]
+rust = "dense_adding_parse_handler"
+rust_path = "src/lib.rs"
+other = "dense_adding_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 247
+
+[[entries]]
+rust = "fmm_error"
+rust_path = "src/lib.rs"
+other = "fmm_error"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 38
+
+[[entries]]
+rust = "invalid_mm"
+rust_path = "src/lib.rs"
+other = "invalid_mm"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 52
+
+[[entries]]
+rust = "out_of_range"
+rust_path = "src/lib.rs"
+other = "out_of_range"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 67
+
+[[entries]]
+rust = "invalid_argument"
+rust_path = "src/lib.rs"
+other = "invalid_argument"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 75
+
+[[entries]]
+rust = "complex_incompatible"
+rust_path = "src/lib.rs"
+other = "complex_incompatible"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 83
+
+[[entries]]
+rust = "support_not_selected"
+rust_path = "src/lib.rs"
+other = "support_not_selected"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 91
+
+[[entries]]
+rust = "no_vector_support"
+rust_path = "src/lib.rs"
+other = "no_vector_support"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 99
+
+[[entries]]
+rust = "pattern_placeholder_type"
+rust_path = "src/lib.rs"
+other = "pattern_placeholder_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 108
+
+[[entries]]
+rust = "line_count_result_s"
+rust_path = "src/lib.rs"
+other = "line_count_result_s"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp"
+other_line = 15
+
+[[entries]]
+rust = "line_formatter"
+rust_path = "src/lib.rs"
+other = "line_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 18
+
+[[entries]]
+rust = "vector_line_formatter"
+rust_path = "src/lib.rs"
+other = "vector_line_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 77
+
+[[entries]]
+rust = "triplet_formatter"
+rust_path = "src/lib.rs"
+other = "triplet_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 118
+
+[[entries]]
+rust = "chunk"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 138
+
+[[entries]]
+rust = "csc_formatter"
+rust_path = "src/lib.rs"
+other = "csc_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 200
+
+[[entries]]
+rust = "chunk_line_225"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 225
+
+[[entries]]
+rust = "array_formatter"
+rust_path = "src/lib.rs"
+other = "array_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 312
+
+[[entries]]
+rust = "chunk_line_321"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 321
+
+[[entries]]
+rust = "dense_2d_call_formatter"
+rust_path = "src/lib.rs"
+other = "dense_2d_call_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 370
+
+[[entries]]
+rust = "chunk_line_379"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 379
+
+[[entries]]
+rust = "task_thread_pool"
+rust_path = "src/lib.rs"
+other = "task_thread_pool"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 130
+
+[[entries]]
+rust = "matrix_market_header"
+rust_path = "src/lib.rs"
+other = "matrix_market_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 47
+
+[[entries]]
+rust = "read_options"
+rust_path = "src/lib.rs"
+other = "read_options"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 77
+
+[[entries]]
+rust = "write_options"
+rust_path = "src/lib.rs"
+other = "write_options"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 132
+
+[[entries]]
+rust = "is_complex"
+rust_path = "src/lib.rs"
+other = "is_complex"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 169
+
+[[entries]]
+rust = "is_complex_std_complex_T_line_170"
+rust_path = "src/lib.rs"
+other = "is_complex<std::complex<T>>"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 170
+
+[[entries]]
+rust = "can_read_complex"
+rust_path = "src/lib.rs"
+other = "can_read_complex"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 172
+
+[[entries]]
+rust = "Blaze_CompressedMatrix_formatter"
+rust_path = "src/lib.rs"
+other = "Blaze_CompressedMatrix_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 130
+
+[[entries]]
+rust = "chunk"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 142
+
+[[entries]]
+rust = "sparse_Eigen_formatter"
+rust_path = "src/lib.rs"
+other = "sparse_Eigen_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 97
+
+[[entries]]
+rust = "chunk"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 108
+
+[[entries]]
+rust = "GraphBLAS_typed"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 151
+
+[[entries]]
+rust = "GraphBLAS_typed_bool_line_179"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<bool>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 179
+
+[[entries]]
+rust = "GraphBLAS_typed_int8_t_line_207"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<int8_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 207
+
+[[entries]]
+rust = "GraphBLAS_typed_int16_t_line_235"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<int16_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 235
+
+[[entries]]
+rust = "GraphBLAS_typed_int32_t_line_263"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<int32_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 263
+
+[[entries]]
+rust = "GraphBLAS_typed_int64_t_line_291"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<int64_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 291
+
+[[entries]]
+rust = "GraphBLAS_typed_uint8_t_line_319"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<uint8_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 319
+
+[[entries]]
+rust = "GraphBLAS_typed_uint16_t_line_347"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<uint16_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 347
+
+[[entries]]
+rust = "GraphBLAS_typed_uint32_t_line_375"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<uint32_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 375
+
+[[entries]]
+rust = "GraphBLAS_typed_uint64_t_line_403"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<uint64_t>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 403
+
+[[entries]]
+rust = "GraphBLAS_typed_float_line_431"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<float>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 431
+
+[[entries]]
+rust = "GraphBLAS_typed_double_line_459"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<double>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 459
+
+[[entries]]
+rust = "GraphBLAS_typed_std_complex_float_line_488"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<std::complex<float>>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 488
+
+[[entries]]
+rust = "GraphBLAS_typed_std_complex_double_line_516"
+rust_path = "src/lib.rs"
+other = "GraphBLAS_typed<std::complex<double>>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 516
+
+[[entries]]
+rust = "gblas_row_iter_impl"
+rust_path = "src/lib.rs"
+other = "gblas_row_iter_impl"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 793
+
+[[entries]]
+rust = "gblas_col_iter_impl"
+rust_path = "src/lib.rs"
+other = "gblas_col_iter_impl"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 844
+
+[[entries]]
+rust = "gblas_vec_iter_impl"
+rust_path = "src/lib.rs"
+other = "gblas_vec_iter_impl"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 896
+
+[[entries]]
+rust = "GrB_Matrix_Iterator_formatter"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_Iterator_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 953
+
+[[entries]]
+rust = "chunk"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 966
+
+[[entries]]
+rust = "can_read_complex_std_string_line_52"
+rust_path = "src/lib.rs"
+other = "can_read_complex<std::string>"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp"
+other_line = 52
+
+[[entries]]
+rust = "coo_independent_generator_formatter"
+rust_path = "src/lib.rs"
+other = "coo_independent_generator_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 15
+
+[[entries]]
+rust = "chunk"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 28
+
+[[entries]]
+rust = "pattern_parse_adapter_line_32"
+rust_path = "src/lib.rs"
+other = "pattern_parse_adapter"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 32
+
+[[entries]]
+rust = "handle_line_35"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 35
+
+[[entries]]
+rust = "handle_line_39"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 39
+
+[[entries]]
+rust = "get_chunk_handler_line_43"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 43
+
+[[entries]]
+rust = "complex_parse_adapter_line_67"
+rust_path = "src/lib.rs"
+other = "complex_parse_adapter"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 67
+
+[[entries]]
+rust = "handle_line_69"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 69
+
+[[entries]]
+rust = "handle_line_73"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 73
+
+[[entries]]
+rust = "get_chunk_handler_line_77"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 77
+
+[[entries]]
+rust = "limit_parallelism_for_value_type_line_94"
+rust_path = "src/lib.rs"
+other = "limit_parallelism_for_value_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 94
+
+[[entries]]
+rust = "limit_parallelism_for_value_type_line_99"
+rust_path = "src/lib.rs"
+other = "limit_parallelism_for_value_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 99
+
+[[entries]]
+rust = "get_symmetric_value_line_108"
+rust_path = "src/lib.rs"
+other = "get_symmetric_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 108
+
+[[entries]]
+rust = "generalize_symmetry_coordinate_line_127"
+rust_path = "src/lib.rs"
+other = "generalize_symmetry_coordinate"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 127
+
+[[entries]]
+rust = "generalize_symmetry_array_line_165"
+rust_path = "src/lib.rs"
+other = "generalize_symmetry_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 165
+
+[[entries]]
+rust = "read_real_or_complex_line_193"
+rust_path = "src/lib.rs"
+other = "read_real_or_complex"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 193
+
+[[entries]]
+rust = "read_chunk_matrix_coordinate_line_213"
+rust_path = "src/lib.rs"
+other = "read_chunk_matrix_coordinate"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 213
+
+[[entries]]
+rust = "read_chunk_vector_coordinate_line_281"
+rust_path = "src/lib.rs"
+other = "read_chunk_vector_coordinate"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 281
+
+[[entries]]
+rust = "read_chunk_array_line_332"
+rust_path = "src/lib.rs"
+other = "read_chunk_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 332
+
+[[entries]]
+rust = "read_coordinate_body_sequential_line_412"
+rust_path = "src/lib.rs"
+other = "read_coordinate_body_sequential"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 412
+
+[[entries]]
+rust = "read_array_body_sequential_line_436"
+rust_path = "src/lib.rs"
+other = "read_array_body_sequential"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 436
+
+[[entries]]
+rust = "read_matrix_market_body_no_adapters_line_459"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_body_no_adapters"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 459
+
+[[entries]]
+rust = "read_matrix_market_body_no_pattern_line_525"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_body_no_pattern"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 525
+
+[[entries]]
+rust = "read_matrix_market_body_no_pattern_line_543"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_body_no_pattern"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 543
+
+[[entries]]
+rust = "read_matrix_market_body_line_562"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_body"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body.hpp"
+other_line = 562
+
+[[entries]]
+rust = "tuple_parse_handler_line_50"
+rust_path = "src/lib.rs"
+other = "tuple_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 50
+
+[[entries]]
+rust = "handle_line_52"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 52
+
+[[entries]]
+rust = "get_chunk_handler_line_57"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 57
+
+[[entries]]
+rust = "triplet_parse_handler_line_76"
+rust_path = "src/lib.rs"
+other = "triplet_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 76
+
+[[entries]]
+rust = "handle_line_81"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 81
+
+[[entries]]
+rust = "handle_line_91"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 91
+
+[[entries]]
+rust = "get_chunk_handler_line_100"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 100
+
+[[entries]]
+rust = "triplet_pattern_parse_handler_line_126"
+rust_path = "src/lib.rs"
+other = "triplet_pattern_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 126
+
+[[entries]]
+rust = "handle_line_130"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 130
+
+[[entries]]
+rust = "get_chunk_handler_line_138"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 138
+
+[[entries]]
+rust = "triplet_calling_parse_handler_line_160"
+rust_path = "src/lib.rs"
+other = "triplet_calling_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 160
+
+[[entries]]
+rust = "handle_line_165"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 165
+
+[[entries]]
+rust = "get_chunk_handler_line_173"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 173
+
+[[entries]]
+rust = "doublet_parse_handler_line_195"
+rust_path = "src/lib.rs"
+other = "doublet_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 195
+
+[[entries]]
+rust = "handle_line_199"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 199
+
+[[entries]]
+rust = "get_chunk_handler_line_207"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 207
+
+[[entries]]
+rust = "dense_2d_call_adding_parse_handler_line_229"
+rust_path = "src/lib.rs"
+other = "dense_2d_call_adding_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 229
+
+[[entries]]
+rust = "handle_line_231"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 231
+
+[[entries]]
+rust = "get_chunk_handler_line_235"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 235
+
+[[entries]]
+rust = "dense_adding_parse_handler_line_253"
+rust_path = "src/lib.rs"
+other = "dense_adding_parse_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 253
+
+[[entries]]
+rust = "handle_line_256"
+rust_path = "src/lib.rs"
+other = "handle"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 256
+
+[[entries]]
+rust = "get_chunk_handler_line_266"
+rust_path = "src/lib.rs"
+other = "get_chunk_handler"
+other_path = "fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp"
+other_line = 266
+
+[[entries]]
+rust = "parse_enum_line_24"
+rust_path = "src/lib.rs"
+other = "parse_enum"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 24
+
+[[entries]]
+rust = "is_line_all_spaces_line_45"
+rust_path = "src/lib.rs"
+other = "is_line_all_spaces"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 45
+
+[[entries]]
+rust = "strip_trailing_cr_line_60"
+rust_path = "src/lib.rs"
+other = "strip_trailing_cr"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 60
+
+[[entries]]
+rust = "get_storage_nnz_line_71"
+rust_path = "src/lib.rs"
+other = "get_storage_nnz"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 71
+
+[[entries]]
+rust = "read_comment_line_116"
+rust_path = "src/lib.rs"
+other = "read_comment"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 116
+
+[[entries]]
+rust = "parse_header_enum_line_145"
+rust_path = "src/lib.rs"
+other = "parse_header_enum"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 145
+
+[[entries]]
+rust = "read_header_line_166"
+rust_path = "src/lib.rs"
+other = "read_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 166
+
+[[entries]]
+rust = "write_header_line_278"
+rust_path = "src/lib.rs"
+other = "write_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/header.hpp"
+other_line = 278
+
+[[entries]]
+rust = "get_next_chunk_line_11"
+rust_path = "src/lib.rs"
+other = "get_next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/chunking.hpp"
+other_line = 11
+
+[[entries]]
+rust = "get_next_chunk_line_51"
+rust_path = "src/lib.rs"
+other = "get_next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/chunking.hpp"
+other_line = 51
+
+[[entries]]
+rust = "is_all_spaces_line_59"
+rust_path = "src/lib.rs"
+other = "is_all_spaces"
+other_path = "fast_matrix_market/include/fast_matrix_market/chunking.hpp"
+other_line = 59
+
+[[entries]]
+rust = "count_lines_line_66"
+rust_path = "src/lib.rs"
+other = "count_lines"
+other_path = "fast_matrix_market/include/fast_matrix_market/chunking.hpp"
+other_line = 66
+
+[[entries]]
+rust = "fmm_error_line_40"
+rust_path = "src/lib.rs"
+other = "fmm_error"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 40
+
+[[entries]]
+rust = "what_line_42"
+rust_path = "src/lib.rs"
+other = "what"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 42
+
+[[entries]]
+rust = "invalid_mm_line_54"
+rust_path = "src/lib.rs"
+other = "invalid_mm"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 54
+
+[[entries]]
+rust = "invalid_mm_line_55"
+rust_path = "src/lib.rs"
+other = "invalid_mm"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 55
+
+[[entries]]
+rust = "prepend_line_number_line_59"
+rust_path = "src/lib.rs"
+other = "prepend_line_number"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 59
+
+[[entries]]
+rust = "out_of_range_line_69"
+rust_path = "src/lib.rs"
+other = "out_of_range"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 69
+
+[[entries]]
+rust = "invalid_argument_line_77"
+rust_path = "src/lib.rs"
+other = "invalid_argument"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 77
+
+[[entries]]
+rust = "complex_incompatible_line_85"
+rust_path = "src/lib.rs"
+other = "complex_incompatible"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 85
+
+[[entries]]
+rust = "support_not_selected_line_93"
+rust_path = "src/lib.rs"
+other = "support_not_selected"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 93
+
+[[entries]]
+rust = "no_vector_support_line_101"
+rust_path = "src/lib.rs"
+other = "no_vector_support"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 101
+
+[[entries]]
+rust = "operator_line_114"
+rust_path = "src/lib.rs"
+other = "operator-"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 114
+
+[[entries]]
+rust = "negate_line_119"
+rust_path = "src/lib.rs"
+other = "negate"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 119
+
+[[entries]]
+rust = "negate_line_123"
+rust_path = "src/lib.rs"
+other = "negate"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 123
+
+[[entries]]
+rust = "negate_line_128"
+rust_path = "src/lib.rs"
+other = "negate"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 128
+
+[[entries]]
+rust = "pattern_default_value_line_133"
+rust_path = "src/lib.rs"
+other = "pattern_default_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 133
+
+[[entries]]
+rust = "get_zero_line_141"
+rust_path = "src/lib.rs"
+other = "get_zero"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 141
+
+[[entries]]
+rust = "is_ready_line_150"
+rust_path = "src/lib.rs"
+other = "is_ready"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 150
+
+[[entries]]
+rust = "test_flag_line_160"
+rust_path = "src/lib.rs"
+other = "test_flag"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 160
+
+[[entries]]
+rust = "starts_with_line_164"
+rust_path = "src/lib.rs"
+other = "starts_with"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 164
+
+[[entries]]
+rust = "ends_with_line_171"
+rust_path = "src/lib.rs"
+other = "ends_with"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 171
+
+[[entries]]
+rust = "trim_line_181"
+rust_path = "src/lib.rs"
+other = "trim"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 181
+
+[[entries]]
+rust = "replace_all_line_198"
+rust_path = "src/lib.rs"
+other = "replace_all"
+other_path = "fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp"
+other_line = 198
+
+[[entries]]
+rust = "line_count_result_s_line_19"
+rust_path = "src/lib.rs"
+other = "line_count_result_s"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp"
+other_line = 19
+
+[[entries]]
+rust = "count_chunk_lines_line_24"
+rust_path = "src/lib.rs"
+other = "count_chunk_lines"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp"
+other_line = 24
+
+[[entries]]
+rust = "read_body_threads_line_33"
+rust_path = "src/lib.rs"
+other = "read_body_threads"
+other_path = "fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp"
+other_line = 33
+
+[[entries]]
+rust = "skip_spaces_line_34"
+rust_path = "src/lib.rs"
+other = "skip_spaces"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 34
+
+[[entries]]
+rust = "skip_spaces_and_newlines_line_38"
+rust_path = "src/lib.rs"
+other = "skip_spaces_and_newlines"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 38
+
+[[entries]]
+rust = "bump_to_next_line_line_48"
+rust_path = "src/lib.rs"
+other = "bump_to_next_line"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 48
+
+[[entries]]
+rust = "read_int_from_chars_line_72"
+rust_path = "src/lib.rs"
+other = "read_int_from_chars"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 72
+
+[[entries]]
+rust = "read_int_fallback_line_85"
+rust_path = "src/lib.rs"
+other = "read_int_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 85
+
+[[entries]]
+rust = "read_int_fallback_line_101"
+rust_path = "src/lib.rs"
+other = "read_int_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 101
+
+[[entries]]
+rust = "read_int_fallback_line_122"
+rust_path = "src/lib.rs"
+other = "read_int_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 122
+
+[[entries]]
+rust = "read_int_line_140"
+rust_path = "src/lib.rs"
+other = "read_int"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 140
+
+[[entries]]
+rust = "read_float_fast_float_line_153"
+rust_path = "src/lib.rs"
+other = "read_float_fast_float"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 153
+
+[[entries]]
+rust = "read_float_from_chars_line_175"
+rust_path = "src/lib.rs"
+other = "read_float_from_chars"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 175
+
+[[entries]]
+rust = "read_float_fallback_line_196"
+rust_path = "src/lib.rs"
+other = "read_float_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 196
+
+[[entries]]
+rust = "read_float_fallback_line_216"
+rust_path = "src/lib.rs"
+other = "read_float_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 216
+
+[[entries]]
+rust = "read_float_line_234"
+rust_path = "src/lib.rs"
+other = "read_float"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 234
+
+[[entries]]
+rust = "read_float_from_chars_line_257"
+rust_path = "src/lib.rs"
+other = "read_float_from_chars"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 257
+
+[[entries]]
+rust = "read_float_fallback_line_280"
+rust_path = "src/lib.rs"
+other = "read_float_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 280
+
+[[entries]]
+rust = "read_float_line_297"
+rust_path = "src/lib.rs"
+other = "read_float"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 297
+
+[[entries]]
+rust = "read_value_line_312"
+rust_path = "src/lib.rs"
+other = "read_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 312
+
+[[entries]]
+rust = "read_value_line_317"
+rust_path = "src/lib.rs"
+other = "read_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 317
+
+[[entries]]
+rust = "read_value_line_321"
+rust_path = "src/lib.rs"
+other = "read_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 321
+
+[[entries]]
+rust = "read_value_line_329"
+rust_path = "src/lib.rs"
+other = "read_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 329
+
+[[entries]]
+rust = "read_value_line_334"
+rust_path = "src/lib.rs"
+other = "read_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 334
+
+[[entries]]
+rust = "complex_conjugate_line_347"
+rust_path = "src/lib.rs"
+other = "complex_conjugate"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 347
+
+[[entries]]
+rust = "complex_conjugate_line_352"
+rust_path = "src/lib.rs"
+other = "complex_conjugate"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 352
+
+[[entries]]
+rust = "int_to_string_line_367"
+rust_path = "src/lib.rs"
+other = "int_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 367
+
+[[entries]]
+rust = "int_to_string_line_382"
+rust_path = "src/lib.rs"
+other = "int_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 382
+
+[[entries]]
+rust = "value_to_string_line_387"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 387
+
+[[entries]]
+rust = "value_to_string_line_391"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 391
+
+[[entries]]
+rust = "value_to_string_line_396"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 396
+
+[[entries]]
+rust = "value_to_string_fallback_line_404"
+rust_path = "src/lib.rs"
+other = "value_to_string_fallback"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 404
+
+[[entries]]
+rust = "value_to_string_dragonbox_line_438"
+rust_path = "src/lib.rs"
+other = "value_to_string_dragonbox"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 438
+
+[[entries]]
+rust = "value_to_string_dragonbox_line_452"
+rust_path = "src/lib.rs"
+other = "value_to_string_dragonbox"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 452
+
+[[entries]]
+rust = "value_to_string_ryu_line_468"
+rust_path = "src/lib.rs"
+other = "value_to_string_ryu"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 468
+
+[[entries]]
+rust = "value_to_string_ryu_line_501"
+rust_path = "src/lib.rs"
+other = "value_to_string_ryu"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 501
+
+[[entries]]
+rust = "value_to_string_to_chars_line_537"
+rust_path = "src/lib.rs"
+other = "value_to_string_to_chars"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 537
+
+[[entries]]
+rust = "value_to_string_to_chars_line_558"
+rust_path = "src/lib.rs"
+other = "value_to_string_to_chars"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 558
+
+[[entries]]
+rust = "value_to_string_line_584"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 584
+
+[[entries]]
+rust = "value_to_string_line_601"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 601
+
+[[entries]]
+rust = "value_to_string_line_630"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 630
+
+[[entries]]
+rust = "value_to_string_line_638"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/field_conv.hpp"
+other_line = 638
+
+[[entries]]
+rust = "line_formatter_line_20"
+rust_path = "src/lib.rs"
+other = "line_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 20
+
+[[entries]]
+rust = "coord_matrix_line_23"
+rust_path = "src/lib.rs"
+other = "coord_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 23
+
+[[entries]]
+rust = "coord_matrix_pattern_line_42"
+rust_path = "src/lib.rs"
+other = "coord_matrix_pattern"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 42
+
+[[entries]]
+rust = "array_matrix_line_52"
+rust_path = "src/lib.rs"
+other = "array_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 52
+
+[[entries]]
+rust = "vector_line_formatter_line_79"
+rust_path = "src/lib.rs"
+other = "vector_line_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 79
+
+[[entries]]
+rust = "coord_matrix_line_81"
+rust_path = "src/lib.rs"
+other = "coord_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 81
+
+[[entries]]
+rust = "coord_matrix_pattern_line_94"
+rust_path = "src/lib.rs"
+other = "coord_matrix_pattern"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 94
+
+[[entries]]
+rust = "triplet_formatter_line_120"
+rust_path = "src/lib.rs"
+other = "triplet_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 120
+
+[[entries]]
+rust = "has_next_line_134"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 134
+
+[[entries]]
+rust = "chunk_line_140"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 140
+
+[[entries]]
+rust = "operator_line_149"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 149
+
+[[entries]]
+rust = "next_chunk_line_171"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 171
+
+[[entries]]
+rust = "csc_formatter_line_202"
+rust_path = "src/lib.rs"
+other = "csc_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 202
+
+[[entries]]
+rust = "has_next_line_221"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 221
+
+[[entries]]
+rust = "chunk_line_227"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 227
+
+[[entries]]
+rust = "operator_line_238"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 238
+
+[[entries]]
+rust = "next_chunk_line_282"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 282
+
+[[entries]]
+rust = "array_formatter_line_314"
+rust_path = "src/lib.rs"
+other = "array_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 314
+
+[[entries]]
+rust = "has_next_line_317"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 317
+
+[[entries]]
+rust = "chunk_line_323"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 323
+
+[[entries]]
+rust = "operator_line_326"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 326
+
+[[entries]]
+rust = "next_chunk_line_351"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 351
+
+[[entries]]
+rust = "dense_2d_call_formatter_line_372"
+rust_path = "src/lib.rs"
+other = "dense_2d_call_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 372
+
+[[entries]]
+rust = "has_next_line_375"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 375
+
+[[entries]]
+rust = "chunk_line_381"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 381
+
+[[entries]]
+rust = "operator_line_384"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 384
+
+[[entries]]
+rust = "next_chunk_line_406"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/formatters.hpp"
+other_line = 406
+
+[[entries]]
+rust = "get_field_type_line_16"
+rust_path = "src/lib.rs"
+other = "get_field_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body.hpp"
+other_line = 16
+
+[[entries]]
+rust = "get_field_type_line_24"
+rust_path = "src/lib.rs"
+other = "get_field_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body.hpp"
+other_line = 24
+
+[[entries]]
+rust = "get_field_type_line_32"
+rust_path = "src/lib.rs"
+other = "get_field_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body.hpp"
+other_line = 32
+
+[[entries]]
+rust = "get_field_type_line_40"
+rust_path = "src/lib.rs"
+other = "get_field_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body.hpp"
+other_line = 40
+
+[[entries]]
+rust = "write_body_sequential_line_50"
+rust_path = "src/lib.rs"
+other = "write_body_sequential"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body.hpp"
+other_line = 50
+
+[[entries]]
+rust = "write_body_line_66"
+rust_path = "src/lib.rs"
+other = "write_body"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body.hpp"
+other_line = 66
+
+[[entries]]
+rust = "task_thread_pool_line_137"
+rust_path = "src/lib.rs"
+other = "task_thread_pool"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 137
+
+[[entries]]
+rust = "task_thread_pool_line_149"
+rust_path = "src/lib.rs"
+other = "~task_thread_pool"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 149
+
+[[entries]]
+rust = "clear_task_queue_line_160"
+rust_path = "src/lib.rs"
+other = "clear_task_queue"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 160
+
+[[entries]]
+rust = "get_num_queued_tasks_line_170"
+rust_path = "src/lib.rs"
+other = "get_num_queued_tasks"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 170
+
+[[entries]]
+rust = "get_num_running_tasks_line_180"
+rust_path = "src/lib.rs"
+other = "get_num_running_tasks"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 180
+
+[[entries]]
+rust = "get_num_tasks_line_190"
+rust_path = "src/lib.rs"
+other = "get_num_tasks"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 190
+
+[[entries]]
+rust = "get_num_threads_line_200"
+rust_path = "src/lib.rs"
+other = "get_num_threads"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 200
+
+[[entries]]
+rust = "pause_line_210"
+rust_path = "src/lib.rs"
+other = "pause"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 210
+
+[[entries]]
+rust = "unpause_line_218"
+rust_path = "src/lib.rs"
+other = "unpause"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 218
+
+[[entries]]
+rust = "is_paused_line_229"
+rust_path = "src/lib.rs"
+other = "is_paused"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 229
+
+[[entries]]
+rust = "std_future_r_submit_line_248"
+rust_path = "src/lib.rs"
+other = "std::future<R> submit"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 248
+
+[[entries]]
+rust = "submit_detach_line_260"
+rust_path = "src/lib.rs"
+other = "submit_detach"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 260
+
+[[entries]]
+rust = "submit_detach_line_272"
+rust_path = "src/lib.rs"
+other = "submit_detach"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 272
+
+[[entries]]
+rust = "wait_for_queued_tasks_line_281"
+rust_path = "src/lib.rs"
+other = "wait_for_queued_tasks"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 281
+
+[[entries]]
+rust = "wait_for_tasks_line_291"
+rust_path = "src/lib.rs"
+other = "wait_for_tasks"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 291
+
+[[entries]]
+rust = "worker_main_line_303"
+rust_path = "src/lib.rs"
+other = "worker_main"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 303
+
+[[entries]]
+rust = "start_threads_line_345"
+rust_path = "src/lib.rs"
+other = "start_threads"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 345
+
+[[entries]]
+rust = "stop_all_threads_line_356"
+rust_path = "src/lib.rs"
+other = "stop_all_threads"
+other_path = "fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp"
+other_line = 356
+
+[[entries]]
+rust = "matrix_market_header_line_48"
+rust_path = "src/lib.rs"
+other = "matrix_market_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 48
+
+[[entries]]
+rust = "matrix_market_header_line_49"
+rust_path = "src/lib.rs"
+other = "matrix_market_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 49
+
+[[entries]]
+rust = "matrix_market_header_line_50"
+rust_path = "src/lib.rs"
+other = "matrix_market_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/types.hpp"
+other_line = 50
+
+[[entries]]
+rust = "write_body_threads_line_20"
+rust_path = "src/lib.rs"
+other = "write_body_threads"
+other_path = "fast_matrix_market/include/fast_matrix_market/write_body_threads.hpp"
+other_line = 20
+
+[[entries]]
+rust = "read_matrix_market_blaze_line_17"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 17
+
+[[entries]]
+rust = "read_matrix_market_blaze_line_97"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 97
+
+[[entries]]
+rust = "read_matrix_market_blaze_line_117"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 117
+
+[[entries]]
+rust = "blaze_compressedmatrix_formatter_line_134"
+rust_path = "src/lib.rs"
+other = "Blaze_CompressedMatrix_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 134
+
+[[entries]]
+rust = "has_next_line_138"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 138
+
+[[entries]]
+rust = "chunk_line_144"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 144
+
+[[entries]]
+rust = "operator_line_147"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 147
+
+[[entries]]
+rust = "next_chunk_line_174"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 174
+
+[[entries]]
+rust = "write_matrix_market_blaze_line_197"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 197
+
+[[entries]]
+rust = "write_matrix_market_blaze_line_226"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 226
+
+[[entries]]
+rust = "read_matrix_market_blaze_line_256"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 256
+
+[[entries]]
+rust = "read_matrix_market_blaze_line_305"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 305
+
+[[entries]]
+rust = "write_matrix_market_blaze_line_327"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 327
+
+[[entries]]
+rust = "write_matrix_market_blaze_line_372"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_blaze"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp"
+other_line = 372
+
+[[entries]]
+rust = "read_matrix_market_array_line_46"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/array.hpp"
+other_line = 46
+
+[[entries]]
+rust = "read_matrix_market_array_line_66"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/array.hpp"
+other_line = 66
+
+[[entries]]
+rust = "read_matrix_market_array_line_82"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/array.hpp"
+other_line = 82
+
+[[entries]]
+rust = "write_matrix_market_array_line_94"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/array.hpp"
+other_line = 94
+
+[[entries]]
+rust = "read_matrix_market_eigen_line_23"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_eigen"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 23
+
+[[entries]]
+rust = "read_matrix_market_eigen_line_57"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_eigen"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 57
+
+[[entries]]
+rust = "read_matrix_market_eigen_dense_line_69"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_eigen_dense"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 69
+
+[[entries]]
+rust = "read_matrix_market_eigen_dense_line_85"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_eigen_dense"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 85
+
+[[entries]]
+rust = "sparse_eigen_formatter_line_100"
+rust_path = "src/lib.rs"
+other = "sparse_Eigen_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 100
+
+[[entries]]
+rust = "has_next_line_104"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 104
+
+[[entries]]
+rust = "chunk_line_110"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 110
+
+[[entries]]
+rust = "operator_line_113"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 113
+
+[[entries]]
+rust = "next_chunk_line_132"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 132
+
+[[entries]]
+rust = "write_matrix_market_eigen_line_154"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_eigen"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 154
+
+[[entries]]
+rust = "write_matrix_market_eigen_dense_line_178"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_eigen_dense"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp"
+other_line = 178
+
+[[entries]]
+rust = "ok_line_69"
+rust_path = "src/lib.rs"
+other = "ok"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 69
+
+[[entries]]
+rust = "parse_key_line_79"
+rust_path = "src/lib.rs"
+other = "parse_key"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 79
+
+[[entries]]
+rust = "str_ctype_to_grb_type_line_97"
+rust_path = "src/lib.rs"
+other = "str_ctype_to_GrB_Type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 97
+
+[[entries]]
+rust = "grb_type_to_header_type_line_122"
+rust_path = "src/lib.rs"
+other = "GrB_Type_to_header_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 122
+
+[[entries]]
+rust = "parse_type_line_139"
+rust_path = "src/lib.rs"
+other = "parse_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 139
+
+[[entries]]
+rust = "type_line_152"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 152
+
+[[entries]]
+rust = "build_matrix_line_154"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 154
+
+[[entries]]
+rust = "set_element_line_158"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 158
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_162"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 162
+
+[[entries]]
+rust = "gxb_iterator_get_line_167"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 167
+
+[[entries]]
+rust = "build_vector_line_171"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 171
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_175"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 175
+
+[[entries]]
+rust = "type_line_180"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 180
+
+[[entries]]
+rust = "build_matrix_line_182"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 182
+
+[[entries]]
+rust = "set_element_line_186"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 186
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_190"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 190
+
+[[entries]]
+rust = "gxb_iterator_get_line_195"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 195
+
+[[entries]]
+rust = "build_vector_line_199"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 199
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_203"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 203
+
+[[entries]]
+rust = "type_line_208"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 208
+
+[[entries]]
+rust = "build_matrix_line_210"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 210
+
+[[entries]]
+rust = "set_element_line_214"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 214
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_218"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 218
+
+[[entries]]
+rust = "gxb_iterator_get_line_223"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 223
+
+[[entries]]
+rust = "build_vector_line_227"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 227
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_231"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 231
+
+[[entries]]
+rust = "type_line_236"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 236
+
+[[entries]]
+rust = "build_matrix_line_238"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 238
+
+[[entries]]
+rust = "set_element_line_242"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 242
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_246"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 246
+
+[[entries]]
+rust = "gxb_iterator_get_line_251"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 251
+
+[[entries]]
+rust = "build_vector_line_255"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 255
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_259"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 259
+
+[[entries]]
+rust = "type_line_264"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 264
+
+[[entries]]
+rust = "build_matrix_line_266"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 266
+
+[[entries]]
+rust = "set_element_line_270"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 270
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_274"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 274
+
+[[entries]]
+rust = "gxb_iterator_get_line_279"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 279
+
+[[entries]]
+rust = "build_vector_line_283"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 283
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_287"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 287
+
+[[entries]]
+rust = "type_line_292"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 292
+
+[[entries]]
+rust = "build_matrix_line_294"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 294
+
+[[entries]]
+rust = "set_element_line_298"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 298
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_302"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 302
+
+[[entries]]
+rust = "gxb_iterator_get_line_307"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 307
+
+[[entries]]
+rust = "build_vector_line_311"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 311
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_315"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 315
+
+[[entries]]
+rust = "type_line_320"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 320
+
+[[entries]]
+rust = "build_matrix_line_322"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 322
+
+[[entries]]
+rust = "set_element_line_326"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 326
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_330"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 330
+
+[[entries]]
+rust = "gxb_iterator_get_line_335"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 335
+
+[[entries]]
+rust = "build_vector_line_339"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 339
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_343"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 343
+
+[[entries]]
+rust = "type_line_348"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 348
+
+[[entries]]
+rust = "build_matrix_line_350"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 350
+
+[[entries]]
+rust = "set_element_line_354"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 354
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_358"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 358
+
+[[entries]]
+rust = "gxb_iterator_get_line_363"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 363
+
+[[entries]]
+rust = "build_vector_line_367"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 367
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_371"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 371
+
+[[entries]]
+rust = "type_line_376"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 376
+
+[[entries]]
+rust = "build_matrix_line_378"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 378
+
+[[entries]]
+rust = "set_element_line_382"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 382
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_386"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 386
+
+[[entries]]
+rust = "gxb_iterator_get_line_391"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 391
+
+[[entries]]
+rust = "build_vector_line_395"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 395
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_399"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 399
+
+[[entries]]
+rust = "type_line_404"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 404
+
+[[entries]]
+rust = "build_matrix_line_406"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 406
+
+[[entries]]
+rust = "set_element_line_410"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 410
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_414"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 414
+
+[[entries]]
+rust = "gxb_iterator_get_line_419"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 419
+
+[[entries]]
+rust = "build_vector_line_423"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 423
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_427"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 427
+
+[[entries]]
+rust = "type_line_432"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 432
+
+[[entries]]
+rust = "build_matrix_line_434"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 434
+
+[[entries]]
+rust = "set_element_line_438"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 438
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_442"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 442
+
+[[entries]]
+rust = "gxb_iterator_get_line_447"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 447
+
+[[entries]]
+rust = "build_vector_line_451"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 451
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_455"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 455
+
+[[entries]]
+rust = "type_line_460"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 460
+
+[[entries]]
+rust = "build_matrix_line_462"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 462
+
+[[entries]]
+rust = "set_element_line_466"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 466
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_470"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 470
+
+[[entries]]
+rust = "gxb_iterator_get_line_475"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 475
+
+[[entries]]
+rust = "build_vector_line_479"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 479
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_483"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 483
+
+[[entries]]
+rust = "type_line_489"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 489
+
+[[entries]]
+rust = "build_matrix_line_491"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 491
+
+[[entries]]
+rust = "set_element_line_495"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 495
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_499"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 499
+
+[[entries]]
+rust = "gxb_iterator_get_line_504"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 504
+
+[[entries]]
+rust = "build_vector_line_508"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 508
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_512"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 512
+
+[[entries]]
+rust = "type_line_517"
+rust_path = "src/lib.rs"
+other = "type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 517
+
+[[entries]]
+rust = "build_matrix_line_519"
+rust_path = "src/lib.rs"
+other = "build_matrix"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 519
+
+[[entries]]
+rust = "set_element_line_523"
+rust_path = "src/lib.rs"
+other = "set_element"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 523
+
+[[entries]]
+rust = "grb_matrix_extracttuples_line_527"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 527
+
+[[entries]]
+rust = "gxb_iterator_get_line_532"
+rust_path = "src/lib.rs"
+other = "GxB_Iterator_get"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 532
+
+[[entries]]
+rust = "build_vector_line_536"
+rust_path = "src/lib.rs"
+other = "build_vector"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 536
+
+[[entries]]
+rust = "grb_vector_extracttuples_line_540"
+rust_path = "src/lib.rs"
+other = "GrB_Vector_extractTuples"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 540
+
+[[entries]]
+rust = "read_body_graphblas_coordinate_line_550"
+rust_path = "src/lib.rs"
+other = "read_body_graphblas_coordinate"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 550
+
+[[entries]]
+rust = "read_body_graphblas_array_line_602"
+rust_path = "src/lib.rs"
+other = "read_body_graphblas_array"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 602
+
+[[entries]]
+rust = "read_body_graphblas_line_623"
+rust_path = "src/lib.rs"
+other = "read_body_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 623
+
+[[entries]]
+rust = "get_type_from_header_line_639"
+rust_path = "src/lib.rs"
+other = "get_type_from_header"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 639
+
+[[entries]]
+rust = "read_matrix_market_graphblas_line_701"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 701
+
+[[entries]]
+rust = "read_matrix_market_graphblas_line_758"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 758
+
+[[entries]]
+rust = "write_body_graphblas_triplet_line_771"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 771
+
+[[entries]]
+rust = "setup_line_796"
+rust_path = "src/lib.rs"
+other = "setup"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 796
+
+[[entries]]
+rust = "attach_line_809"
+rust_path = "src/lib.rs"
+other = "attach"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 809
+
+[[entries]]
+rust = "kseek_line_819"
+rust_path = "src/lib.rs"
+other = "kseek"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 819
+
+[[entries]]
+rust = "getmajorindex_line_823"
+rust_path = "src/lib.rs"
+other = "getMajorIndex"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 823
+
+[[entries]]
+rust = "getminorindex_line_827"
+rust_path = "src/lib.rs"
+other = "getMinorIndex"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 827
+
+[[entries]]
+rust = "nextminor_line_831"
+rust_path = "src/lib.rs"
+other = "nextMinor"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 831
+
+[[entries]]
+rust = "nextmajor_line_835"
+rust_path = "src/lib.rs"
+other = "nextMajor"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 835
+
+[[entries]]
+rust = "to_row_col_line_839"
+rust_path = "src/lib.rs"
+other = "to_row_col"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 839
+
+[[entries]]
+rust = "setup_line_847"
+rust_path = "src/lib.rs"
+other = "setup"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 847
+
+[[entries]]
+rust = "attach_line_860"
+rust_path = "src/lib.rs"
+other = "attach"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 860
+
+[[entries]]
+rust = "kseek_line_870"
+rust_path = "src/lib.rs"
+other = "kseek"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 870
+
+[[entries]]
+rust = "getminorindex_line_874"
+rust_path = "src/lib.rs"
+other = "getMinorIndex"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 874
+
+[[entries]]
+rust = "getmajorindex_line_878"
+rust_path = "src/lib.rs"
+other = "getMajorIndex"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 878
+
+[[entries]]
+rust = "nextminor_line_882"
+rust_path = "src/lib.rs"
+other = "nextMinor"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 882
+
+[[entries]]
+rust = "nextmajor_line_886"
+rust_path = "src/lib.rs"
+other = "nextMajor"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 886
+
+[[entries]]
+rust = "to_row_col_line_890"
+rust_path = "src/lib.rs"
+other = "to_row_col"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 890
+
+[[entries]]
+rust = "setup_line_899"
+rust_path = "src/lib.rs"
+other = "setup"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 899
+
+[[entries]]
+rust = "attach_line_913"
+rust_path = "src/lib.rs"
+other = "attach"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 913
+
+[[entries]]
+rust = "kseek_line_923"
+rust_path = "src/lib.rs"
+other = "kseek"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 923
+
+[[entries]]
+rust = "getminorindex_line_927"
+rust_path = "src/lib.rs"
+other = "getMinorIndex"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 927
+
+[[entries]]
+rust = "getmajorindex_line_931"
+rust_path = "src/lib.rs"
+other = "getMajorIndex"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 931
+
+[[entries]]
+rust = "nextminor_line_935"
+rust_path = "src/lib.rs"
+other = "nextMinor"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 935
+
+[[entries]]
+rust = "nextmajor_line_939"
+rust_path = "src/lib.rs"
+other = "nextMajor"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 939
+
+[[entries]]
+rust = "to_row_col_line_943"
+rust_path = "src/lib.rs"
+other = "to_row_col"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 943
+
+[[entries]]
+rust = "grb_matrix_iterator_formatter_line_955"
+rust_path = "src/lib.rs"
+other = "GrB_Matrix_Iterator_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 955
+
+[[entries]]
+rust = "has_next_line_962"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 962
+
+[[entries]]
+rust = "chunk_line_968"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 968
+
+[[entries]]
+rust = "operator_line_971"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 971
+
+[[entries]]
+rust = "next_chunk_line_1007"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1007
+
+[[entries]]
+rust = "write_body_graphblas_array_iterator_line_1033"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_array_iterator"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1033
+
+[[entries]]
+rust = "write_body_graphblas_array_row_via_extract_line_1053"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_array_row_via_extract"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1053
+
+[[entries]]
+rust = "write_body_graphblas_array_via_triplet_line_1073"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_array_via_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1073
+
+[[entries]]
+rust = "write_body_graphblas_iterator_line_1115"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_iterator"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1115
+
+[[entries]]
+rust = "write_body_graphblas_line_1141"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1141
+
+[[entries]]
+rust = "get_field_line_1175"
+rust_path = "src/lib.rs"
+other = "get_field"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1175
+
+[[entries]]
+rust = "add_structured_comment_line_1194"
+rust_path = "src/lib.rs"
+other = "add_structured_comment"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1194
+
+[[entries]]
+rust = "write_matrix_market_graphblas_line_1220"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1220
+
+[[entries]]
+rust = "read_body_graphblas_line_1305"
+rust_path = "src/lib.rs"
+other = "read_body_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1305
+
+[[entries]]
+rust = "read_matrix_market_graphblas_line_1324"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1324
+
+[[entries]]
+rust = "read_matrix_market_graphblas_line_1382"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1382
+
+[[entries]]
+rust = "write_body_graphblas_doublet_line_1395"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_doublet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1395
+
+[[entries]]
+rust = "write_body_graphblas_iterator_line_1420"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas_iterator"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1420
+
+[[entries]]
+rust = "write_body_graphblas_line_1434"
+rust_path = "src/lib.rs"
+other = "write_body_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1434
+
+[[entries]]
+rust = "write_matrix_market_graphblas_line_1448"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_graphblas"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp"
+other_line = 1448
+
+[[entries]]
+rust = "generalize_symmetry_triplet_line_45"
+rust_path = "src/lib.rs"
+other = "generalize_symmetry_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/triplet.hpp"
+other_line = 45
+
+[[entries]]
+rust = "read_matrix_market_body_triplet_line_84"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_body_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/triplet.hpp"
+other_line = 84
+
+[[entries]]
+rust = "read_matrix_market_triplet_line_112"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/triplet.hpp"
+other_line = 112
+
+[[entries]]
+rust = "read_matrix_market_triplet_line_126"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/triplet.hpp"
+other_line = 126
+
+[[entries]]
+rust = "write_matrix_market_triplet_line_140"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/triplet.hpp"
+other_line = 140
+
+[[entries]]
+rust = "write_matrix_market_csc_line_173"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_csc"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/triplet.hpp"
+other_line = 173
+
+[[entries]]
+rust = "read_value_line_38"
+rust_path = "src/lib.rs"
+other = "read_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp"
+other_line = 38
+
+[[entries]]
+rust = "negate_line_57"
+rust_path = "src/lib.rs"
+other = "negate"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp"
+other_line = 57
+
+[[entries]]
+rust = "pattern_default_value_line_64"
+rust_path = "src/lib.rs"
+other = "pattern_default_value"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp"
+other_line = 64
+
+[[entries]]
+rust = "get_field_type_line_76"
+rust_path = "src/lib.rs"
+other = "get_field_type"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp"
+other_line = 76
+
+[[entries]]
+rust = "value_to_string_line_83"
+rust_path = "src/lib.rs"
+other = "value_to_string"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp"
+other_line = 83
+
+[[entries]]
+rust = "read_matrix_market_arma_line_17"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_arma"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp"
+other_line = 17
+
+[[entries]]
+rust = "read_matrix_market_arma_line_31"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_arma"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp"
+other_line = 31
+
+[[entries]]
+rust = "read_matrix_market_arma_line_40"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_arma"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp"
+other_line = 40
+
+[[entries]]
+rust = "read_matrix_market_arma_line_60"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_arma"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp"
+other_line = 60
+
+[[entries]]
+rust = "write_matrix_market_arma_line_69"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_arma"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp"
+other_line = 69
+
+[[entries]]
+rust = "write_matrix_market_arma_line_82"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_arma"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp"
+other_line = 82
+
+[[entries]]
+rust = "read_matrix_market_doublet_line_47"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_doublet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/doublet.hpp"
+other_line = 47
+
+[[entries]]
+rust = "read_matrix_market_doublet_line_66"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_doublet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/doublet.hpp"
+other_line = 66
+
+[[entries]]
+rust = "write_matrix_market_doublet_line_79"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_doublet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/doublet.hpp"
+other_line = 79
+
+[[entries]]
+rust = "read_matrix_market_cxsparse_line_14"
+rust_path = "src/lib.rs"
+other = "read_matrix_market_cxsparse"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/CXSparse.hpp"
+other_line = 14
+
+[[entries]]
+rust = "write_matrix_market_cxsparse_line_47"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_cxsparse"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/CXSparse.hpp"
+other_line = 47
+
+[[entries]]
+rust = "coo_independent_generator_formatter_line_17"
+rust_path = "src/lib.rs"
+other = "coo_independent_generator_formatter"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 17
+
+[[entries]]
+rust = "has_next_line_24"
+rust_path = "src/lib.rs"
+other = "has_next"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 24
+
+[[entries]]
+rust = "chunk_line_30"
+rust_path = "src/lib.rs"
+other = "chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 30
+
+[[entries]]
+rust = "operator_line_34"
+rust_path = "src/lib.rs"
+other = "operator()"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 34
+
+[[entries]]
+rust = "next_chunk_line_54"
+rust_path = "src/lib.rs"
+other = "next_chunk"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 54
+
+[[entries]]
+rust = "write_matrix_market_generated_triplet_line_81"
+rust_path = "src/lib.rs"
+other = "write_matrix_market_generated_triplet"
+other_path = "fast_matrix_market/include/fast_matrix_market/app/generator.hpp"
+other_line = 81
