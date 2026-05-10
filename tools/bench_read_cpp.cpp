@@ -9,19 +9,20 @@
 #include "fast_matrix_market/app/triplet.hpp"
 
 int main(int argc, char** argv) {
-    if (argc != 3) {
-        std::cerr << "usage: bench_read_cpp <matrix.mtx> <iterations>\n";
+    if (argc != 3 && argc != 4) {
+        std::cerr << "usage: bench_read_cpp <matrix.mtx> <iterations> [threads]\n";
         return 2;
     }
 
     const std::string path = argv[1];
     const int iterations = std::atoi(argv[2]);
+    const int threads = argc == 4 ? std::atoi(argv[3]) : 1;
     fast_matrix_market::read_options options;
     options.chunk_size_bytes = 1 << 20;
     options.generalize_symmetry = true;
     options.generalize_symmetry_app = true;
-    options.parallel_ok = false;
-    options.num_threads = 0;
+    options.parallel_ok = true;
+    options.num_threads = threads;
 
     fast_matrix_market::matrix_market_header probe_header;
     {
@@ -67,6 +68,7 @@ int main(int argc, char** argv) {
     auto elapsed = std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
     std::cout << "impl=cpp file=" << path
               << " iterations=" << iterations
+              << " threads=" << threads
               << " dims=" << dims_rows << "x" << dims_cols
               << " checksum=" << checksum
               << " seconds=" << elapsed

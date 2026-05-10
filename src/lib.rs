@@ -1964,15 +1964,18 @@ pub mod app_triplet {
     use super::formatters;
     use super::header;
     use super::read_body::{self, line_counts};
+    use super::thirdparty_task_thread_pool;
     use super::types::{
         field_type, format_type, matrix_market_header, object_type, read_options, symmetry_type,
         write_options,
     };
     use super::write_body;
     use super::Placeholder;
+    use std::any::TypeId;
+    use std::collections::VecDeque;
     use std::io::{BufRead, Write};
 
-    pub trait triplet_value_type: Clone {
+    pub trait triplet_value_type: Clone + Send + 'static {
         fn check_header_field(
             field: field_type,
         ) -> Result<(), super::fast_matrix_market::invalid_mm> {
@@ -2156,9 +2159,1046 @@ pub mod app_triplet {
         let mut rows = Vec::with_capacity(base_nnz);
         let mut cols = Vec::with_capacity(base_nnz);
         let mut values = Vec::<V>::with_capacity(base_nnz);
+        let threads = app_options.parallel_ok && app_options.num_threads != 1;
+        if threads
+            && TypeId::of::<V>() == TypeId::of::<()>()
+            && header.format == format_type::coordinate
+            && header.object == object_type::matrix
+            && header.field == field_type::pattern
+            && (header.symmetry == symmetry_type::general || app_generalize)
+        {
+            let requested_threads = if app_options.num_threads < 1 {
+                std::thread::available_parallelism()
+                    .map(|count| count.get())
+                    .unwrap_or(1)
+            } else {
+                app_options.num_threads as usize
+            };
+            let inflight_count = requested_threads.saturating_add(1).max(1);
+            let mut pool =
+                thirdparty_task_thread_pool::task_thread_pool_line_137(requested_threads);
+            let mut futures: VecDeque<
+                std::sync::mpsc::Receiver<Result<(), fast_matrix_market::invalid_mm>>,
+            > = VecDeque::new();
+            let mut lc = line_counts {
+                file_line: header.header_line_count,
+                element_num: 0,
+            };
+            let mut direct_rows = vec![0i64; base_nnz];
+            let mut direct_cols = vec![0i64; base_nnz];
+            let rows_addr = direct_rows.as_mut_ptr() as usize;
+            let cols_addr = direct_cols.as_mut_ptr() as usize;
+
+            loop {
+                while futures.len() >= inflight_count {
+                    match futures.pop_front().unwrap().recv().unwrap() {
+                        Ok(()) => {}
+                        Err(err) => {
+                            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                            return Err(err);
+                        }
+                    }
+                }
+
+                let chunk = chunking::get_next_chunk_line_51(instream, &app_options)
+                    .map_err(|_| fast_matrix_market::invalid_mm_line_54("I/O error".to_string()))?;
+                if chunk.is_empty() {
+                    break;
+                }
+                let counted = super::read_body_threads::count_chunk_lines_line_24(chunk);
+                if lc.element_num > header.nnz {
+                    thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                    return Err(fast_matrix_market::invalid_mm_line_55(
+                        "File too long".to_string(),
+                        lc.file_line + 1,
+                    ));
+                }
+                let start_lc = lc.clone();
+                let counts = counted.counts;
+                lc.file_line += counts.file_line;
+                lc.element_num += counts.element_num;
+                let header_for_task = header.clone();
+                futures.push_back(thirdparty_task_thread_pool::std_future_r_submit_line_248(
+                    &mut pool,
+                    move || {
+                        let rows_ptr = rows_addr as *mut i64;
+                        let cols_ptr = cols_addr as *mut i64;
+                        let mut line = start_lc;
+                        let mut offset = line.element_num.max(0) as usize;
+                        let parse_integer_field = |field: &str| -> Result<i64, ()> {
+                            let bytes = field.as_bytes();
+                            let mut pos = 0usize;
+                            let negative = pos < bytes.len() && bytes[pos] == b'-';
+                            if pos < bytes.len() && (bytes[pos] == b'+' || bytes[pos] == b'-') {
+                                pos += 1;
+                            }
+                            if pos == bytes.len() {
+                                return Err(());
+                            }
+                            let mut value = 0i64;
+                            while pos < bytes.len() {
+                                let byte = bytes[pos];
+                                if !byte.is_ascii_digit() {
+                                    return Err(());
+                                }
+                                value = value
+                                    .checked_mul(10)
+                                    .and_then(|value| value.checked_add((byte - b'0') as i64))
+                                    .ok_or(())?;
+                                pos += 1;
+                            }
+                            if negative {
+                                value.checked_neg().ok_or(())
+                            } else {
+                                Ok(value)
+                            }
+                        };
+
+                        let chunk_bytes = counted.chunk.as_bytes();
+                        let mut raw_start = 0usize;
+                        while raw_start < chunk_bytes.len() {
+                            let mut raw_end = raw_start;
+                            while raw_end < chunk_bytes.len() && chunk_bytes[raw_end] != b'\n' {
+                                raw_end += 1;
+                            }
+                            if raw_end < chunk_bytes.len() {
+                                raw_end += 1;
+                            }
+                            let raw_line = &counted.chunk[raw_start..raw_end];
+                            raw_start = raw_end;
+                            let bytes = raw_line.as_bytes();
+                            let mut end = bytes.len();
+                            while end > 0
+                                && (bytes[end - 1] == b' '
+                                    || bytes[end - 1] == b'\t'
+                                    || bytes[end - 1] == b'\r'
+                                    || bytes[end - 1] == b'\n')
+                            {
+                                end -= 1;
+                            }
+                            let mut pos = 0usize;
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            if pos == end {
+                                line.file_line +=
+                                    bytes.iter().filter(|&&c| c == b'\n').count() as i64;
+                                continue;
+                            }
+                            if line.element_num >= header_for_task.nnz {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Too many lines in file (file too long)".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            let row_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            let row_field = &raw_line[row_start..pos];
+                            let row_one = parse_integer_field(row_field).map_err(|_| {
+                                fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid integer value.".to_string(),
+                                    line.file_line + 1,
+                                )
+                            })?;
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            let col_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            let col_field = &raw_line[col_start..pos];
+                            let col_one = parse_integer_field(col_field).map_err(|_| {
+                                fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid integer value.".to_string(),
+                                    line.file_line + 1,
+                                )
+                            })?;
+                            if row_one <= 0 || row_one > header_for_task.nrows {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Row index out of bounds".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            if col_one <= 0 || col_one > header_for_task.ncols {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Column index out of bounds".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            unsafe {
+                                *rows_ptr.add(offset) = row_one - 1;
+                                *cols_ptr.add(offset) = col_one - 1;
+                            }
+                            offset += 1;
+                            line.file_line += 1;
+                            line.element_num += 1;
+                        }
+                        Ok(())
+                    },
+                ));
+            }
+
+            while let Some(rx) = futures.pop_front() {
+                match rx.recv().unwrap() {
+                    Ok(()) => {}
+                    Err(err) => {
+                        thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                        return Err(err);
+                    }
+                }
+            }
+            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+            if lc.element_num < header.nnz {
+                return Err(fast_matrix_market::invalid_mm_line_54(format!(
+                    "Truncated file. Expected another {} lines.",
+                    header.nnz - lc.element_num
+                )));
+            }
+            let mut values: Vec<V> = (0..base_nnz).map(|_| V::pattern_value()).collect();
+            if app_generalize && header.symmetry != symmetry_type::general {
+                let orig_size = direct_rows.len();
+                for i in 0..orig_size {
+                    if direct_rows[i] == direct_cols[i] {
+                        continue;
+                    }
+                    direct_rows.push(direct_cols[i]);
+                    direct_cols.push(direct_rows[i]);
+                    let value = values[i].symmetric_value(header.symmetry);
+                    values.push(value);
+                }
+            }
+            return Ok((direct_rows, direct_cols, values));
+        }
+        if threads
+            && TypeId::of::<V>() == TypeId::of::<f64>()
+            && header.format == format_type::coordinate
+            && (header.field == field_type::real || header.field == field_type::integer)
+            && (header.symmetry == symmetry_type::general || app_generalize)
+        {
+            let requested_threads = if app_options.num_threads < 1 {
+                std::thread::available_parallelism()
+                    .map(|count| count.get())
+                    .unwrap_or(1)
+            } else {
+                app_options.num_threads as usize
+            };
+            let inflight_count = requested_threads.saturating_add(1).max(1);
+            let mut pool =
+                thirdparty_task_thread_pool::task_thread_pool_line_137(requested_threads);
+            let mut futures: VecDeque<
+                std::sync::mpsc::Receiver<Result<(), fast_matrix_market::invalid_mm>>,
+            > = VecDeque::new();
+            let mut lc = line_counts {
+                file_line: header.header_line_count,
+                element_num: 0,
+            };
+            let mut direct_rows = vec![0i64; base_nnz];
+            let mut direct_cols = vec![0i64; base_nnz];
+            let mut direct_values = vec![0f64; base_nnz];
+            let rows_addr = direct_rows.as_mut_ptr() as usize;
+            let cols_addr = direct_cols.as_mut_ptr() as usize;
+            let values_addr = direct_values.as_mut_ptr() as usize;
+
+            loop {
+                while futures.len() >= inflight_count {
+                    match futures.pop_front().unwrap().recv().unwrap() {
+                        Ok(()) => {}
+                        Err(err) => {
+                            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                            return Err(err);
+                        }
+                    }
+                }
+
+                let chunk = chunking::get_next_chunk_line_51(instream, &app_options)
+                    .map_err(|_| fast_matrix_market::invalid_mm_line_54("I/O error".to_string()))?;
+                if chunk.is_empty() {
+                    break;
+                }
+                let counted = super::read_body_threads::count_chunk_lines_line_24(chunk);
+                if lc.element_num > header.nnz {
+                    thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                    return Err(fast_matrix_market::invalid_mm_line_55(
+                        "File too long".to_string(),
+                        lc.file_line + 1,
+                    ));
+                }
+                let start_lc = lc.clone();
+                let counts = counted.counts;
+                lc.file_line += counts.file_line;
+                lc.element_num += counts.element_num;
+                let header_for_task = header.clone();
+                let options_for_task = app_options.clone();
+                futures.push_back(thirdparty_task_thread_pool::std_future_r_submit_line_248(
+                    &mut pool,
+                    move || {
+                        let rows_ptr = rows_addr as *mut i64;
+                        let cols_ptr = cols_addr as *mut i64;
+                        let values_ptr = values_addr as *mut f64;
+                        let mut line = start_lc;
+                        let mut offset = line.element_num.max(0) as usize;
+                        let parse_integer_field = |field: &str| -> Result<i64, ()> {
+                            let bytes = field.as_bytes();
+                            let mut pos = 0usize;
+                            let negative = pos < bytes.len() && bytes[pos] == b'-';
+                            if pos < bytes.len() && (bytes[pos] == b'+' || bytes[pos] == b'-') {
+                                pos += 1;
+                            }
+                            if pos == bytes.len() {
+                                return Err(());
+                            }
+                            let mut value = 0i64;
+                            while pos < bytes.len() {
+                                let byte = bytes[pos];
+                                if !byte.is_ascii_digit() {
+                                    return Err(());
+                                }
+                                value = value
+                                    .checked_mul(10)
+                                    .and_then(|value| value.checked_add((byte - b'0') as i64))
+                                    .ok_or(())?;
+                                pos += 1;
+                            }
+                            if negative {
+                                value.checked_neg().ok_or(())
+                            } else {
+                                Ok(value)
+                            }
+                        };
+
+                        let chunk_bytes = counted.chunk.as_bytes();
+                        let mut raw_start = 0usize;
+                        while raw_start < chunk_bytes.len() {
+                            let mut raw_end = raw_start;
+                            while raw_end < chunk_bytes.len() && chunk_bytes[raw_end] != b'\n' {
+                                raw_end += 1;
+                            }
+                            if raw_end < chunk_bytes.len() {
+                                raw_end += 1;
+                            }
+                            let raw_line = &counted.chunk[raw_start..raw_end];
+                            raw_start = raw_end;
+                            let bytes = raw_line.as_bytes();
+                            let mut end = bytes.len();
+                            while end > 0
+                                && (bytes[end - 1] == b' '
+                                    || bytes[end - 1] == b'\t'
+                                    || bytes[end - 1] == b'\r'
+                                    || bytes[end - 1] == b'\n')
+                            {
+                                end -= 1;
+                            }
+                            let mut pos = 0usize;
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            if pos == end {
+                                line.file_line +=
+                                    bytes.iter().filter(|&&c| c == b'\n').count() as i64;
+                                continue;
+                            }
+                            if line.element_num >= header_for_task.nnz {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Too many lines in file (file too long)".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            let row_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            let row_field = &raw_line[row_start..pos];
+                            let row_one = parse_integer_field(row_field).map_err(|_| {
+                                fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid integer value.".to_string(),
+                                    line.file_line + 1,
+                                )
+                            })?;
+                            let (row_zero, col_zero) =
+                                if header_for_task.object == object_type::matrix {
+                                    while pos < end
+                                        && (bytes[pos] == b' '
+                                            || bytes[pos] == b'\t'
+                                            || bytes[pos] == b'\r')
+                                    {
+                                        pos += 1;
+                                    }
+                                    let col_start = pos;
+                                    while pos < end
+                                        && bytes[pos] != b' '
+                                        && bytes[pos] != b'\t'
+                                        && bytes[pos] != b'\r'
+                                        && bytes[pos] != b'\n'
+                                    {
+                                        pos += 1;
+                                    }
+                                    let col_field = &raw_line[col_start..pos];
+                                    let col_one = parse_integer_field(col_field).map_err(|_| {
+                                        fast_matrix_market::invalid_mm_line_55(
+                                            "Invalid integer value.".to_string(),
+                                            line.file_line + 1,
+                                        )
+                                    })?;
+                                    if row_one <= 0 || row_one > header_for_task.nrows {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Row index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    if col_one <= 0 || col_one > header_for_task.ncols {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Column index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    (row_one - 1, col_one - 1)
+                                } else {
+                                    if row_one <= 0 || row_one > header_for_task.vector_length {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Vector index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    (row_one - 1, 0)
+                                };
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            let value_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            if value_start == pos {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid floating-point value.".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            let value_field = &raw_line[value_start..pos];
+                            let value = read_body::read_real_or_complex_line_193::<f64>(
+                                &[value_field],
+                                &header_for_task,
+                                &options_for_task,
+                            )
+                            .map_err(|err| {
+                                fast_matrix_market::invalid_mm_line_55(err.msg, line.file_line + 1)
+                            })?;
+                            unsafe {
+                                *rows_ptr.add(offset) = row_zero;
+                                *cols_ptr.add(offset) = col_zero;
+                                *values_ptr.add(offset) = value;
+                            }
+                            offset += 1;
+                            line.file_line += 1;
+                            line.element_num += 1;
+                        }
+                        Ok(())
+                    },
+                ));
+            }
+
+            while let Some(rx) = futures.pop_front() {
+                match rx.recv().unwrap() {
+                    Ok(()) => {}
+                    Err(err) => {
+                        thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                        return Err(err);
+                    }
+                }
+            }
+            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+            if lc.element_num < header.nnz {
+                return Err(fast_matrix_market::invalid_mm_line_54(format!(
+                    "Truncated file. Expected another {} lines.",
+                    header.nnz - lc.element_num
+                )));
+            }
+            let mut values = unsafe {
+                let mut values = std::mem::ManuallyDrop::new(direct_values);
+                Vec::from_raw_parts(
+                    values.as_mut_ptr() as *mut V,
+                    values.len(),
+                    values.capacity(),
+                )
+            };
+            if app_generalize && header.symmetry != symmetry_type::general {
+                let orig_size = direct_rows.len();
+                for i in 0..orig_size {
+                    if direct_rows[i] == direct_cols[i] {
+                        continue;
+                    }
+                    direct_rows.push(direct_cols[i]);
+                    direct_cols.push(direct_rows[i]);
+                    let value = values[i].symmetric_value(header.symmetry);
+                    values.push(value);
+                }
+            }
+            return Ok((direct_rows, direct_cols, values));
+        }
+        if threads
+            && TypeId::of::<V>() == TypeId::of::<(f64, f64)>()
+            && header.format == format_type::coordinate
+            && header.field == field_type::complex
+            && (header.symmetry == symmetry_type::general || app_generalize)
+        {
+            let requested_threads = if app_options.num_threads < 1 {
+                std::thread::available_parallelism()
+                    .map(|count| count.get())
+                    .unwrap_or(1)
+            } else {
+                app_options.num_threads as usize
+            };
+            let inflight_count = requested_threads.saturating_add(1).max(1);
+            let mut pool =
+                thirdparty_task_thread_pool::task_thread_pool_line_137(requested_threads);
+            let mut futures: VecDeque<
+                std::sync::mpsc::Receiver<Result<(), fast_matrix_market::invalid_mm>>,
+            > = VecDeque::new();
+            let mut lc = line_counts {
+                file_line: header.header_line_count,
+                element_num: 0,
+            };
+            let mut direct_rows = vec![0i64; base_nnz];
+            let mut direct_cols = vec![0i64; base_nnz];
+            let mut direct_values = vec![(0f64, 0f64); base_nnz];
+            let rows_addr = direct_rows.as_mut_ptr() as usize;
+            let cols_addr = direct_cols.as_mut_ptr() as usize;
+            let values_addr = direct_values.as_mut_ptr() as usize;
+
+            loop {
+                while futures.len() >= inflight_count {
+                    match futures.pop_front().unwrap().recv().unwrap() {
+                        Ok(()) => {}
+                        Err(err) => {
+                            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                            return Err(err);
+                        }
+                    }
+                }
+
+                let chunk = chunking::get_next_chunk_line_51(instream, &app_options)
+                    .map_err(|_| fast_matrix_market::invalid_mm_line_54("I/O error".to_string()))?;
+                if chunk.is_empty() {
+                    break;
+                }
+                let counted = super::read_body_threads::count_chunk_lines_line_24(chunk);
+                if lc.element_num > header.nnz {
+                    thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                    return Err(fast_matrix_market::invalid_mm_line_55(
+                        "File too long".to_string(),
+                        lc.file_line + 1,
+                    ));
+                }
+                let start_lc = lc.clone();
+                let counts = counted.counts;
+                lc.file_line += counts.file_line;
+                lc.element_num += counts.element_num;
+                let header_for_task = header.clone();
+                let options_for_task = app_options.clone();
+                futures.push_back(thirdparty_task_thread_pool::std_future_r_submit_line_248(
+                    &mut pool,
+                    move || {
+                        let rows_ptr = rows_addr as *mut i64;
+                        let cols_ptr = cols_addr as *mut i64;
+                        let values_ptr = values_addr as *mut (f64, f64);
+                        let mut line = start_lc;
+                        let mut offset = line.element_num.max(0) as usize;
+                        let parse_integer_field = |field: &str| -> Result<i64, ()> {
+                            let bytes = field.as_bytes();
+                            let mut pos = 0usize;
+                            let negative = pos < bytes.len() && bytes[pos] == b'-';
+                            if pos < bytes.len() && (bytes[pos] == b'+' || bytes[pos] == b'-') {
+                                pos += 1;
+                            }
+                            if pos == bytes.len() {
+                                return Err(());
+                            }
+                            let mut value = 0i64;
+                            while pos < bytes.len() {
+                                let byte = bytes[pos];
+                                if !byte.is_ascii_digit() {
+                                    return Err(());
+                                }
+                                value = value
+                                    .checked_mul(10)
+                                    .and_then(|value| value.checked_add((byte - b'0') as i64))
+                                    .ok_or(())?;
+                                pos += 1;
+                            }
+                            if negative {
+                                value.checked_neg().ok_or(())
+                            } else {
+                                Ok(value)
+                            }
+                        };
+
+                        let chunk_bytes = counted.chunk.as_bytes();
+                        let mut raw_start = 0usize;
+                        while raw_start < chunk_bytes.len() {
+                            let mut raw_end = raw_start;
+                            while raw_end < chunk_bytes.len() && chunk_bytes[raw_end] != b'\n' {
+                                raw_end += 1;
+                            }
+                            if raw_end < chunk_bytes.len() {
+                                raw_end += 1;
+                            }
+                            let raw_line = &counted.chunk[raw_start..raw_end];
+                            raw_start = raw_end;
+                            let bytes = raw_line.as_bytes();
+                            let mut end = bytes.len();
+                            while end > 0
+                                && (bytes[end - 1] == b' '
+                                    || bytes[end - 1] == b'\t'
+                                    || bytes[end - 1] == b'\r'
+                                    || bytes[end - 1] == b'\n')
+                            {
+                                end -= 1;
+                            }
+                            let mut pos = 0usize;
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            if pos == end {
+                                line.file_line +=
+                                    bytes.iter().filter(|&&c| c == b'\n').count() as i64;
+                                continue;
+                            }
+                            if line.element_num >= header_for_task.nnz {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Too many lines in file (file too long)".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            let row_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            let row_field = &raw_line[row_start..pos];
+                            let row_one = parse_integer_field(row_field).map_err(|_| {
+                                fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid integer value.".to_string(),
+                                    line.file_line + 1,
+                                )
+                            })?;
+                            let (row_zero, col_zero) =
+                                if header_for_task.object == object_type::matrix {
+                                    while pos < end
+                                        && (bytes[pos] == b' '
+                                            || bytes[pos] == b'\t'
+                                            || bytes[pos] == b'\r')
+                                    {
+                                        pos += 1;
+                                    }
+                                    let col_start = pos;
+                                    while pos < end
+                                        && bytes[pos] != b' '
+                                        && bytes[pos] != b'\t'
+                                        && bytes[pos] != b'\r'
+                                        && bytes[pos] != b'\n'
+                                    {
+                                        pos += 1;
+                                    }
+                                    let col_field = &raw_line[col_start..pos];
+                                    let col_one = parse_integer_field(col_field).map_err(|_| {
+                                        fast_matrix_market::invalid_mm_line_55(
+                                            "Invalid integer value.".to_string(),
+                                            line.file_line + 1,
+                                        )
+                                    })?;
+                                    if row_one <= 0 || row_one > header_for_task.nrows {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Row index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    if col_one <= 0 || col_one > header_for_task.ncols {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Column index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    (row_one - 1, col_one - 1)
+                                } else {
+                                    if row_one <= 0 || row_one > header_for_task.vector_length {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Vector index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    (row_one - 1, 0)
+                                };
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            let real_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            if real_start == pos {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid floating-point value.".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            let real_end = pos;
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            let imaginary_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            if imaginary_start == pos {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid floating-point value.".to_string(),
+                                    line.file_line + 1,
+                                ));
+                            }
+                            let real_field = &raw_line[real_start..real_end];
+                            let imaginary_field = &raw_line[imaginary_start..pos];
+                            let value = read_body::read_real_or_complex_line_193::<(f64, f64)>(
+                                &[real_field, imaginary_field],
+                                &header_for_task,
+                                &options_for_task,
+                            )
+                            .map_err(|err| {
+                                fast_matrix_market::invalid_mm_line_55(err.msg, line.file_line + 1)
+                            })?;
+                            unsafe {
+                                *rows_ptr.add(offset) = row_zero;
+                                *cols_ptr.add(offset) = col_zero;
+                                *values_ptr.add(offset) = value;
+                            }
+                            offset += 1;
+                            line.file_line += 1;
+                            line.element_num += 1;
+                        }
+                        Ok(())
+                    },
+                ));
+            }
+
+            while let Some(rx) = futures.pop_front() {
+                match rx.recv().unwrap() {
+                    Ok(()) => {}
+                    Err(err) => {
+                        thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                        return Err(err);
+                    }
+                }
+            }
+            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+            if lc.element_num < header.nnz {
+                return Err(fast_matrix_market::invalid_mm_line_54(format!(
+                    "Truncated file. Expected another {} lines.",
+                    header.nnz - lc.element_num
+                )));
+            }
+            let mut values = unsafe {
+                let mut values = std::mem::ManuallyDrop::new(direct_values);
+                Vec::from_raw_parts(
+                    values.as_mut_ptr() as *mut V,
+                    values.len(),
+                    values.capacity(),
+                )
+            };
+            if app_generalize && header.symmetry != symmetry_type::general {
+                let orig_size = direct_rows.len();
+                for i in 0..orig_size {
+                    if direct_rows[i] == direct_cols[i] {
+                        continue;
+                    }
+                    direct_rows.push(direct_cols[i]);
+                    direct_cols.push(direct_rows[i]);
+                    let value = values[i].symmetric_value(header.symmetry);
+                    values.push(value);
+                }
+            }
+            return Ok((direct_rows, direct_cols, values));
+        }
         if header.format == format_type::coordinate
             && (header.symmetry == symmetry_type::general || !app_options.generalize_symmetry)
+            && !threads
         {
+            if TypeId::of::<V>() == TypeId::of::<f64>()
+                && (header.field == field_type::real || header.field == field_type::integer)
+            {
+                let mut lc = line_counts {
+                    file_line: header.header_line_count,
+                    element_num: 0,
+                };
+                let mut direct_rows = vec![0i64; base_nnz];
+                let mut direct_cols = vec![0i64; base_nnz];
+                let mut direct_values = vec![0f64; base_nnz];
+                let mut offset = 0usize;
+                let parse_integer_field = |field: &str| -> Result<i64, ()> {
+                    let bytes = field.as_bytes();
+                    let mut pos = 0usize;
+                    let negative = pos < bytes.len() && bytes[pos] == b'-';
+                    if pos < bytes.len() && (bytes[pos] == b'+' || bytes[pos] == b'-') {
+                        pos += 1;
+                    }
+                    if pos == bytes.len() {
+                        return Err(());
+                    }
+                    let mut value = 0i64;
+                    while pos < bytes.len() {
+                        let byte = bytes[pos];
+                        if !byte.is_ascii_digit() {
+                            return Err(());
+                        }
+                        value = value
+                            .checked_mul(10)
+                            .and_then(|value| value.checked_add((byte - b'0') as i64))
+                            .ok_or(())?;
+                        pos += 1;
+                    }
+                    if negative {
+                        value.checked_neg().ok_or(())
+                    } else {
+                        Ok(value)
+                    }
+                };
+
+                loop {
+                    let chunk =
+                        chunking::get_next_chunk_line_51(instream, &app_options).map_err(|_| {
+                            fast_matrix_market::invalid_mm_line_54("I/O error".to_string())
+                        })?;
+                    if chunk.is_empty() {
+                        break;
+                    }
+                    let chunk_bytes = chunk.as_bytes();
+                    let mut raw_start = 0usize;
+                    while raw_start < chunk_bytes.len() {
+                        let mut raw_end = raw_start;
+                        while raw_end < chunk_bytes.len() && chunk_bytes[raw_end] != b'\n' {
+                            raw_end += 1;
+                        }
+                        if raw_end < chunk_bytes.len() {
+                            raw_end += 1;
+                        }
+                        let raw_line = &chunk[raw_start..raw_end];
+                        raw_start = raw_end;
+                        let bytes = raw_line.as_bytes();
+                        let mut end = bytes.len();
+                        while end > 0
+                            && (bytes[end - 1] == b' '
+                                || bytes[end - 1] == b'\t'
+                                || bytes[end - 1] == b'\r'
+                                || bytes[end - 1] == b'\n')
+                        {
+                            end -= 1;
+                        }
+                        let mut pos = 0usize;
+                        while pos < end
+                            && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r')
+                        {
+                            pos += 1;
+                        }
+                        if pos == end {
+                            lc.file_line += bytes.iter().filter(|&&c| c == b'\n').count() as i64;
+                            continue;
+                        }
+                        if lc.element_num >= header.nnz {
+                            return Err(fast_matrix_market::invalid_mm_line_55(
+                                "Too many lines in file (file too long)".to_string(),
+                                lc.file_line + 1,
+                            ));
+                        }
+                        let row_start = pos;
+                        while pos < end
+                            && bytes[pos] != b' '
+                            && bytes[pos] != b'\t'
+                            && bytes[pos] != b'\r'
+                            && bytes[pos] != b'\n'
+                        {
+                            pos += 1;
+                        }
+                        let row_field = &raw_line[row_start..pos];
+                        let row_one = parse_integer_field(row_field).map_err(|_| {
+                            fast_matrix_market::invalid_mm_line_55(
+                                "Invalid integer value.".to_string(),
+                                lc.file_line + 1,
+                            )
+                        })?;
+                        let (row_zero, col_zero) = if header.object == object_type::matrix {
+                            while pos < end
+                                && (bytes[pos] == b' '
+                                    || bytes[pos] == b'\t'
+                                    || bytes[pos] == b'\r')
+                            {
+                                pos += 1;
+                            }
+                            let col_start = pos;
+                            while pos < end
+                                && bytes[pos] != b' '
+                                && bytes[pos] != b'\t'
+                                && bytes[pos] != b'\r'
+                                && bytes[pos] != b'\n'
+                            {
+                                pos += 1;
+                            }
+                            let col_field = &raw_line[col_start..pos];
+                            let col_one = parse_integer_field(col_field).map_err(|_| {
+                                fast_matrix_market::invalid_mm_line_55(
+                                    "Invalid integer value.".to_string(),
+                                    lc.file_line + 1,
+                                )
+                            })?;
+                            if row_one <= 0 || row_one > header.nrows {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Row index out of bounds".to_string(),
+                                    lc.file_line + 1,
+                                ));
+                            }
+                            if col_one <= 0 || col_one > header.ncols {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Column index out of bounds".to_string(),
+                                    lc.file_line + 1,
+                                ));
+                            }
+                            (row_one - 1, col_one - 1)
+                        } else {
+                            if row_one <= 0 || row_one > header.vector_length {
+                                return Err(fast_matrix_market::invalid_mm_line_55(
+                                    "Vector index out of bounds".to_string(),
+                                    lc.file_line + 1,
+                                ));
+                            }
+                            (row_one - 1, 0)
+                        };
+                        while pos < end
+                            && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r')
+                        {
+                            pos += 1;
+                        }
+                        let value_start = pos;
+                        while pos < end
+                            && bytes[pos] != b' '
+                            && bytes[pos] != b'\t'
+                            && bytes[pos] != b'\r'
+                            && bytes[pos] != b'\n'
+                        {
+                            pos += 1;
+                        }
+                        if value_start == pos {
+                            return Err(fast_matrix_market::invalid_mm_line_55(
+                                "Invalid floating-point value.".to_string(),
+                                lc.file_line + 1,
+                            ));
+                        }
+                        let value_field = &raw_line[value_start..pos];
+                        let value = read_body::read_real_or_complex_line_193::<f64>(
+                            &[value_field],
+                            header,
+                            &app_options,
+                        )
+                        .map_err(|err| {
+                            fast_matrix_market::invalid_mm_line_55(err.msg, lc.file_line + 1)
+                        })?;
+                        direct_rows[offset] = row_zero;
+                        direct_cols[offset] = col_zero;
+                        direct_values[offset] = value;
+                        offset += 1;
+                        lc.file_line += 1;
+                        lc.element_num += 1;
+                    }
+                }
+                if lc.element_num < header.nnz {
+                    return Err(fast_matrix_market::invalid_mm_line_54(format!(
+                        "Truncated file. Expected another {} lines.",
+                        header.nnz - lc.element_num
+                    )));
+                }
+                let mut values = unsafe {
+                    let mut values = std::mem::ManuallyDrop::new(direct_values);
+                    Vec::from_raw_parts(
+                        values.as_mut_ptr() as *mut V,
+                        values.len(),
+                        values.capacity(),
+                    )
+                };
+                if app_generalize && header.symmetry != symmetry_type::general {
+                    let orig_size = direct_rows.len();
+                    for i in 0..orig_size {
+                        if direct_rows[i] == direct_cols[i] {
+                            continue;
+                        }
+                        direct_rows.push(direct_cols[i]);
+                        direct_cols.push(direct_rows[i]);
+                        let value = values[i].symmetric_value(header.symmetry);
+                        values.push(value);
+                    }
+                }
+                return Ok((direct_rows, direct_cols, values));
+            }
             let mut lc = line_counts {
                 file_line: header.header_line_count,
                 element_num: 0,
@@ -2347,6 +3387,382 @@ pub mod app_triplet {
                 }
             }
             if lc.element_num < header.nnz {
+                return Err(fast_matrix_market::invalid_mm_line_54(format!(
+                    "Truncated file. Expected another {} lines.",
+                    header.nnz - lc.element_num
+                )));
+            }
+            if app_generalize && header.symmetry != symmetry_type::general {
+                let orig_size = rows.len();
+                for i in 0..orig_size {
+                    if rows[i] == cols[i] {
+                        continue;
+                    }
+                    rows.push(cols[i]);
+                    cols.push(rows[i]);
+                    let value = values[i].symmetric_value(header.symmetry);
+                    values.push(value);
+                }
+            }
+            return Ok((rows, cols, values));
+        }
+        if threads {
+            if header.format == format_type::coordinate
+                && (header.symmetry == symmetry_type::general || !app_options.generalize_symmetry)
+            {
+                let requested_threads = if app_options.num_threads < 1 {
+                    std::thread::available_parallelism()
+                        .map(|count| count.get())
+                        .unwrap_or(1)
+                } else {
+                    app_options.num_threads as usize
+                };
+                let inflight_count = requested_threads.saturating_add(1).max(1);
+                let mut pool =
+                    thirdparty_task_thread_pool::task_thread_pool_line_137(requested_threads);
+                let mut futures: VecDeque<
+                    std::sync::mpsc::Receiver<
+                        Result<
+                            (line_counts, Vec<i64>, Vec<i64>, Vec<V>),
+                            fast_matrix_market::invalid_mm,
+                        >,
+                    >,
+                > = VecDeque::new();
+                let mut lc = line_counts {
+                    file_line: header.header_line_count,
+                    element_num: 0,
+                };
+
+                loop {
+                    while futures.len() >= inflight_count {
+                        match futures.pop_front().unwrap().recv().unwrap() {
+                            Ok((_next_lc, mut chunk_rows, mut chunk_cols, mut chunk_values)) => {
+                                rows.append(&mut chunk_rows);
+                                cols.append(&mut chunk_cols);
+                                values.append(&mut chunk_values);
+                            }
+                            Err(err) => {
+                                thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                                return Err(err);
+                            }
+                        }
+                    }
+
+                    let chunk =
+                        chunking::get_next_chunk_line_51(instream, &app_options).map_err(|_| {
+                            fast_matrix_market::invalid_mm_line_54("I/O error".to_string())
+                        })?;
+                    if chunk.is_empty() {
+                        break;
+                    }
+                    let counted = super::read_body_threads::count_chunk_lines_line_24(chunk);
+                    if lc.element_num > header.nnz {
+                        thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                        return Err(fast_matrix_market::invalid_mm_line_55(
+                            "File too long".to_string(),
+                            lc.file_line + 1,
+                        ));
+                    }
+                    let start_lc = lc.clone();
+                    let counts = counted.counts;
+                    lc.file_line += counts.file_line;
+                    lc.element_num += counts.element_num;
+                    let header_for_task = header.clone();
+                    let options_for_task = app_options.clone();
+                    futures.push_back(thirdparty_task_thread_pool::std_future_r_submit_line_248(
+                        &mut pool,
+                        move || {
+                            let mut line = start_lc;
+                            let parse_integer_field = |field: &str| -> Result<i64, ()> {
+                                let bytes = field.as_bytes();
+                                let mut pos = 0usize;
+                                let negative = pos < bytes.len() && bytes[pos] == b'-';
+                                if pos < bytes.len() && (bytes[pos] == b'+' || bytes[pos] == b'-') {
+                                    pos += 1;
+                                }
+                                if pos == bytes.len() {
+                                    return Err(());
+                                }
+                                let mut value = 0i64;
+                                while pos < bytes.len() {
+                                    let byte = bytes[pos];
+                                    if !byte.is_ascii_digit() {
+                                        return Err(());
+                                    }
+                                    value = value
+                                        .checked_mul(10)
+                                        .and_then(|value| value.checked_add((byte - b'0') as i64))
+                                        .ok_or(())?;
+                                    pos += 1;
+                                }
+                                if negative {
+                                    value.checked_neg().ok_or(())
+                                } else {
+                                    Ok(value)
+                                }
+                            };
+                            let mut chunk_rows =
+                                Vec::with_capacity(counts.element_num.max(0) as usize);
+                            let mut chunk_cols =
+                                Vec::with_capacity(counts.element_num.max(0) as usize);
+                            let mut chunk_values =
+                                Vec::with_capacity(counts.element_num.max(0) as usize);
+                            let chunk_bytes = counted.chunk.as_bytes();
+                            let mut raw_start = 0usize;
+                            while raw_start < chunk_bytes.len() {
+                                let mut raw_end = raw_start;
+                                while raw_end < chunk_bytes.len() && chunk_bytes[raw_end] != b'\n' {
+                                    raw_end += 1;
+                                }
+                                if raw_end < chunk_bytes.len() {
+                                    raw_end += 1;
+                                }
+                                let raw_line = &counted.chunk[raw_start..raw_end];
+                                raw_start = raw_end;
+                                let bytes = raw_line.as_bytes();
+                                let mut end = bytes.len();
+                                while end > 0
+                                    && (bytes[end - 1] == b' '
+                                        || bytes[end - 1] == b'\t'
+                                        || bytes[end - 1] == b'\r'
+                                        || bytes[end - 1] == b'\n')
+                                {
+                                    end -= 1;
+                                }
+                                let mut pos = 0usize;
+                                while pos < end
+                                    && (bytes[pos] == b' '
+                                        || bytes[pos] == b'\t'
+                                        || bytes[pos] == b'\r')
+                                {
+                                    pos += 1;
+                                }
+                                if pos == end {
+                                    line.file_line +=
+                                        bytes.iter().filter(|&&c| c == b'\n').count() as i64;
+                                    continue;
+                                }
+                                if line.element_num >= header_for_task.nnz {
+                                    return Err(fast_matrix_market::invalid_mm_line_55(
+                                        "Too many lines in file (file too long)".to_string(),
+                                        line.file_line + 1,
+                                    ));
+                                }
+                                let row_start = pos;
+                                while pos < end
+                                    && bytes[pos] != b' '
+                                    && bytes[pos] != b'\t'
+                                    && bytes[pos] != b'\r'
+                                    && bytes[pos] != b'\n'
+                                {
+                                    pos += 1;
+                                }
+                                let row_field = &raw_line[row_start..pos];
+                                let row_one = parse_integer_field(row_field).map_err(|_| {
+                                    fast_matrix_market::invalid_mm_line_55(
+                                        "Invalid integer value.".to_string(),
+                                        line.file_line + 1,
+                                    )
+                                })?;
+                                if row_field.is_empty() {
+                                    return Err(fast_matrix_market::invalid_mm_line_55(
+                                        "Invalid integer value.".to_string(),
+                                        line.file_line + 1,
+                                    ));
+                                }
+                                let (row_zero, col_zero) = if header_for_task.object
+                                    == object_type::matrix
+                                {
+                                    while pos < end
+                                        && (bytes[pos] == b' '
+                                            || bytes[pos] == b'\t'
+                                            || bytes[pos] == b'\r')
+                                    {
+                                        pos += 1;
+                                    }
+                                    let col_start = pos;
+                                    while pos < end
+                                        && bytes[pos] != b' '
+                                        && bytes[pos] != b'\t'
+                                        && bytes[pos] != b'\r'
+                                        && bytes[pos] != b'\n'
+                                    {
+                                        pos += 1;
+                                    }
+                                    let col_field = &raw_line[col_start..pos];
+                                    let col_one = parse_integer_field(col_field).map_err(|_| {
+                                        fast_matrix_market::invalid_mm_line_55(
+                                            "Invalid integer value.".to_string(),
+                                            line.file_line + 1,
+                                        )
+                                    })?;
+                                    if col_field.is_empty() {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Invalid integer value.".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    if row_one <= 0 || row_one > header_for_task.nrows {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Row index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    if col_one <= 0 || col_one > header_for_task.ncols {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Column index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    (row_one - 1, col_one - 1)
+                                } else {
+                                    if row_one <= 0 || row_one > header_for_task.vector_length {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Vector index out of bounds".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    (row_one - 1, 0)
+                                };
+                                chunk_rows.push(row_zero);
+                                chunk_cols.push(col_zero);
+                                if header_for_task.field != field_type::pattern {
+                                    while pos < end
+                                        && (bytes[pos] == b' '
+                                            || bytes[pos] == b'\t'
+                                            || bytes[pos] == b'\r')
+                                    {
+                                        pos += 1;
+                                    }
+                                    let value_start = pos;
+                                    while pos < end
+                                        && bytes[pos] != b' '
+                                        && bytes[pos] != b'\t'
+                                        && bytes[pos] != b'\r'
+                                        && bytes[pos] != b'\n'
+                                    {
+                                        pos += 1;
+                                    }
+                                    if value_start == pos {
+                                        return Err(fast_matrix_market::invalid_mm_line_55(
+                                            "Invalid floating-point value.".to_string(),
+                                            line.file_line + 1,
+                                        ));
+                                    }
+                                    if header_for_task.field == field_type::complex {
+                                        let real_field = &raw_line[value_start..pos];
+                                        while pos < end
+                                            && (bytes[pos] == b' '
+                                                || bytes[pos] == b'\t'
+                                                || bytes[pos] == b'\r')
+                                        {
+                                            pos += 1;
+                                        }
+                                        let imag_start = pos;
+                                        while pos < end
+                                            && bytes[pos] != b' '
+                                            && bytes[pos] != b'\t'
+                                            && bytes[pos] != b'\r'
+                                            && bytes[pos] != b'\n'
+                                        {
+                                            pos += 1;
+                                        }
+                                        if imag_start == pos {
+                                            return Err(fast_matrix_market::invalid_mm_line_55(
+                                                "Invalid floating-point value.".to_string(),
+                                                line.file_line + 1,
+                                            ));
+                                        }
+                                        let imaginary_field = &raw_line[imag_start..pos];
+                                        let value = read_body::read_real_or_complex_line_193::<V>(
+                                            &[real_field, imaginary_field],
+                                            &header_for_task,
+                                            &options_for_task,
+                                        )
+                                        .map_err(|err| {
+                                            fast_matrix_market::invalid_mm_line_55(
+                                                err.msg,
+                                                line.file_line + 1,
+                                            )
+                                        })?;
+                                        chunk_values.push(value);
+                                    } else {
+                                        let value_field = &raw_line[value_start..pos];
+                                        let value = read_body::read_real_or_complex_line_193::<V>(
+                                            &[value_field],
+                                            &header_for_task,
+                                            &options_for_task,
+                                        )
+                                        .map_err(|err| {
+                                            fast_matrix_market::invalid_mm_line_55(
+                                                err.msg,
+                                                line.file_line + 1,
+                                            )
+                                        })?;
+                                        chunk_values.push(value);
+                                    };
+                                } else {
+                                    chunk_values.push(V::pattern_value());
+                                }
+                                line.file_line += 1;
+                                line.element_num += 1;
+                            }
+                            Ok((line, chunk_rows, chunk_cols, chunk_values))
+                        },
+                    ));
+                }
+
+                while let Some(rx) = futures.pop_front() {
+                    match rx.recv().unwrap() {
+                        Ok((_next_lc, mut chunk_rows, mut chunk_cols, mut chunk_values)) => {
+                            rows.append(&mut chunk_rows);
+                            cols.append(&mut chunk_cols);
+                            values.append(&mut chunk_values);
+                        }
+                        Err(err) => {
+                            thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                            return Err(err);
+                        }
+                    }
+                }
+                thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                if lc.element_num < header.nnz {
+                    return Err(fast_matrix_market::invalid_mm_line_54(format!(
+                        "Truncated file. Expected another {} lines.",
+                        header.nnz - lc.element_num
+                    )));
+                }
+                if app_generalize && header.symmetry != symmetry_type::general {
+                    let orig_size = rows.len();
+                    for i in 0..orig_size {
+                        if rows[i] == cols[i] {
+                            continue;
+                        }
+                        rows.push(cols[i]);
+                        cols.push(rows[i]);
+                        let value = values[i].symmetric_value(header.symmetry);
+                        values.push(value);
+                    }
+                }
+                return Ok((rows, cols, values));
+            }
+            let (lc, entries) = super::read_body_threads::read_body_threads_line_33::<V>(
+                instream,
+                header,
+                &app_options,
+            )?;
+            rows.reserve(entries.len());
+            cols.reserve(entries.len());
+            values.reserve(entries.len());
+            for (entry_row, entry_col, value) in entries {
+                rows.push(entry_row);
+                cols.push(entry_col);
+                values.push(value);
+            }
+            if lc.element_num < header.nnz
+                && !(header.symmetry != symmetry_type::general
+                    && header.format == format_type::array)
+            {
                 return Err(fast_matrix_market::invalid_mm_line_54(format!(
                     "Truncated file. Expected another {} lines.",
                     header.nnz - lc.element_num
@@ -2620,18 +4036,26 @@ pub mod chunking {
         let mut num_newlines = 0i64;
         let mut num_empty_lines = 0i64;
         let mut line_start = 0usize;
+        let bytes = chunk.as_bytes();
 
-        for (pos, c) in chunk.char_indices() {
-            if c == '\n' {
+        for pos in 0..bytes.len() {
+            if bytes[pos] == b'\n' {
                 num_newlines += 1;
-                if is_all_spaces_line_59(&chunk[line_start..pos]) {
+                if bytes[line_start..pos]
+                    .iter()
+                    .all(|&c| c == b' ' || c == b'\t' || c == b'\r')
+                {
                     num_empty_lines += 1;
                 }
                 line_start = pos + 1;
             }
         }
 
-        if line_start != chunk.len() && is_all_spaces_line_59(&chunk[line_start..]) {
+        if line_start != bytes.len()
+            && bytes[line_start..]
+                .iter()
+                .all(|&c| c == b' ' || c == b'\t' || c == b'\r')
+        {
             num_empty_lines += 1;
         }
 
@@ -5209,9 +6633,22 @@ pub mod read_body {
         V::check_header_field(header.field)?;
         let mut entries = Vec::new();
         for raw_line in chunk.split_inclusive('\n') {
-            let trimmed = raw_line.trim_matches([' ', '\t', '\r', '\n']);
-            if trimmed.is_empty() {
-                line.file_line += raw_line.bytes().filter(|&c| c == b'\n').count() as i64;
+            let bytes = raw_line.as_bytes();
+            let mut end = bytes.len();
+            while end > 0
+                && (bytes[end - 1] == b' '
+                    || bytes[end - 1] == b'\t'
+                    || bytes[end - 1] == b'\r'
+                    || bytes[end - 1] == b'\n')
+            {
+                end -= 1;
+            }
+            let mut pos = 0usize;
+            while pos < end && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r') {
+                pos += 1;
+            }
+            if pos == end {
+                line.file_line += bytes.iter().filter(|&&c| c == b'\n').count() as i64;
                 continue;
             }
             if line.element_num >= header.nnz {
@@ -5220,19 +6657,16 @@ pub mod read_body {
                     line.file_line + 1,
                 ));
             }
-            let mut fields = trimmed.split_whitespace();
-            let row_field = fields.next().ok_or_else(|| {
-                fast_matrix_market::invalid_mm_line_55(
-                    "Invalid integer value.".to_string(),
-                    line.file_line + 1,
-                )
-            })?;
-            let col_field = fields.next().ok_or_else(|| {
-                fast_matrix_market::invalid_mm_line_55(
-                    "Invalid integer value.".to_string(),
-                    line.file_line + 1,
-                )
-            })?;
+            let row_start = pos;
+            while pos < end
+                && bytes[pos] != b' '
+                && bytes[pos] != b'\t'
+                && bytes[pos] != b'\r'
+                && bytes[pos] != b'\n'
+            {
+                pos += 1;
+            }
+            let row_field = &raw_line[row_start..pos];
             let (row_end, row_one) = field_conv::read_int_line_140(row_field, 0).map_err(|_| {
                 fast_matrix_market::invalid_mm_line_55(
                     "Invalid integer value.".to_string(),
@@ -5245,6 +6679,19 @@ pub mod read_body {
                     line.file_line + 1,
                 ));
             }
+            while pos < end && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r') {
+                pos += 1;
+            }
+            let col_start = pos;
+            while pos < end
+                && bytes[pos] != b' '
+                && bytes[pos] != b'\t'
+                && bytes[pos] != b'\r'
+                && bytes[pos] != b'\n'
+            {
+                pos += 1;
+            }
+            let col_field = &raw_line[col_start..pos];
             let (col_end, col_one) = field_conv::read_int_line_140(col_field, 0).map_err(|_| {
                 fast_matrix_market::invalid_mm_line_55(
                     "Invalid integer value.".to_string(),
@@ -5274,11 +6721,53 @@ pub mod read_body {
             let value = if header.field == field_type::pattern {
                 read_real_or_complex_line_193::<V>(&[], header, options)
             } else if header.field == field_type::complex {
-                let real_field = fields.next().unwrap_or("");
-                let imaginary_field = fields.next().unwrap_or("");
+                while pos < end
+                    && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r')
+                {
+                    pos += 1;
+                }
+                let real_start = pos;
+                while pos < end
+                    && bytes[pos] != b' '
+                    && bytes[pos] != b'\t'
+                    && bytes[pos] != b'\r'
+                    && bytes[pos] != b'\n'
+                {
+                    pos += 1;
+                }
+                let real_field = &raw_line[real_start..pos];
+                while pos < end
+                    && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r')
+                {
+                    pos += 1;
+                }
+                let imaginary_start = pos;
+                while pos < end
+                    && bytes[pos] != b' '
+                    && bytes[pos] != b'\t'
+                    && bytes[pos] != b'\r'
+                    && bytes[pos] != b'\n'
+                {
+                    pos += 1;
+                }
+                let imaginary_field = &raw_line[imaginary_start..pos];
                 read_real_or_complex_line_193::<V>(&[real_field, imaginary_field], header, options)
             } else {
-                let value_field = fields.next().unwrap_or("");
+                while pos < end
+                    && (bytes[pos] == b' ' || bytes[pos] == b'\t' || bytes[pos] == b'\r')
+                {
+                    pos += 1;
+                }
+                let value_start = pos;
+                while pos < end
+                    && bytes[pos] != b' '
+                    && bytes[pos] != b'\t'
+                    && bytes[pos] != b'\r'
+                    && bytes[pos] != b'\n'
+                {
+                    pos += 1;
+                }
+                let value_field = &raw_line[value_start..pos];
                 read_real_or_complex_line_193::<V>(&[value_field], header, options)
             }
             .map_err(|err| fast_matrix_market::invalid_mm_line_55(err.msg, line.file_line + 1))?;
@@ -5498,7 +6987,13 @@ pub mod read_body {
             ));
         }
 
-        let (lc, entries) = if header.format == format_type::coordinate {
+        let threads = options.parallel_ok
+            && options.num_threads != 1
+            && !(header.symmetry != symmetry_type::general && header.format == format_type::array);
+
+        let (lc, entries) = if threads {
+            super::read_body_threads::read_body_threads_line_33::<V>(instream, header, options)?
+        } else if header.format == format_type::coordinate {
             read_coordinate_body_sequential_line_412::<V>(instream, header, options)?
         } else {
             read_array_body_sequential_line_436::<V>(instream, header, options)?
@@ -5553,8 +7048,10 @@ pub mod read_body_threads {
     use super::app_triplet::triplet_value_type;
     use super::fast_matrix_market;
     use super::read_body::{self, line_counts};
+    use super::thirdparty_task_thread_pool;
     use super::types::{matrix_market_header, read_options};
     use super::Placeholder;
+    use std::collections::VecDeque;
     use std::io::BufRead;
 
     /// Original struct `line_count_result_s` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:15`.
@@ -5573,12 +7070,12 @@ pub mod read_body_threads {
 
     /// Stub for `count_chunk_lines` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:24`.
     pub fn count_chunk_lines_line_24(chunk: String) -> line_count_result_s {
-        let (file_line, element_num) = super::chunking::count_lines_line_66(&chunk);
+        let (file_line, empty_lines) = super::chunking::count_lines_line_66(&chunk);
         line_count_result_s_line_19(
             chunk,
             line_counts {
                 file_line,
-                element_num,
+                element_num: file_line - empty_lines,
             },
         )
     }
@@ -5594,11 +7091,11 @@ pub mod read_body_threads {
             file_line: header.header_line_count,
             element_num: 0,
         };
-        let mut row = 0i64;
-        let mut col = 0i64;
-        let mut entries = Vec::new();
-        let mut line_count_results = Vec::new();
-        let mut reuse_pool = Vec::new();
+        let mut parse_futures: VecDeque<
+            std::sync::mpsc::Receiver<
+                Result<(line_counts, Vec<(i64, i64, V)>), fast_matrix_market::invalid_mm>,
+            >,
+        > = VecDeque::new();
         let generalizing_symmetry_factor = if header.symmetry
             != super::types::symmetry_type::general
             && options.generalize_symmetry
@@ -5607,57 +7104,126 @@ pub mod read_body_threads {
         } else {
             1
         };
+        let requested_threads = if options.num_threads < 1 {
+            std::thread::available_parallelism()
+                .map(|count| count.get())
+                .unwrap_or(1)
+        } else {
+            options.num_threads as usize
+        };
+        let inflight_count = requested_threads.saturating_add(1).max(1);
+        let mut pool = thirdparty_task_thread_pool::task_thread_pool_line_137(requested_threads);
+        let mut entries = Vec::new();
 
         loop {
+            while parse_futures.len() >= inflight_count {
+                match parse_futures.pop_front().unwrap().recv().unwrap() {
+                    Ok((_next_lc, mut next_entries)) => {
+                        if generalizing_symmetry_factor > 1 {
+                            entries.reserve(next_entries.len());
+                        }
+                        entries.append(&mut next_entries);
+                    }
+                    Err(err) => {
+                        thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                        return Err(err);
+                    }
+                }
+            }
+
             let chunk = super::chunking::get_next_chunk_line_51(instream, options)
                 .map_err(|_| fast_matrix_market::invalid_mm_line_54("I/O error".to_string()))?;
             if chunk.is_empty() {
                 break;
             }
             let counted = count_chunk_lines_line_24(chunk);
-            reuse_pool.push(counted.chunk.clone());
-            line_count_results.push(counted);
-            let (next_lc, mut next_entries) =
-                if header.format == super::types::format_type::coordinate {
-                    if header.object == super::types::object_type::matrix {
-                        read_body::read_chunk_matrix_coordinate_line_213::<V>(
-                            &line_count_results.last().unwrap().chunk,
-                            header,
-                            lc,
-                            options,
-                        )?
-                    } else {
-                        read_body::read_chunk_vector_coordinate_line_281::<V>(
-                            &line_count_results.last().unwrap().chunk,
-                            header,
-                            lc,
-                            options,
-                        )?
-                    }
-                } else {
-                    read_body::read_chunk_array_line_332::<V>(
-                        &line_count_results.last().unwrap().chunk,
-                        header,
-                        lc,
-                        options,
-                        &mut row,
-                        &mut col,
-                    )?
-                };
-            lc = next_lc;
-            if generalizing_symmetry_factor > 1 {
-                entries.reserve(next_entries.len());
+            if lc.element_num > header.nnz {
+                return Err(fast_matrix_market::invalid_mm_line_55(
+                    "File too long".to_string(),
+                    lc.file_line + 1,
+                ));
             }
-            entries.append(&mut next_entries);
+            let start_lc = lc.clone();
+            let counts = counted.counts;
+            lc.file_line += counts.file_line;
+            lc.element_num += counts.element_num;
+            let header_for_task = header.clone();
+            let options_for_task = options.clone();
+            parse_futures.push_back(thirdparty_task_thread_pool::std_future_r_submit_line_248(
+                &mut pool,
+                move || {
+                    if header_for_task.format == super::types::format_type::coordinate {
+                        if header_for_task.object == super::types::object_type::matrix {
+                            read_body::read_chunk_matrix_coordinate_line_213::<V>(
+                                &counted.chunk,
+                                &header_for_task,
+                                start_lc,
+                                &options_for_task,
+                            )
+                        } else {
+                            read_body::read_chunk_vector_coordinate_line_281::<V>(
+                                &counted.chunk,
+                                &header_for_task,
+                                start_lc,
+                                &options_for_task,
+                            )
+                        }
+                    } else {
+                        let mut row = start_lc.element_num % header_for_task.nrows;
+                        let mut col = start_lc.element_num / header_for_task.nrows;
+                        read_body::read_chunk_array_line_332::<V>(
+                            &counted.chunk,
+                            &header_for_task,
+                            start_lc,
+                            &options_for_task,
+                            &mut row,
+                            &mut col,
+                        )
+                    }
+                },
+            ));
         }
-        line_count_results.clear();
-        reuse_pool.clear();
+
+        while let Some(rx) = parse_futures.pop_front() {
+            match rx.recv().unwrap() {
+                Ok((_next_lc, mut next_entries)) => {
+                    if generalizing_symmetry_factor > 1 {
+                        entries.reserve(next_entries.len());
+                    }
+                    entries.append(&mut next_entries);
+                }
+                Err(err) => {
+                    thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
+                    return Err(err);
+                }
+            }
+        }
+        thirdparty_task_thread_pool::task_thread_pool_line_149(&mut pool);
         Ok((lc, entries))
     }
 }
 
 pub mod thirdparty_task_thread_pool {
     use super::Placeholder;
+    use std::collections::VecDeque;
+    use std::sync::{Arc, Condvar, Mutex};
+    use std::thread::JoinHandle;
+
+    type queued_task = Box<dyn FnOnce() + Send + 'static>;
+
+    struct task_thread_pool_state {
+        tasks: VecDeque<queued_task>,
+        pool_running: bool,
+        pool_paused: bool,
+        notify_task_finish: bool,
+        num_inflight_tasks: i64,
+    }
+
+    struct task_thread_pool_shared {
+        state: Mutex<task_thread_pool_state>,
+        task_cv: Condvar,
+        task_finished_cv: Condvar,
+    }
 
     /// Original class `task_thread_pool` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:130`.
     pub struct task_thread_pool {
@@ -5668,6 +7234,8 @@ pub mod thirdparty_task_thread_pool {
         /// Original C++ type: `std::queue<std::packaged_task<void()>>`.
         pub tasks: Placeholder,
         pub queued_tasks: Vec<Box<dyn FnMut() + Send>>,
+        worker_handles: Vec<JoinHandle<()>>,
+        shared: Arc<task_thread_pool_shared>,
         /// Original C++ type: `std::mutex`.
         pub task_mutex: Placeholder,
         /// Original C++ type: `std::condition_variable`.
@@ -5691,6 +7259,18 @@ pub mod thirdparty_task_thread_pool {
             thread_mutex: Placeholder,
             tasks: Placeholder,
             queued_tasks: Vec::new(),
+            worker_handles: Vec::new(),
+            shared: Arc::new(task_thread_pool_shared {
+                state: Mutex::new(task_thread_pool_state {
+                    tasks: VecDeque::new(),
+                    pool_running: true,
+                    pool_paused: false,
+                    notify_task_finish: false,
+                    num_inflight_tasks: 0,
+                }),
+                task_cv: Condvar::new(),
+                task_finished_cv: Condvar::new(),
+            }),
             task_mutex: Placeholder,
             task_cv: Placeholder,
             task_finished_cv: Placeholder,
@@ -5713,21 +7293,25 @@ pub mod thirdparty_task_thread_pool {
     /// Stub for `clear_task_queue` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:160`.
     pub fn clear_task_queue_line_160(pool: &mut task_thread_pool) {
         pool.queued_tasks.clear();
+        let mut state = pool.shared.state.lock().unwrap();
+        state.tasks.clear();
+        pool.shared.task_finished_cv.notify_all();
     }
 
     /// Stub for `get_num_queued_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:170`.
     pub fn get_num_queued_tasks_line_170(pool: &task_thread_pool) -> usize {
-        pool.queued_tasks.len()
+        pool.shared.state.lock().unwrap().tasks.len()
     }
 
     /// Stub for `get_num_running_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:180`.
     pub fn get_num_running_tasks_line_180(pool: &task_thread_pool) -> usize {
-        pool.num_inflight_tasks.max(0) as usize
+        pool.shared.state.lock().unwrap().num_inflight_tasks.max(0) as usize
     }
 
     /// Stub for `get_num_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:190`.
     pub fn get_num_tasks_line_190(pool: &task_thread_pool) -> usize {
-        pool.queued_tasks.len() + pool.num_inflight_tasks.max(0) as usize
+        let state = pool.shared.state.lock().unwrap();
+        state.tasks.len() + state.num_inflight_tasks.max(0) as usize
     }
 
     /// Stub for `get_num_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:200`.
@@ -5737,26 +7321,31 @@ pub mod thirdparty_task_thread_pool {
 
     /// Stub for `pause` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:210`.
     pub fn pause_line_210(pool: &mut task_thread_pool) {
+        let mut state = pool.shared.state.lock().unwrap();
+        state.pool_paused = true;
         pool.pool_paused = true;
     }
 
     /// Stub for `unpause` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:218`.
     pub fn unpause_line_218(pool: &mut task_thread_pool) {
+        let mut state = pool.shared.state.lock().unwrap();
+        state.pool_paused = false;
         pool.pool_paused = false;
+        pool.shared.task_cv.notify_all();
     }
 
     /// Stub for `is_paused` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:229`.
     pub fn is_paused_line_229(pool: &task_thread_pool) -> bool {
-        pool.pool_paused
+        pool.shared.state.lock().unwrap().pool_paused
     }
 
     /// Stub for `std::future<R> submit` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:248`.
     pub fn std_future_r_submit_line_248<F, R>(
         pool: &mut task_thread_pool,
-        mut func: F,
+        func: F,
     ) -> std::sync::mpsc::Receiver<R>
     where
-        F: FnMut() -> R + Send + 'static,
+        F: FnOnce() -> R + Send + 'static,
         R: Send + 'static,
     {
         let (tx, rx) = std::sync::mpsc::channel();
@@ -5769,50 +7358,141 @@ pub mod thirdparty_task_thread_pool {
     /// Stub for `submit_detach` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:260`.
     pub fn submit_detach_line_260<F>(pool: &mut task_thread_pool, func: F)
     where
-        F: FnMut() + Send + 'static,
+        F: FnOnce() + Send + 'static,
     {
-        pool.queued_tasks.push(Box::new(func));
+        let task = Box::new(func);
+        let mut state = pool.shared.state.lock().unwrap();
+        state.tasks.push_back(task);
+        pool.shared.task_cv.notify_one();
     }
 
     /// Stub for `submit_detach` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:272`.
     pub fn submit_detach_line_272<F>(pool: &mut task_thread_pool, func: F)
     where
-        F: FnMut() + Send + 'static,
+        F: FnOnce() + Send + 'static,
     {
         submit_detach_line_260(pool, func);
     }
 
     /// Stub for `wait_for_queued_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:281`.
     pub fn wait_for_queued_tasks_line_281(pool: &mut task_thread_pool) {
-        worker_main_line_303(pool);
+        let mut state = pool.shared.state.lock().unwrap();
+        state.notify_task_finish = true;
+        state = pool
+            .shared
+            .task_finished_cv
+            .wait_while(state, |state| !state.tasks.is_empty())
+            .unwrap();
+        state.notify_task_finish = false;
     }
 
     /// Stub for `wait_for_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:291`.
     pub fn wait_for_tasks_line_291(pool: &mut task_thread_pool) {
-        worker_main_line_303(pool);
+        let mut state = pool.shared.state.lock().unwrap();
+        state.notify_task_finish = true;
+        state = pool
+            .shared
+            .task_finished_cv
+            .wait_while(state, |state| {
+                !state.tasks.is_empty() || state.num_inflight_tasks != 0
+            })
+            .unwrap();
+        state.notify_task_finish = false;
     }
 
     /// Stub for `worker_main` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:303`.
     pub fn worker_main_line_303(pool: &mut task_thread_pool) {
-        if pool.pool_paused || !pool.pool_running {
-            return;
-        }
-        while let Some(mut task) = pool.queued_tasks.pop() {
-            pool.num_inflight_tasks += 1;
-            task();
-            pool.num_inflight_tasks -= 1;
+        let shared = pool.shared.clone();
+        loop {
+            let task = {
+                let mut state = shared.state.lock().unwrap();
+                state = shared
+                    .task_cv
+                    .wait_while(state, |state| {
+                        state.pool_running && (state.pool_paused || state.tasks.is_empty())
+                    })
+                    .unwrap();
+                if !state.pool_running {
+                    break;
+                }
+                let task = state.tasks.pop_front();
+                if task.is_some() {
+                    state.num_inflight_tasks += 1;
+                    if state.notify_task_finish {
+                        shared.task_finished_cv.notify_all();
+                    }
+                }
+                task
+            };
+
+            if let Some(task) = task {
+                let _ = std::panic::catch_unwind(std::panic::AssertUnwindSafe(task));
+                let mut state = shared.state.lock().unwrap();
+                state.num_inflight_tasks -= 1;
+                if state.notify_task_finish {
+                    shared.task_finished_cv.notify_all();
+                }
+            }
         }
     }
 
     /// Stub for `start_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:345`.
     pub fn start_threads_line_345(pool: &mut task_thread_pool, num_threads: usize) {
-        let count = if num_threads < 1 { 1 } else { num_threads };
+        let count = if num_threads < 1 {
+            std::thread::available_parallelism()
+                .map(|count| count.get())
+                .unwrap_or(1)
+        } else {
+            num_threads
+        };
         pool.threads = vec![Placeholder; count];
+        for _ in 0..count {
+            let shared = pool.shared.clone();
+            pool.worker_handles.push(std::thread::spawn(move || loop {
+                let task = {
+                    let mut state = shared.state.lock().unwrap();
+                    state = shared
+                        .task_cv
+                        .wait_while(state, |state| {
+                            state.pool_running && (state.pool_paused || state.tasks.is_empty())
+                        })
+                        .unwrap();
+                    if !state.pool_running {
+                        break;
+                    }
+                    let task = state.tasks.pop_front();
+                    if task.is_some() {
+                        state.num_inflight_tasks += 1;
+                        if state.notify_task_finish {
+                            shared.task_finished_cv.notify_all();
+                        }
+                    }
+                    task
+                };
+
+                if let Some(task) = task {
+                    let _ = std::panic::catch_unwind(std::panic::AssertUnwindSafe(task));
+                    let mut state = shared.state.lock().unwrap();
+                    state.num_inflight_tasks -= 1;
+                    if state.notify_task_finish {
+                        shared.task_finished_cv.notify_all();
+                    }
+                }
+            }));
+        }
     }
 
     /// Stub for `stop_all_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:356`.
     pub fn stop_all_threads_line_356(pool: &mut task_thread_pool) {
         pool.pool_running = false;
+        {
+            let mut state = pool.shared.state.lock().unwrap();
+            state.pool_running = false;
+            pool.shared.task_cv.notify_all();
+        }
+        for handle in pool.worker_handles.drain(..) {
+            let _ = handle.join();
+        }
         pool.threads.clear();
     }
 }

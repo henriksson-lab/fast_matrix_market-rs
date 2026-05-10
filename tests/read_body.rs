@@ -234,6 +234,6 @@ fn count_chunk_lines_wraps_chunk_and_counts() {
     let result = count_chunk_lines_line_24("1 1 1\n\n2 2 1\n".to_string());
 
     assert_eq!(result.counts.file_line, 3);
-    assert_eq!(result.counts.element_num, 1);
+    assert_eq!(result.counts.element_num, 2);
     assert_eq!(result.chunk, "1 1 1\n\n2 2 1\n");
 }

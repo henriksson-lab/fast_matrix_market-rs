@@ -11,20 +11,24 @@ use std::time::Instant;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() != 3 {
-        eprintln!("usage: bench_read <matrix.mtx> <iterations>");
+    if args.len() != 3 && args.len() != 4 {
+        eprintln!("usage: bench_read <matrix.mtx> <iterations> [threads]");
         std::process::exit(2);
     }
     let path = &args[1];
     let iterations: usize = args[2].parse().expect("iterations must be a number");
+    let threads: i64 = args
+        .get(3)
+        .map(|value| value.parse().expect("threads must be a number"))
+        .unwrap_or(1);
     let options = read_options {
         chunk_size_bytes: 1 << 20,
         generalize_symmetry: true,
         generalize_symmetry_app: true,
         generalize_coordinate_diagnonal_values:
             generalize_coordinate_diagnonal_values_type::ExtraZeroElement,
-        parallel_ok: false,
-        num_threads: 0,
+        parallel_ok: true,
+        num_threads: threads,
         float_out_of_range_behavior: out_of_range_behavior::BestMatch,
     };
 
@@ -69,9 +73,10 @@ fn main() {
     }
     let elapsed = start.elapsed();
     println!(
-        "impl=rust file={} iterations={} dims={}x{} checksum={} seconds={:.9}",
+        "impl=rust file={} iterations={} threads={} dims={}x{} checksum={} seconds={:.9}",
         path,
         iterations,
+        threads,
         dims.0,
         dims.1,
         checksum,

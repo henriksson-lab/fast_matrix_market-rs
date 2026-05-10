@@ -2,16 +2,20 @@ use fast_matrix_market::app_doublet::{
     read_matrix_market_doublet_line_66, write_matrix_market_doublet_line_79,
 };
 use fast_matrix_market::thirdparty_task_thread_pool::{
-    clear_task_queue_line_160, get_num_queued_tasks_line_170, get_num_threads_line_200,
-    is_paused_line_229, pause_line_210, submit_detach_line_260, task_thread_pool_line_137,
-    task_thread_pool_line_149, unpause_line_218, wait_for_tasks_line_291,
+    clear_task_queue_line_160, get_num_queued_tasks_line_170, get_num_tasks_line_190,
+    get_num_threads_line_200, is_paused_line_229, pause_line_210, submit_detach_line_260,
+    task_thread_pool_line_137, task_thread_pool_line_149, unpause_line_218,
+    wait_for_tasks_line_291,
 };
 use fast_matrix_market::types::{
     field_type, generalize_coordinate_diagnonal_values_type, matrix_market_header_line_49,
     out_of_range_behavior, read_options, write_options,
 };
 use std::io::Cursor;
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::{Arc, Mutex};
+use std::thread;
+use std::time::Duration;
 
 fn read_opts() -> read_options {
     read_options {
@@ -145,6 +149,7 @@ fn doublet_binding_writes_template_value_types() {
 fn task_pool_queue_runs_detached_tasks_when_waiting() {
     let mut pool = task_thread_pool_line_137(2);
     assert_eq!(get_num_threads_line_200(&pool), 2);
+    pause_line_210(&mut pool);
 
     let value = Arc::new(Mutex::new(0));
     let value_for_task = value.clone();
@@ -153,6 +158,7 @@ fn task_pool_queue_runs_detached_tasks_when_waiting() {
     });
     assert_eq!(get_num_queued_tasks_line_170(&pool), 1);
 
+    unpause_line_218(&mut pool);
     wait_for_tasks_line_291(&mut pool);
 
     assert_eq!(*value.lock().unwrap(), 1);
@@ -165,4 +171,27 @@ fn task_pool_queue_runs_detached_tasks_when_waiting() {
     clear_task_queue_line_160(&mut pool);
     task_thread_pool_line_149(&mut pool);
     assert_eq!(get_num_threads_line_200(&pool), 0);
+}
+
+#[test]
+fn task_pool_runs_tasks_on_workers() {
+    let mut pool = task_thread_pool_line_137(2);
+    let current = Arc::new(AtomicUsize::new(0));
+    let max_seen = Arc::new(AtomicUsize::new(0));
+
+    for _ in 0..2 {
+        let current = current.clone();
+        let max_seen = max_seen.clone();
+        submit_detach_line_260(&mut pool, move || {
+            let now = current.fetch_add(1, Ordering::SeqCst) + 1;
+            max_seen.fetch_max(now, Ordering::SeqCst);
+            thread::sleep(Duration::from_millis(30));
+            current.fetch_sub(1, Ordering::SeqCst);
+        });
+    }
+
+    wait_for_tasks_line_291(&mut pool);
+    assert_eq!(get_num_tasks_line_190(&pool), 0);
+    assert!(max_seen.load(Ordering::SeqCst) >= 2);
+    task_thread_pool_line_149(&mut pool);
 }
