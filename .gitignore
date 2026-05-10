@@ -1,0 +1,8 @@
+/target/
+/fast_matrix_market/
+.tmp/
+Cargo.lock
+*.json
+*.swp
+*.swo
+fmm_order.csv
