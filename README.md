@@ -2,39 +2,14 @@
 
 Partial Rust translation of [`fast_matrix_market`](https://github.com/alugowski/fast_matrix_market), commit `b6172c96ef73d16b2c10917373bacec1a7583a31`
 
-**undergoing translation**
+* 2026-05-10: Ready for testing, speed on par with the original. But be vigilant to early translation bugs
 
-This crate is not a complete translation of upstream `fast_matrix_market`.
-Out-of-scope integration bindings are not included.
-The published crate is self-contained and does not require the original C++
-source checkout.
 
 ## Scope and delimitations
 
-This crate is a Rust translation of the core Matrix Market I/O logic from the
-upstream `fast_matrix_market` snapshot named above.
+Out of scope:
 
-In scope:
-
-* Reading sparse Matrix Market coordinate files into triplet/COO vectors with
-  `app_triplet::read_matrix_market_triplet_line_126`.
-* Reading dense Matrix Market array files with `app_array`.
-* Writing Matrix Market array, triplet, doublet, CSC/CSR-style, and generated
-  triplet data through the translated app APIs.
-* Matrix, vector, real, integer, complex, and pattern fields.
-* General, symmetric, skew-symmetric, and hermitian symmetry handling in the
-  translated core/app paths.
-* Single-threaded and multi-threaded reads for the supported core paths.
-
-Out of scope or incomplete:
-
-* Direct bindings for Blaze, Eigen, CXSparse, GraphBLAS, and Armadillo. Those
-  upstream integration APIs are deliberately omitted.
-* A high-level sparse matrix type. Sparse reads return rows, columns, and values
-  rather than a CSR/CSC matrix object.
-* API polish. Function names intentionally retain source-line suffixes to make
-  audit against the upstream C++ snapshot easier.
-* Endorsement by the upstream `fast_matrix_market` author.
+* Direct bindings for Blaze, Eigen, CXSparse, GraphBLAS, and Armadillo. Get in touch if these are needed
 
 Example sparse coordinate read:
 
