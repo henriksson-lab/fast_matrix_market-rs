@@ -44,7 +44,7 @@ fn write_opts() -> write_options {
 #[test]
 fn doublet_binding_reads_vector_fixture() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/vector_coordinate.mtx"
+        "fixtures/upstream/tests/matrices/vector_coordinate.mtx"
     ));
 
     let (length, indices, values) =
@@ -58,14 +58,14 @@ fn doublet_binding_reads_vector_fixture() {
 #[test]
 fn doublet_binding_reads_template_value_types() {
     let mut complex_input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/vector_coordinate_complex.mtx"
+        "fixtures/upstream/tests/matrices/vector_coordinate_complex.mtx"
     ));
     let (_length, _indices, values) =
         read_matrix_market_doublet_line_66::<(f64, f64)>(&mut complex_input, &read_opts()).unwrap();
     assert!(values.iter().any(|value| value.1 != 0.0));
 
     let mut complex_as_real = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/vector_coordinate_complex.mtx"
+        "fixtures/upstream/tests/matrices/vector_coordinate_complex.mtx"
     ));
     let err =
         read_matrix_market_doublet_line_66::<f64>(&mut complex_as_real, &read_opts()).unwrap_err();

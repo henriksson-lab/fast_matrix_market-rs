@@ -25,9 +25,7 @@ fn options() -> read_options {
 
 #[test]
 fn reads_coordinate_body_from_real_fixture() {
-    let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut input = Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
     let mut header = matrix_market_header_line_48();
     read_header_line_166(&mut input, &mut header).unwrap();
 
@@ -43,7 +41,7 @@ fn reads_coordinate_body_from_real_fixture() {
 #[test]
 fn reads_complex_coordinate_values() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3_complex.mtx"
+        "fixtures/upstream/tests/matrices/eye3_complex.mtx"
     ));
     let mut header = matrix_market_header_line_48();
     read_header_line_166(&mut input, &mut header).unwrap();
@@ -58,7 +56,7 @@ fn reads_complex_coordinate_values() {
 #[test]
 fn expands_symmetric_coordinate_entries() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/symmetry/coordinate_symmetric_row.mtx"
+        "fixtures/upstream/tests/matrices/symmetry/coordinate_symmetric_row.mtx"
     ));
     let mut header = matrix_market_header_line_48();
     read_header_line_166(&mut input, &mut header).unwrap();
@@ -149,9 +147,7 @@ fn coordinate_indices_use_translated_integer_parser() {
 
 #[test]
 fn threaded_reader_shim_matches_sequential_entries() {
-    let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut input = Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
     let mut header = matrix_market_header_line_48();
     read_header_line_166(&mut input, &mut header).unwrap();
 
@@ -167,7 +163,7 @@ fn threaded_reader_shim_matches_sequential_entries() {
 #[test]
 fn threaded_reader_shim_reads_typed_complex_values() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3_complex.mtx"
+        "fixtures/upstream/tests/matrices/eye3_complex.mtx"
     ));
     let mut header = matrix_market_header_line_48();
     read_header_line_166(&mut input, &mut header).unwrap();

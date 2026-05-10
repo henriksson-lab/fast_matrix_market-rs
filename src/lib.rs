@@ -9,55 +9,12 @@
 
 //! Rust translation scaffold for `fast_matrix_market`.
 //!
-//! Each generated item records the original C++ header location. Function
-//! bodies intentionally panic until the corresponding upstream logic is
-//! translated bottom-up.
+//! Each generated item records the original C++ header location where useful.
+//! Out-of-scope integration bindings are omitted from this crate.
 
 /// Placeholder for C++ template parameters, iterators, pointers, and dependent types.
 #[derive(Clone, Debug, Default, PartialEq)]
 pub struct Placeholder;
-
-pub mod app_armadillo {
-    use super::Placeholder;
-
-    /// Stub for `read_matrix_market_arma` at `fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:17`.
-    pub fn read_matrix_market_arma_line_17(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_arma (fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:17)")
-    }
-
-    /// Stub for `read_matrix_market_arma` at `fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:31`.
-    pub fn read_matrix_market_arma_line_31(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_arma (fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:31)")
-    }
-
-    /// Stub for `read_matrix_market_arma` at `fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:40`.
-    pub fn read_matrix_market_arma_line_40(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_arma (fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:40)")
-    }
-
-    /// Stub for `read_matrix_market_arma` at `fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:60`.
-    pub fn read_matrix_market_arma_line_60(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_arma (fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:60)")
-    }
-
-    /// Stub for `write_matrix_market_arma` at `fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:69`.
-    pub fn write_matrix_market_arma_line_69(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_arma (fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:69)")
-    }
-
-    /// Stub for `write_matrix_market_arma` at `fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:82`.
-    pub fn write_matrix_market_arma_line_82(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_arma (fast_matrix_market/include/fast_matrix_market/app/Armadillo.hpp:82)")
-    }
-}
 
 pub mod app_array {
     use super::app_triplet::triplet_value_type;
@@ -74,7 +31,7 @@ pub mod app_array {
     use super::Placeholder;
     use std::io::{BufRead, Write};
 
-    /// Stub for `read_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:46`.
+    /// Translation of `read_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:46`.
     pub fn read_matrix_market_array_line_46<V: triplet_value_type + Default>(
         instream: &mut impl BufRead,
         header: &mut matrix_market_header,
@@ -184,7 +141,7 @@ pub mod app_array {
         Ok(values)
     }
 
-    /// Stub for `read_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:66`.
+    /// Translation of `read_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:66`.
     pub fn read_matrix_market_array_line_66<V: triplet_value_type + Default>(
         instream: &mut impl BufRead,
         order: storage_order,
@@ -195,7 +152,7 @@ pub mod app_array {
         Ok((header.nrows, header.ncols, values))
     }
 
-    /// Stub for `read_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:82`.
+    /// Translation of `read_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:82`.
     pub fn read_matrix_market_array_line_82<V: triplet_value_type + Default>(
         instream: &mut impl BufRead,
         order: storage_order,
@@ -205,7 +162,7 @@ pub mod app_array {
         read_matrix_market_array_line_46(instream, &mut header, order, options)
     }
 
-    /// Stub for `write_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:94`.
+    /// Translation of `write_matrix_market_array` at `fast_matrix_market/include/fast_matrix_market/app/array.hpp:94`.
     pub fn write_matrix_market_array_line_94<V: formatters::write_value_type>(
         os: &mut impl Write,
         mut header: matrix_market_header,
@@ -237,147 +194,6 @@ pub mod app_array {
     }
 }
 
-pub mod app_blaze {
-    use super::Placeholder;
-
-    /// Original class `Blaze_CompressedMatrix_formatter` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:130`.
-    #[derive(Clone, Debug, Default)]
-    pub struct Blaze_CompressedMatrix_formatter {
-        /// Original C++ type: `LF`.
-        pub line_formatter: Placeholder,
-        /// Original C++ type: `double`.
-        pub nnz_per_major: f64,
-        /// Original C++ type: `MatIndex`.
-        pub major_iter: Placeholder,
-        /// Original C++ type: `MatIndex`.
-        pub major_size: Placeholder,
-    }
-
-    /// Original class `chunk` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:142`.
-    #[derive(Clone, Debug, Default)]
-    pub struct chunk {
-        /// Original C++ type: `LF`.
-        pub line_formatter: Placeholder,
-        /// Original C++ type: `MatIndex`.
-        pub major_iter: Placeholder,
-        /// Original C++ type: `MatIndex`.
-        pub major_end: Placeholder,
-    }
-
-    /// Stub for `read_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:17`.
-    pub fn read_matrix_market_blaze_line_17(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:17)")
-    }
-
-    /// Stub for `read_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:97`.
-    pub fn read_matrix_market_blaze_line_97(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:97)")
-    }
-
-    /// Stub for `read_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:117`.
-    pub fn read_matrix_market_blaze_line_117(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:117)")
-    }
-
-    /// Stub for `Blaze_CompressedMatrix_formatter` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:134`.
-    pub fn blaze_compressedmatrix_formatter_line_134(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: Blaze_CompressedMatrix_formatter (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:134)")
-    }
-
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:138`.
-    pub fn has_next_line_138() -> ! {
-        panic!("untranslated fast_matrix_market function: has_next (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:138)")
-    }
-
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:144`.
-    pub fn chunk_line_144(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: chunk (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:144)")
-    }
-
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:147`.
-    pub fn operator_line_147() -> ! {
-        panic!("untranslated fast_matrix_market function: operator() (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:147)")
-    }
-
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:174`.
-    pub fn next_chunk_line_174(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: next_chunk (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:174)")
-    }
-
-    /// Stub for `write_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:197`.
-    pub fn write_matrix_market_blaze_line_197(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:197)")
-    }
-
-    /// Stub for `write_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:226`.
-    pub fn write_matrix_market_blaze_line_226(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:226)")
-    }
-
-    /// Stub for `read_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:256`.
-    pub fn read_matrix_market_blaze_line_256(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:256)")
-    }
-
-    /// Stub for `read_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:305`.
-    pub fn read_matrix_market_blaze_line_305(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:305)")
-    }
-
-    /// Stub for `write_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:327`.
-    pub fn write_matrix_market_blaze_line_327(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:327)")
-    }
-
-    /// Stub for `write_matrix_market_blaze` at `fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:372`.
-    pub fn write_matrix_market_blaze_line_372(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_blaze (fast_matrix_market/include/fast_matrix_market/app/Blaze.hpp:372)")
-    }
-}
-
-pub mod app_cxsparse {
-    use super::Placeholder;
-
-    /// Stub for `read_matrix_market_cxsparse` at `fast_matrix_market/include/fast_matrix_market/app/CXSparse.hpp:14`.
-    pub fn read_matrix_market_cxsparse_line_14(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_cxsparse (fast_matrix_market/include/fast_matrix_market/app/CXSparse.hpp:14)")
-    }
-
-    /// Stub for `write_matrix_market_cxsparse` at `fast_matrix_market/include/fast_matrix_market/app/CXSparse.hpp:47`.
-    pub fn write_matrix_market_cxsparse_line_47(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_cxsparse (fast_matrix_market/include/fast_matrix_market/app/CXSparse.hpp:47)")
-    }
-}
-
 pub mod app_doublet {
     use super::app_triplet::triplet_value_type;
     use super::formatters;
@@ -390,7 +206,7 @@ pub mod app_doublet {
     use super::Placeholder;
     use std::io::{BufRead, Write};
 
-    /// Stub for `read_matrix_market_doublet` at `fast_matrix_market/include/fast_matrix_market/app/doublet.hpp:47`.
+    /// Translation of `read_matrix_market_doublet` at `fast_matrix_market/include/fast_matrix_market/app/doublet.hpp:47`.
     pub fn read_matrix_market_doublet_line_47<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &mut matrix_market_header,
@@ -408,7 +224,7 @@ pub mod app_doublet {
         Ok((indices, values))
     }
 
-    /// Stub for `read_matrix_market_doublet` at `fast_matrix_market/include/fast_matrix_market/app/doublet.hpp:66`.
+    /// Translation of `read_matrix_market_doublet` at `fast_matrix_market/include/fast_matrix_market/app/doublet.hpp:66`.
     pub fn read_matrix_market_doublet_line_66<V: triplet_value_type>(
         instream: &mut impl BufRead,
         options: &read_options,
@@ -419,7 +235,7 @@ pub mod app_doublet {
         Ok((header.vector_length, indices, values))
     }
 
-    /// Stub for `write_matrix_market_doublet` at `fast_matrix_market/include/fast_matrix_market/app/doublet.hpp:79`.
+    /// Translation of `write_matrix_market_doublet` at `fast_matrix_market/include/fast_matrix_market/app/doublet.hpp:79`.
     pub fn write_matrix_market_doublet_line_79<V: formatters::write_value_type>(
         os: &mut impl Write,
         mut header: matrix_market_header,
@@ -467,100 +283,6 @@ pub mod app_doublet {
     }
 }
 
-pub mod app_eigen {
-    use super::Placeholder;
-
-    /// Original class `sparse_Eigen_formatter` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:97`.
-    #[derive(Clone, Debug, Default)]
-    pub struct sparse_Eigen_formatter {
-        /// Original C++ type: `LF`.
-        pub line_formatter: Placeholder,
-        /// Original C++ type: `double`.
-        pub nnz_per_column: f64,
-        /// Original C++ type: `MatIndex`.
-        pub outer_iter: Placeholder,
-    }
-
-    /// Original class `chunk` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:108`.
-    #[derive(Clone, Debug, Default)]
-    pub struct chunk {
-        /// Original C++ type: `LF`.
-        pub line_formatter: Placeholder,
-        /// Original C++ type: `MatIndex`.
-        pub outer_iter: Placeholder,
-        /// Original C++ type: `MatIndex`.
-        pub outer_end: Placeholder,
-    }
-
-    /// Stub for `read_matrix_market_eigen` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:23`.
-    pub fn read_matrix_market_eigen_line_23(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_eigen (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:23)")
-    }
-
-    /// Stub for `read_matrix_market_eigen` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:57`.
-    pub fn read_matrix_market_eigen_line_57(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_eigen (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:57)")
-    }
-
-    /// Stub for `read_matrix_market_eigen_dense` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:69`.
-    pub fn read_matrix_market_eigen_dense_line_69(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_eigen_dense (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:69)")
-    }
-
-    /// Stub for `read_matrix_market_eigen_dense` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:85`.
-    pub fn read_matrix_market_eigen_dense_line_85(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_eigen_dense (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:85)")
-    }
-
-    /// Stub for `sparse_Eigen_formatter` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:100`.
-    pub fn sparse_eigen_formatter_line_100(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: sparse_Eigen_formatter (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:100)")
-    }
-
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:104`.
-    pub fn has_next_line_104() -> ! {
-        panic!("untranslated fast_matrix_market function: has_next (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:104)")
-    }
-
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:110`.
-    pub fn chunk_line_110(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: chunk (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:110)")
-    }
-
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:113`.
-    pub fn operator_line_113() -> ! {
-        panic!("untranslated fast_matrix_market function: operator() (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:113)")
-    }
-
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:132`.
-    pub fn next_chunk_line_132(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: next_chunk (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:132)")
-    }
-
-    /// Stub for `write_matrix_market_eigen` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:154`.
-    pub fn write_matrix_market_eigen_line_154(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_eigen (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:154)")
-    }
-
-    /// Stub for `write_matrix_market_eigen_dense` at `fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:178`.
-    pub fn write_matrix_market_eigen_dense_line_178(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_eigen_dense (fast_matrix_market/include/fast_matrix_market/app/Eigen.hpp:178)")
-    }
-}
-
 pub mod app_generator {
     use super::formatters;
     use super::header;
@@ -593,7 +315,7 @@ pub mod app_generator {
         pub gen_callable: Option<fn(i64) -> (i64, i64, V)>,
     }
 
-    /// Stub for `coo_independent_generator_formatter` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:17`.
+    /// Translation of `coo_independent_generator_formatter` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:17`.
     pub fn coo_independent_generator_formatter_line_17<V: formatters::write_value_type>(
         lf: formatters::line_formatter,
         nnz: i64,
@@ -613,12 +335,12 @@ pub mod app_generator {
         })
     }
 
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:24`.
+    /// Translation of `has_next` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:24`.
     pub fn has_next_line_24<V>(formatter: &coo_independent_generator_formatter<V>) -> bool {
         formatter.next_chunk_offset < formatter.nnz
     }
 
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:30`.
+    /// Translation of `chunk` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:30`.
     pub fn chunk_line_30<V: formatters::write_value_type>(
         lf: formatters::line_formatter,
         chunk_offset: i64,
@@ -633,7 +355,7 @@ pub mod app_generator {
         }
     }
 
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:34`.
+    /// Translation of `operator()` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:34`.
     pub fn operator_line_34<V: formatters::write_value_type>(c: &chunk<V>) -> String {
         let mut out = String::with_capacity((c.chunk_nnz.max(0) as usize) * 25);
         if let (Some(lf), Some(gen_callable)) = (&c.line_formatter, c.gen_callable) {
@@ -654,7 +376,7 @@ pub mod app_generator {
         out
     }
 
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:54`.
+    /// Translation of `next_chunk` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:54`.
     pub fn next_chunk_line_54<V: formatters::write_value_type>(
         formatter: &mut coo_independent_generator_formatter<V>,
         options: &write_options,
@@ -672,7 +394,7 @@ pub mod app_generator {
         c
     }
 
-    /// Stub for `write_matrix_market_generated_triplet` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:81`.
+    /// Translation of `write_matrix_market_generated_triplet` at `fast_matrix_market/include/fast_matrix_market/app/generator.hpp:81`.
     pub fn write_matrix_market_generated_triplet_line_81<V: formatters::write_value_type>(
         os: &mut impl std::io::Write,
         mut header: matrix_market_header,
@@ -699,1261 +421,6 @@ pub mod app_generator {
             chunks.push(operator_line_34(&c));
         }
         write_body::write_body_line_66(os, &chunks, options).map_err(|err| err.to_string())
-    }
-}
-
-pub mod app_graphblas {
-    use super::Placeholder;
-
-    /// Original struct `GraphBLAS_typed` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:151`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed {}
-
-    /// Original struct `GraphBLAS_typed<bool>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:179`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_bool_line_179 {}
-
-    /// Original struct `GraphBLAS_typed<int8_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:207`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_int8_t_line_207 {}
-
-    /// Original struct `GraphBLAS_typed<int16_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:235`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_int16_t_line_235 {}
-
-    /// Original struct `GraphBLAS_typed<int32_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:263`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_int32_t_line_263 {}
-
-    /// Original struct `GraphBLAS_typed<int64_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:291`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_int64_t_line_291 {}
-
-    /// Original struct `GraphBLAS_typed<uint8_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:319`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_uint8_t_line_319 {}
-
-    /// Original struct `GraphBLAS_typed<uint16_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:347`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_uint16_t_line_347 {}
-
-    /// Original struct `GraphBLAS_typed<uint32_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:375`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_uint32_t_line_375 {}
-
-    /// Original struct `GraphBLAS_typed<uint64_t>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:403`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_uint64_t_line_403 {}
-
-    /// Original struct `GraphBLAS_typed<float>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:431`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_float_line_431 {}
-
-    /// Original struct `GraphBLAS_typed<double>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:459`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_double_line_459 {}
-
-    /// Original struct `GraphBLAS_typed<std::complex<float>>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:488`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_std_complex_float_line_488 {}
-
-    /// Original struct `GraphBLAS_typed<std::complex<double>>` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:516`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GraphBLAS_typed_std_complex_double_line_516 {}
-
-    /// Original struct `gblas_row_iter_impl` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:793`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct gblas_row_iter_impl {}
-
-    /// Original struct `gblas_col_iter_impl` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:844`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct gblas_col_iter_impl {}
-
-    /// Original struct `gblas_vec_iter_impl` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:896`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct gblas_vec_iter_impl {}
-
-    /// Original class `GrB_Matrix_Iterator_formatter` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:953`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct GrB_Matrix_Iterator_formatter {
-        /// Original C++ type: `LF`.
-        pub line_formatter: Placeholder,
-        /// Original C++ type: `double`.
-        pub nnz_per_kount: f64,
-        /// Original C++ type: `GrB_Index`.
-        pub kount_iter: Placeholder,
-        /// Original C++ type: `GrB_Index`.
-        pub kount: Placeholder,
-    }
-
-    /// Original class `chunk` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:966`.
-    #[derive(Clone, Debug, Default, PartialEq)]
-    pub struct chunk {
-        /// Original C++ type: `LF`.
-        pub line_formatter: Placeholder,
-        /// Original C++ type: `GrB_Index`.
-        pub kount_iter: Placeholder,
-        /// Original C++ type: `GrB_Index`.
-        pub kount_end: Placeholder,
-    }
-
-    /// Stub for `ok` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:69`.
-    pub fn ok_line_69(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: ok (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:69)")
-    }
-
-    /// Stub for `parse_key` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:79`.
-    pub fn parse_key_line_79(arg0: Placeholder, arg1: Placeholder, arg2: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: parse_key (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:79)")
-    }
-
-    /// Stub for `str_ctype_to_GrB_Type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:97`.
-    pub fn str_ctype_to_grb_type_line_97() -> ! {
-        panic!("untranslated fast_matrix_market function: str_ctype_to_GrB_Type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:97)")
-    }
-
-    /// Stub for `GrB_Type_to_header_type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:122`.
-    pub fn grb_type_to_header_type_line_122() -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Type_to_header_type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:122)")
-    }
-
-    /// Stub for `parse_type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:139`.
-    pub fn parse_type_line_139(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: parse_type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:139)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:152`.
-    pub fn type_line_152() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:152)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:154`.
-    pub fn build_matrix_line_154(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:154)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:158`.
-    pub fn set_element_line_158(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:158)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:162`.
-    pub fn grb_matrix_extracttuples_line_162(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:162)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:167`.
-    pub fn gxb_iterator_get_line_167(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:167)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:171`.
-    pub fn build_vector_line_171(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:171)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:175`.
-    pub fn grb_vector_extracttuples_line_175(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:175)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:180`.
-    pub fn type_line_180() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:180)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:182`.
-    pub fn build_matrix_line_182(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:182)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:186`.
-    pub fn set_element_line_186(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:186)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:190`.
-    pub fn grb_matrix_extracttuples_line_190(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:190)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:195`.
-    pub fn gxb_iterator_get_line_195(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:195)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:199`.
-    pub fn build_vector_line_199(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:199)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:203`.
-    pub fn grb_vector_extracttuples_line_203(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:203)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:208`.
-    pub fn type_line_208() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:208)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:210`.
-    pub fn build_matrix_line_210(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:210)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:214`.
-    pub fn set_element_line_214(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:214)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:218`.
-    pub fn grb_matrix_extracttuples_line_218(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:218)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:223`.
-    pub fn gxb_iterator_get_line_223(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:223)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:227`.
-    pub fn build_vector_line_227(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:227)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:231`.
-    pub fn grb_vector_extracttuples_line_231(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:231)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:236`.
-    pub fn type_line_236() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:236)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:238`.
-    pub fn build_matrix_line_238(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:238)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:242`.
-    pub fn set_element_line_242(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:242)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:246`.
-    pub fn grb_matrix_extracttuples_line_246(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:246)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:251`.
-    pub fn gxb_iterator_get_line_251(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:251)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:255`.
-    pub fn build_vector_line_255(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:255)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:259`.
-    pub fn grb_vector_extracttuples_line_259(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:259)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:264`.
-    pub fn type_line_264() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:264)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:266`.
-    pub fn build_matrix_line_266(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:266)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:270`.
-    pub fn set_element_line_270(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:270)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:274`.
-    pub fn grb_matrix_extracttuples_line_274(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:274)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:279`.
-    pub fn gxb_iterator_get_line_279(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:279)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:283`.
-    pub fn build_vector_line_283(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:283)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:287`.
-    pub fn grb_vector_extracttuples_line_287(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:287)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:292`.
-    pub fn type_line_292() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:292)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:294`.
-    pub fn build_matrix_line_294(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:294)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:298`.
-    pub fn set_element_line_298(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:298)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:302`.
-    pub fn grb_matrix_extracttuples_line_302(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:302)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:307`.
-    pub fn gxb_iterator_get_line_307(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:307)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:311`.
-    pub fn build_vector_line_311(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:311)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:315`.
-    pub fn grb_vector_extracttuples_line_315(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:315)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:320`.
-    pub fn type_line_320() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:320)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:322`.
-    pub fn build_matrix_line_322(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:322)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:326`.
-    pub fn set_element_line_326(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:326)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:330`.
-    pub fn grb_matrix_extracttuples_line_330(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:330)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:335`.
-    pub fn gxb_iterator_get_line_335(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:335)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:339`.
-    pub fn build_vector_line_339(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:339)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:343`.
-    pub fn grb_vector_extracttuples_line_343(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:343)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:348`.
-    pub fn type_line_348() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:348)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:350`.
-    pub fn build_matrix_line_350(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:350)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:354`.
-    pub fn set_element_line_354(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:354)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:358`.
-    pub fn grb_matrix_extracttuples_line_358(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:358)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:363`.
-    pub fn gxb_iterator_get_line_363(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:363)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:367`.
-    pub fn build_vector_line_367(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:367)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:371`.
-    pub fn grb_vector_extracttuples_line_371(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:371)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:376`.
-    pub fn type_line_376() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:376)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:378`.
-    pub fn build_matrix_line_378(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:378)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:382`.
-    pub fn set_element_line_382(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:382)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:386`.
-    pub fn grb_matrix_extracttuples_line_386(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:386)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:391`.
-    pub fn gxb_iterator_get_line_391(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:391)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:395`.
-    pub fn build_vector_line_395(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:395)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:399`.
-    pub fn grb_vector_extracttuples_line_399(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:399)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:404`.
-    pub fn type_line_404() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:404)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:406`.
-    pub fn build_matrix_line_406(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:406)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:410`.
-    pub fn set_element_line_410(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:410)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:414`.
-    pub fn grb_matrix_extracttuples_line_414(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:414)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:419`.
-    pub fn gxb_iterator_get_line_419(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:419)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:423`.
-    pub fn build_vector_line_423(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:423)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:427`.
-    pub fn grb_vector_extracttuples_line_427(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:427)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:432`.
-    pub fn type_line_432() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:432)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:434`.
-    pub fn build_matrix_line_434(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:434)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:438`.
-    pub fn set_element_line_438(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:438)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:442`.
-    pub fn grb_matrix_extracttuples_line_442(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:442)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:447`.
-    pub fn gxb_iterator_get_line_447(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:447)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:451`.
-    pub fn build_vector_line_451(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:451)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:455`.
-    pub fn grb_vector_extracttuples_line_455(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:455)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:460`.
-    pub fn type_line_460() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:460)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:462`.
-    pub fn build_matrix_line_462(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:462)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:466`.
-    pub fn set_element_line_466(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:466)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:470`.
-    pub fn grb_matrix_extracttuples_line_470(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:470)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:475`.
-    pub fn gxb_iterator_get_line_475(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:475)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:479`.
-    pub fn build_vector_line_479(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:479)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:483`.
-    pub fn grb_vector_extracttuples_line_483(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:483)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:489`.
-    pub fn type_line_489() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:489)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:491`.
-    pub fn build_matrix_line_491(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:491)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:495`.
-    pub fn set_element_line_495(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:495)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:499`.
-    pub fn grb_matrix_extracttuples_line_499(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:499)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:504`.
-    pub fn gxb_iterator_get_line_504(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:504)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:508`.
-    pub fn build_vector_line_508(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:508)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:512`.
-    pub fn grb_vector_extracttuples_line_512(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:512)")
-    }
-
-    /// Stub for `type` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:517`.
-    pub fn type_line_517() -> ! {
-        panic!("untranslated fast_matrix_market function: type (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:517)")
-    }
-
-    /// Stub for `build_matrix` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:519`.
-    pub fn build_matrix_line_519(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_matrix (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:519)")
-    }
-
-    /// Stub for `set_element` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:523`.
-    pub fn set_element_line_523(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: set_element (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:523)")
-    }
-
-    /// Stub for `GrB_Matrix_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:527`.
-    pub fn grb_matrix_extracttuples_line_527(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-        arg4: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:527)")
-    }
-
-    /// Stub for `GxB_Iterator_get` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:532`.
-    pub fn gxb_iterator_get_line_532(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GxB_Iterator_get (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:532)")
-    }
-
-    /// Stub for `build_vector` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:536`.
-    pub fn build_vector_line_536(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: build_vector (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:536)")
-    }
-
-    /// Stub for `GrB_Vector_extractTuples` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:540`.
-    pub fn grb_vector_extracttuples_line_540(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Vector_extractTuples (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:540)")
-    }
-
-    /// Stub for `read_body_graphblas_coordinate` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:550`.
-    pub fn read_body_graphblas_coordinate_line_550(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_body_graphblas_coordinate (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:550)")
-    }
-
-    /// Stub for `read_body_graphblas_array` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:602`.
-    pub fn read_body_graphblas_array_line_602(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_body_graphblas_array (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:602)")
-    }
-
-    /// Stub for `read_body_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:623`.
-    pub fn read_body_graphblas_line_623(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_body_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:623)")
-    }
-
-    /// Stub for `get_type_from_header` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:639`.
-    pub fn get_type_from_header_line_639(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: get_type_from_header (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:639)")
-    }
-
-    /// Stub for `read_matrix_market_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:701`.
-    pub fn read_matrix_market_graphblas_line_701(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:701)")
-    }
-
-    /// Stub for `read_matrix_market_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:758`.
-    pub fn read_matrix_market_graphblas_line_758(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:758)")
-    }
-
-    /// Stub for `write_body_graphblas_triplet` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:771`.
-    pub fn write_body_graphblas_triplet_line_771(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_triplet (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:771)")
-    }
-
-    /// Stub for `setup` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:796`.
-    pub fn setup_line_796(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: setup (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:796)")
-    }
-
-    /// Stub for `attach` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:809`.
-    pub fn attach_line_809(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: attach (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:809)")
-    }
-
-    /// Stub for `kseek` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:819`.
-    pub fn kseek_line_819(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: kseek (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:819)")
-    }
-
-    /// Stub for `getMajorIndex` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:823`.
-    pub fn getmajorindex_line_823(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: getMajorIndex (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:823)")
-    }
-
-    /// Stub for `getMinorIndex` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:827`.
-    pub fn getminorindex_line_827(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: getMinorIndex (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:827)")
-    }
-
-    /// Stub for `nextMinor` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:831`.
-    pub fn nextminor_line_831(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: nextMinor (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:831)")
-    }
-
-    /// Stub for `nextMajor` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:835`.
-    pub fn nextmajor_line_835(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: nextMajor (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:835)")
-    }
-
-    /// Stub for `to_row_col` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:839`.
-    pub fn to_row_col_line_839(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: to_row_col (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:839)")
-    }
-
-    /// Stub for `setup` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:847`.
-    pub fn setup_line_847(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: setup (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:847)")
-    }
-
-    /// Stub for `attach` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:860`.
-    pub fn attach_line_860(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: attach (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:860)")
-    }
-
-    /// Stub for `kseek` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:870`.
-    pub fn kseek_line_870(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: kseek (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:870)")
-    }
-
-    /// Stub for `getMinorIndex` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:874`.
-    pub fn getminorindex_line_874(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: getMinorIndex (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:874)")
-    }
-
-    /// Stub for `getMajorIndex` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:878`.
-    pub fn getmajorindex_line_878(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: getMajorIndex (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:878)")
-    }
-
-    /// Stub for `nextMinor` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:882`.
-    pub fn nextminor_line_882(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: nextMinor (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:882)")
-    }
-
-    /// Stub for `nextMajor` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:886`.
-    pub fn nextmajor_line_886(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: nextMajor (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:886)")
-    }
-
-    /// Stub for `to_row_col` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:890`.
-    pub fn to_row_col_line_890(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: to_row_col (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:890)")
-    }
-
-    /// Stub for `setup` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:899`.
-    pub fn setup_line_899(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: setup (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:899)")
-    }
-
-    /// Stub for `attach` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:913`.
-    pub fn attach_line_913(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: attach (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:913)")
-    }
-
-    /// Stub for `kseek` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:923`.
-    pub fn kseek_line_923(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: kseek (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:923)")
-    }
-
-    /// Stub for `getMinorIndex` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:927`.
-    pub fn getminorindex_line_927(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: getMinorIndex (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:927)")
-    }
-
-    /// Stub for `getMajorIndex` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:931`.
-    pub fn getmajorindex_line_931(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: getMajorIndex (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:931)")
-    }
-
-    /// Stub for `nextMinor` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:935`.
-    pub fn nextminor_line_935(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: nextMinor (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:935)")
-    }
-
-    /// Stub for `nextMajor` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:939`.
-    pub fn nextmajor_line_939(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: nextMajor (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:939)")
-    }
-
-    /// Stub for `to_row_col` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:943`.
-    pub fn to_row_col_line_943(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: to_row_col (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:943)")
-    }
-
-    /// Stub for `GrB_Matrix_Iterator_formatter` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:955`.
-    pub fn grb_matrix_iterator_formatter_line_955(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: GrB_Matrix_Iterator_formatter (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:955)")
-    }
-
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:962`.
-    pub fn has_next_line_962() -> ! {
-        panic!("untranslated fast_matrix_market function: has_next (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:962)")
-    }
-
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:968`.
-    pub fn chunk_line_968(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: chunk (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:968)")
-    }
-
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:971`.
-    pub fn operator_line_971() -> ! {
-        panic!("untranslated fast_matrix_market function: operator() (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:971)")
-    }
-
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1007`.
-    pub fn next_chunk_line_1007(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: next_chunk (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1007)")
-    }
-
-    /// Stub for `write_body_graphblas_array_iterator` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1033`.
-    pub fn write_body_graphblas_array_iterator_line_1033(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_array_iterator (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1033)")
-    }
-
-    /// Stub for `write_body_graphblas_array_row_via_extract` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1053`.
-    pub fn write_body_graphblas_array_row_via_extract_line_1053(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_array_row_via_extract (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1053)")
-    }
-
-    /// Stub for `write_body_graphblas_array_via_triplet` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1073`.
-    pub fn write_body_graphblas_array_via_triplet_line_1073(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_array_via_triplet (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1073)")
-    }
-
-    /// Stub for `write_body_graphblas_iterator` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1115`.
-    pub fn write_body_graphblas_iterator_line_1115(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_iterator (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1115)")
-    }
-
-    /// Stub for `write_body_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1141`.
-    pub fn write_body_graphblas_line_1141(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1141)")
-    }
-
-    /// Stub for `get_field` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1175`.
-    pub fn get_field_line_1175(arg0: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: get_field (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1175)")
-    }
-
-    /// Stub for `add_structured_comment` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1194`.
-    pub fn add_structured_comment_line_1194(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: add_structured_comment (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1194)")
-    }
-
-    /// Stub for `write_matrix_market_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1220`.
-    pub fn write_matrix_market_graphblas_line_1220(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1220)")
-    }
-
-    /// Stub for `read_body_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1305`.
-    pub fn read_body_graphblas_line_1305(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_body_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1305)")
-    }
-
-    /// Stub for `read_matrix_market_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1324`.
-    pub fn read_matrix_market_graphblas_line_1324(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1324)")
-    }
-
-    /// Stub for `read_matrix_market_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1382`.
-    pub fn read_matrix_market_graphblas_line_1382(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: read_matrix_market_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1382)")
-    }
-
-    /// Stub for `write_body_graphblas_doublet` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1395`.
-    pub fn write_body_graphblas_doublet_line_1395(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_doublet (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1395)")
-    }
-
-    /// Stub for `write_body_graphblas_iterator` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1420`.
-    pub fn write_body_graphblas_iterator_line_1420(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas_iterator (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1420)")
-    }
-
-    /// Stub for `write_body_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1434`.
-    pub fn write_body_graphblas_line_1434(
-        arg0: Placeholder,
-        arg1: Placeholder,
-        arg2: Placeholder,
-        arg3: Placeholder,
-    ) -> ! {
-        panic!("untranslated fast_matrix_market function: write_body_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1434)")
-    }
-
-    /// Stub for `write_matrix_market_graphblas` at `fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1448`.
-    pub fn write_matrix_market_graphblas_line_1448(arg0: Placeholder, arg1: Placeholder) -> ! {
-        panic!("untranslated fast_matrix_market function: write_matrix_market_graphblas (fast_matrix_market/include/fast_matrix_market/app/GraphBLAS.hpp:1448)")
     }
 }
 
@@ -2122,7 +589,7 @@ pub mod app_triplet {
         }
     }
 
-    /// Stub for `generalize_symmetry_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:45`.
+    /// Translation of `generalize_symmetry_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:45`.
     pub fn generalize_symmetry_triplet_line_45<V: triplet_value_type>(
         rows: &mut Vec<i64>,
         cols: &mut Vec<i64>,
@@ -2143,7 +610,7 @@ pub mod app_triplet {
         }
     }
 
-    /// Stub for `read_matrix_market_body_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:84`.
+    /// Translation of `read_matrix_market_body_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:84`.
     pub fn read_matrix_market_body_triplet_line_84<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -3852,7 +2319,7 @@ pub mod app_triplet {
         Ok((rows, cols, values))
     }
 
-    /// Stub for `read_matrix_market_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:112`.
+    /// Translation of `read_matrix_market_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:112`.
     pub fn read_matrix_market_triplet_line_112<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &mut matrix_market_header,
@@ -3862,7 +2329,7 @@ pub mod app_triplet {
         read_matrix_market_body_triplet_line_84::<V>(instream, header, options)
     }
 
-    /// Stub for `read_matrix_market_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:126`.
+    /// Translation of `read_matrix_market_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:126`.
     pub fn read_matrix_market_triplet_line_126<V: triplet_value_type>(
         instream: &mut impl BufRead,
         options: &read_options,
@@ -3873,7 +2340,7 @@ pub mod app_triplet {
         Ok((header.nrows, header.ncols, rows, cols, values))
     }
 
-    /// Stub for `write_matrix_market_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:140`.
+    /// Translation of `write_matrix_market_triplet` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:140`.
     pub fn write_matrix_market_triplet_line_140<V: formatters::write_value_type>(
         os: &mut impl Write,
         mut header: matrix_market_header,
@@ -3903,7 +2370,7 @@ pub mod app_triplet {
         write_body::write_body_line_66(os, &chunks, options).map_err(|err| err.to_string())
     }
 
-    /// Stub for `write_matrix_market_csc` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:173`.
+    /// Translation of `write_matrix_market_csc` at `fast_matrix_market/include/fast_matrix_market/app/triplet.hpp:173`.
     pub fn write_matrix_market_csc_line_173<V: formatters::write_value_type>(
         os: &mut impl Write,
         mut header: matrix_market_header,
@@ -3943,7 +2410,7 @@ pub mod app_user_type_string {
     #[derive(Clone, Debug, Default, PartialEq)]
     pub struct can_read_complex_std_string_line_52 {}
 
-    /// Stub for `read_value` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:38`.
+    /// Translation of `read_value` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:38`.
     pub fn read_value_line_38(s: &str, mut pos: usize) -> (usize, String) {
         let field_start = pos;
         let bytes = s.as_bytes();
@@ -3953,22 +2420,22 @@ pub mod app_user_type_string {
         (pos, s[field_start..pos].to_string())
     }
 
-    /// Stub for `negate` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:57`.
+    /// Translation of `negate` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:57`.
     pub fn negate_line_57(o: &str) -> String {
         format!("-{o}")
     }
 
-    /// Stub for `pattern_default_value` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:64`.
+    /// Translation of `pattern_default_value` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:64`.
     pub fn pattern_default_value_line_64() -> String {
         String::new()
     }
 
-    /// Stub for `get_field_type` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:76`.
+    /// Translation of `get_field_type` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:76`.
     pub fn get_field_type_line_76() -> field_type {
         field_type::real
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:83`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/app/user_type_string.hpp:83`.
     pub fn value_to_string_line_83(value: &str, _precision: i32) -> String {
         value.to_string()
     }
@@ -3979,7 +2446,7 @@ pub mod chunking {
     use super::Placeholder;
     use std::io::{BufRead, Read};
 
-    /// Stub for `get_next_chunk` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:11`.
+    /// Translation of `get_next_chunk` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:11`.
     pub fn get_next_chunk_line_11<R: BufRead>(
         chunk: &mut String,
         instream: &mut R,
@@ -4016,7 +2483,7 @@ pub mod chunking {
         Ok(())
     }
 
-    /// Stub for `get_next_chunk` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:51`.
+    /// Translation of `get_next_chunk` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:51`.
     pub fn get_next_chunk_line_51<R: BufRead>(
         instream: &mut R,
         options: &read_options,
@@ -4026,12 +2493,12 @@ pub mod chunking {
         Ok(chunk)
     }
 
-    /// Stub for `is_all_spaces` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:59`.
+    /// Translation of `is_all_spaces` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:59`.
     pub fn is_all_spaces_line_59(text: &str) -> bool {
         text.bytes().all(|c| c == b' ' || c == b'\t' || c == b'\r')
     }
 
-    /// Stub for `count_lines` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:66`.
+    /// Translation of `count_lines` at `fast_matrix_market/include/fast_matrix_market/chunking.hpp:66`.
     pub fn count_lines_line_66(chunk: &str) -> (i64, i64) {
         let mut num_newlines = 0i64;
         let mut num_empty_lines = 0i64;
@@ -4130,74 +2597,74 @@ pub mod fast_matrix_market {
     #[derive(Clone, Debug, Default, PartialEq)]
     pub struct pattern_placeholder_type {}
 
-    /// Stub for `fmm_error` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:40`.
+    /// Translation of `fmm_error` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:40`.
     pub fn fmm_error_line_40(msg: String) -> fmm_error {
         fmm_error { msg }
     }
 
-    /// Stub for `what` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:42`.
+    /// Translation of `what` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:42`.
     pub fn what_line_42(err: &fmm_error) -> &str {
         err.msg.as_str()
     }
 
-    /// Stub for `invalid_mm` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:54`.
+    /// Translation of `invalid_mm` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:54`.
     pub fn invalid_mm_line_54(msg: String) -> invalid_mm {
         invalid_mm { msg }
     }
 
-    /// Stub for `invalid_mm` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:55`.
+    /// Translation of `invalid_mm` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:55`.
     pub fn invalid_mm_line_55(msg: String, line_num: i64) -> invalid_mm {
         let mut err = invalid_mm { msg };
         prepend_line_number_line_59(&mut err, line_num);
         err
     }
 
-    /// Stub for `prepend_line_number` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:59`.
+    /// Translation of `prepend_line_number` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:59`.
     pub fn prepend_line_number_line_59(err: &mut invalid_mm, line_num: i64) {
         err.msg = format!("Line {line_num}: {}", err.msg);
     }
 
-    /// Stub for `out_of_range` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:69`.
+    /// Translation of `out_of_range` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:69`.
     pub fn out_of_range_line_69(msg: String) -> out_of_range {
         out_of_range { msg }
     }
 
-    /// Stub for `invalid_argument` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:77`.
+    /// Translation of `invalid_argument` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:77`.
     pub fn invalid_argument_line_77(msg: String) -> invalid_argument {
         invalid_argument { msg }
     }
 
-    /// Stub for `complex_incompatible` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:85`.
+    /// Translation of `complex_incompatible` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:85`.
     pub fn complex_incompatible_line_85(msg: String) -> complex_incompatible {
         complex_incompatible { msg }
     }
 
-    /// Stub for `support_not_selected` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:93`.
+    /// Translation of `support_not_selected` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:93`.
     pub fn support_not_selected_line_93(msg: String) -> support_not_selected {
         support_not_selected { msg }
     }
 
-    /// Stub for `no_vector_support` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:101`.
+    /// Translation of `no_vector_support` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:101`.
     pub fn no_vector_support_line_101(msg: String) -> no_vector_support {
         no_vector_support { msg }
     }
 
-    /// Stub for `operator-` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:114`.
+    /// Translation of `operator-` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:114`.
     pub fn operator_line_114(o: pattern_placeholder_type) -> pattern_placeholder_type {
         o
     }
 
-    /// Stub for `negate` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:119`.
+    /// Translation of `negate` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:119`.
     pub fn negate_line_119(o: bool) -> bool {
         !o
     }
 
-    /// Stub for `negate` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:123`.
+    /// Translation of `negate` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:123`.
     pub fn negate_line_123(o: bool) -> bool {
         !o
     }
 
-    /// Stub for `negate` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:128`.
+    /// Translation of `negate` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:128`.
     pub fn negate_line_128<T>(o: T) -> T
     where
         T: std::ops::Neg<Output = T>,
@@ -4205,7 +2672,7 @@ pub mod fast_matrix_market {
         -o
     }
 
-    /// Stub for `pattern_default_value` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:133`.
+    /// Translation of `pattern_default_value` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:133`.
     pub fn pattern_default_value_line_133<T>() -> T
     where
         T: From<u8>,
@@ -4213,7 +2680,7 @@ pub mod fast_matrix_market {
         1u8.into()
     }
 
-    /// Stub for `get_zero` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:141`.
+    /// Translation of `get_zero` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:141`.
     pub fn get_zero_line_141<T>() -> T
     where
         T: Default,
@@ -4221,7 +2688,7 @@ pub mod fast_matrix_market {
         T::default()
     }
 
-    /// Stub for `is_ready` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:150`.
+    /// Translation of `is_ready` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:150`.
     pub fn is_ready_line_150<R>(f: &std::sync::mpsc::Receiver<R>) -> bool {
         match f.try_recv() {
             Ok(_) => true,
@@ -4230,27 +2697,27 @@ pub mod fast_matrix_market {
         }
     }
 
-    /// Stub for `test_flag` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:160`.
+    /// Translation of `test_flag` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:160`.
     pub fn test_flag_line_160(flags: i32, flag: i32) -> bool {
         (flags & flag) == flag
     }
 
-    /// Stub for `starts_with` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:164`.
+    /// Translation of `starts_with` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:164`.
     pub fn starts_with_line_164(str_: &str, prefix: &str) -> bool {
         str_.starts_with(prefix)
     }
 
-    /// Stub for `ends_with` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:171`.
+    /// Translation of `ends_with` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:171`.
     pub fn ends_with_line_171(str_: &str, suffix: &str) -> bool {
         str_.ends_with(suffix)
     }
 
-    /// Stub for `trim` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:181`.
+    /// Translation of `trim` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:181`.
     pub fn trim_line_181(s: String) -> String {
         s.trim().to_string()
     }
 
-    /// Stub for `replace_all` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:198`.
+    /// Translation of `replace_all` at `fast_matrix_market/include/fast_matrix_market/fast_matrix_market.hpp:198`.
     pub fn replace_all_line_198(str_: &str, from: &str, to: &str) -> String {
         if from.is_empty() {
             str_.to_string()
@@ -4263,7 +2730,7 @@ pub mod fast_matrix_market {
 pub mod field_conv {
     use super::Placeholder;
 
-    /// Stub for `skip_spaces` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:34`.
+    /// Translation of `skip_spaces` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:34`.
     pub fn skip_spaces_line_34(s: &str, mut pos: usize) -> usize {
         let bytes = s.as_bytes();
         while pos < bytes.len()
@@ -4274,7 +2741,7 @@ pub mod field_conv {
         pos
     }
 
-    /// Stub for `skip_spaces_and_newlines` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:38`.
+    /// Translation of `skip_spaces_and_newlines` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:38`.
     pub fn skip_spaces_and_newlines_line_38(s: &str, mut pos: usize) -> usize {
         let bytes = s.as_bytes();
         while pos < bytes.len()
@@ -4288,7 +2755,7 @@ pub mod field_conv {
         pos
     }
 
-    /// Stub for `bump_to_next_line` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:48`.
+    /// Translation of `bump_to_next_line` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:48`.
     pub fn bump_to_next_line_line_48(s: &str, mut pos: usize) -> usize {
         let bytes = s.as_bytes();
         while pos < bytes.len() && bytes[pos] != b'\n' {
@@ -4300,7 +2767,7 @@ pub mod field_conv {
         pos
     }
 
-    /// Stub for `read_int_from_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:72`.
+    /// Translation of `read_int_from_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:72`.
     pub fn read_int_from_chars_line_72(
         s: &str,
         pos: usize,
@@ -4309,7 +2776,7 @@ pub mod field_conv {
         read_int_line_140(&s[..end.min(s.len())], pos)
     }
 
-    /// Stub for `read_int_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:85`.
+    /// Translation of `read_int_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:85`.
     pub fn read_int_fallback_line_85(
         s: &str,
         pos: usize,
@@ -4331,7 +2798,7 @@ pub mod field_conv {
         read_int_line_140(bounded, next)
     }
 
-    /// Stub for `read_int_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:101`.
+    /// Translation of `read_int_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:101`.
     pub fn read_int_fallback_line_101(
         s: &str,
         pos: usize,
@@ -4380,7 +2847,7 @@ pub mod field_conv {
             .map_err(|_| "Integer out of range.".to_string())
     }
 
-    /// Stub for `read_int_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:122`.
+    /// Translation of `read_int_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:122`.
     pub fn read_int_fallback_line_122(
         s: &str,
         pos: usize,
@@ -4389,7 +2856,7 @@ pub mod field_conv {
         read_int_fallback_line_85(s, pos, end)
     }
 
-    /// Stub for `read_int` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:140`.
+    /// Translation of `read_int` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:140`.
     pub fn read_int_line_140(s: &str, pos: usize) -> Result<(usize, i64), String> {
         let mut end = pos;
         let bytes = s.as_bytes();
@@ -4408,7 +2875,7 @@ pub mod field_conv {
             .map_err(|_| "Integer out of range.".to_string())
     }
 
-    /// Stub for `read_float_fast_float` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:153`.
+    /// Translation of `read_float_fast_float` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:153`.
     pub fn read_float_fast_float_line_153(
         s: &str,
         pos: usize,
@@ -4444,7 +2911,7 @@ pub mod field_conv {
         Ok((next, value))
     }
 
-    /// Stub for `read_float_from_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:175`.
+    /// Translation of `read_float_from_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:175`.
     pub fn read_float_from_chars_line_175(
         s: &str,
         pos: usize,
@@ -4480,7 +2947,7 @@ pub mod field_conv {
         Ok((next, value))
     }
 
-    /// Stub for `read_float_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:196`.
+    /// Translation of `read_float_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:196`.
     pub fn read_float_fallback_line_196(s: &str, pos: usize) -> Result<(usize, f64), String> {
         let bytes = s.as_bytes();
         let mut end = pos;
@@ -4596,7 +3063,7 @@ pub mod field_conv {
             .map_err(|_| "Invalid floating-point value.".to_string())
     }
 
-    /// Stub for `read_float_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:216`.
+    /// Translation of `read_float_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:216`.
     pub fn read_float_fallback_line_216(s: &str, pos: usize) -> Result<(usize, f32), String> {
         let (next, value) = read_float_fallback_line_196(s, pos)?;
         if value.is_finite()
@@ -4608,12 +3075,12 @@ pub mod field_conv {
         Ok((next, value as f32))
     }
 
-    /// Stub for `read_float` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:234`.
+    /// Translation of `read_float` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:234`.
     pub fn read_float_line_234(s: &str, pos: usize) -> Result<(usize, f64), String> {
         read_float_fallback_line_196(s, pos)
     }
 
-    /// Stub for `read_float_from_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:257`.
+    /// Translation of `read_float_from_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:257`.
     pub fn read_float_from_chars_line_257(
         s: &str,
         pos: usize,
@@ -4649,38 +3116,38 @@ pub mod field_conv {
         Ok((next, value))
     }
 
-    /// Stub for `read_float_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:280`.
+    /// Translation of `read_float_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:280`.
     pub fn read_float_fallback_line_280(s: &str, pos: usize) -> Result<(usize, f64), String> {
         read_float_fallback_line_196(s, pos)
     }
 
-    /// Stub for `read_float` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:297`.
+    /// Translation of `read_float` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:297`.
     pub fn read_float_line_297(s: &str, pos: usize) -> Result<(usize, f64), String> {
         read_float_fallback_line_280(s, pos)
     }
 
-    /// Stub for `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:312`.
+    /// Translation of `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:312`.
     pub fn read_value_line_312(pos: usize) -> usize {
         pos
     }
 
-    /// Stub for `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:317`.
+    /// Translation of `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:317`.
     pub fn read_value_line_317(s: &str, pos: usize) -> Result<(usize, i64), String> {
         read_int_line_140(s, pos)
     }
 
-    /// Stub for `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:321`.
+    /// Translation of `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:321`.
     pub fn read_value_line_321(s: &str, pos: usize) -> Result<(usize, bool), String> {
         let (next, parsed) = read_float_line_234(s, pos)?;
         Ok((next, parsed != 0.0))
     }
 
-    /// Stub for `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:329`.
+    /// Translation of `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:329`.
     pub fn read_value_line_329(s: &str, pos: usize) -> Result<(usize, f64), String> {
         read_float_line_234(s, pos)
     }
 
-    /// Stub for `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:334`.
+    /// Translation of `read_value` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:334`.
     pub fn read_value_line_334(s: &str, pos: usize) -> Result<(usize, (f64, f64)), String> {
         let (pos, real) = read_float_line_234(s, pos)?;
         let pos = skip_spaces_line_34(s, pos);
@@ -4688,32 +3155,32 @@ pub mod field_conv {
         Ok((pos, (real, imaginary)))
     }
 
-    /// Stub for `complex_conjugate` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:347`.
+    /// Translation of `complex_conjugate` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:347`.
     pub fn complex_conjugate_line_347(value: (f64, f64)) -> (f64, f64) {
         (value.0, -value.1)
     }
 
-    /// Stub for `complex_conjugate` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:352`.
+    /// Translation of `complex_conjugate` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:352`.
     pub fn complex_conjugate_line_352<T>(value: T) -> T {
         value
     }
 
-    /// Stub for `int_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:367`.
+    /// Translation of `int_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:367`.
     pub fn int_to_string_line_367<T: ToString>(value: T) -> String {
         value.to_string()
     }
 
-    /// Stub for `int_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:382`.
+    /// Translation of `int_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:382`.
     pub fn int_to_string_line_382<T: ToString>(value: T) -> String {
         value.to_string()
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:387`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:387`.
     pub fn value_to_string_line_387() -> String {
         String::new()
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:391`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:391`.
     pub fn value_to_string_line_391(value: bool) -> String {
         if value {
             "1".to_string()
@@ -4722,12 +3189,12 @@ pub mod field_conv {
         }
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:396`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:396`.
     pub fn value_to_string_line_396<T: ToString>(value: T) -> String {
         int_to_string_line_367(value)
     }
 
-    /// Stub for `value_to_string_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:404`.
+    /// Translation of `value_to_string_fallback` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:404`.
     pub fn value_to_string_fallback_line_404(value: f64, precision: i32) -> String {
         if precision < 0 {
             if value.is_nan() {
@@ -4786,17 +3253,17 @@ pub mod field_conv {
         }
     }
 
-    /// Stub for `value_to_string_dragonbox` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:438`.
+    /// Translation of `value_to_string_dragonbox` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:438`.
     pub fn value_to_string_dragonbox_line_438(value: f32) -> String {
         value.to_string()
     }
 
-    /// Stub for `value_to_string_dragonbox` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:452`.
+    /// Translation of `value_to_string_dragonbox` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:452`.
     pub fn value_to_string_dragonbox_line_452(value: f64) -> String {
         value.to_string()
     }
 
-    /// Stub for `value_to_string_ryu` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:468`.
+    /// Translation of `value_to_string_ryu` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:468`.
     pub fn value_to_string_ryu_line_468(value: f32, precision: i32) -> String {
         let mut ret = if precision < 0 {
             value.to_string()
@@ -4817,7 +3284,7 @@ pub mod field_conv {
         ret
     }
 
-    /// Stub for `value_to_string_ryu` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:501`.
+    /// Translation of `value_to_string_ryu` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:501`.
     pub fn value_to_string_ryu_line_501(value: f64, precision: i32) -> String {
         let mut ret = if precision < 0 {
             value.to_string()
@@ -4838,7 +3305,7 @@ pub mod field_conv {
         ret
     }
 
-    /// Stub for `value_to_string_to_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:537`.
+    /// Translation of `value_to_string_to_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:537`.
     pub fn value_to_string_to_chars_line_537(value: f64, precision: i32) -> String {
         if precision < 0 {
             value.to_string()
@@ -4847,7 +3314,7 @@ pub mod field_conv {
         }
     }
 
-    /// Stub for `value_to_string_to_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:558`.
+    /// Translation of `value_to_string_to_chars` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:558`.
     pub fn value_to_string_to_chars_line_558(value: f64, precision: i32) -> String {
         if precision < 0 {
             value.to_string()
@@ -4856,12 +3323,12 @@ pub mod field_conv {
         }
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:584`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:584`.
     pub fn value_to_string_line_584(value: f64, precision: i32) -> String {
         value_to_string_fallback_line_404(value, precision)
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:601`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:601`.
     pub fn value_to_string_line_601(value: f64, precision: i32) -> String {
         if precision < 0 {
             let dragonbox = value_to_string_dragonbox_line_452(value);
@@ -4880,7 +3347,7 @@ pub mod field_conv {
         value_to_string_fallback_line_404(value, precision)
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:630`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:630`.
     pub fn value_to_string_line_630(value: (f64, f64), precision: i32) -> String {
         format!(
             "{} {}",
@@ -4889,7 +3356,7 @@ pub mod field_conv {
         )
     }
 
-    /// Stub for `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:638`.
+    /// Translation of `value_to_string` at `fast_matrix_market/include/fast_matrix_market/field_conv.hpp:638`.
     pub fn value_to_string_line_638<T: ToString>(value: T, _precision: i32) -> String {
         value.to_string()
     }
@@ -5054,7 +3521,7 @@ pub mod formatters {
         pub col_end: i64,
     }
 
-    /// Stub for `line_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:20`.
+    /// Translation of `line_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:20`.
     pub fn line_formatter_line_20(
         header: matrix_market_header,
         options: write_options,
@@ -5062,7 +3529,7 @@ pub mod formatters {
         line_formatter { header, options }
     }
 
-    /// Stub for `coord_matrix` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:23`.
+    /// Translation of `coord_matrix` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:23`.
     pub fn coord_matrix_line_23(lf: &line_formatter, row: i64, col: i64, val: &[f64]) -> String {
         if lf.header.format == format_type::array {
             return array_matrix_line_52(lf, row, col, val);
@@ -5089,12 +3556,12 @@ pub mod formatters {
         line
     }
 
-    /// Stub for `coord_matrix_pattern` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:42`.
+    /// Translation of `coord_matrix_pattern` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:42`.
     pub fn coord_matrix_pattern_line_42(row: i64, col: i64) -> String {
         format!("{} {}\n", row + 1, col + 1)
     }
 
-    /// Stub for `array_matrix` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:52`.
+    /// Translation of `array_matrix` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:52`.
     pub fn array_matrix_line_52(lf: &line_formatter, row: i64, col: i64, val: &[f64]) -> String {
         if lf.header.symmetry != symmetry_type::general {
             if row < col {
@@ -5116,7 +3583,7 @@ pub mod formatters {
         ret
     }
 
-    /// Stub for `vector_line_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:79`.
+    /// Translation of `vector_line_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:79`.
     pub fn vector_line_formatter_line_79(
         header: matrix_market_header,
         options: write_options,
@@ -5124,7 +3591,7 @@ pub mod formatters {
         vector_line_formatter { header, options }
     }
 
-    /// Stub for `coord_matrix` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:81`.
+    /// Translation of `coord_matrix` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:81`.
     pub fn coord_matrix_line_81(
         lf: &vector_line_formatter,
         row: i64,
@@ -5151,12 +3618,12 @@ pub mod formatters {
         line
     }
 
-    /// Stub for `coord_matrix_pattern` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:94`.
+    /// Translation of `coord_matrix_pattern` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:94`.
     pub fn coord_matrix_pattern_line_94(row: i64, _col: i64) -> String {
         format!("{}\n", row + 1)
     }
 
-    /// Stub for `triplet_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:120`.
+    /// Translation of `triplet_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:120`.
     pub fn triplet_formatter_line_120<V: write_value_type>(
         lf: line_formatter,
         rows: Vec<i64>,
@@ -5177,12 +3644,12 @@ pub mod formatters {
         })
     }
 
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:134`.
+    /// Translation of `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:134`.
     pub fn has_next_line_134<V>(formatter: &triplet_formatter<V>) -> bool {
         formatter.cursor != formatter.rows.len()
     }
 
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:140`.
+    /// Translation of `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:140`.
     pub fn chunk_line_140<V: write_value_type>(
         lf: line_formatter,
         rows: Vec<i64>,
@@ -5197,7 +3664,7 @@ pub mod formatters {
         }
     }
 
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:149`.
+    /// Translation of `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:149`.
     pub fn operator_line_149<V: write_value_type>(c: &chunk<V>) -> String {
         let mut out = String::new();
         for i in 0..c.rows.len() {
@@ -5216,7 +3683,7 @@ pub mod formatters {
         out
     }
 
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:171`.
+    /// Translation of `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:171`.
     pub fn next_chunk_line_171<V: write_value_type>(
         formatter: &mut triplet_formatter<V>,
         options: &write_options,
@@ -5240,7 +3707,7 @@ pub mod formatters {
         )
     }
 
-    /// Stub for `csc_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:202`.
+    /// Translation of `csc_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:202`.
     pub fn csc_formatter_line_202<V: write_value_type>(
         lf: line_formatter,
         ptrs: Vec<usize>,
@@ -5271,12 +3738,12 @@ pub mod formatters {
         })
     }
 
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:221`.
+    /// Translation of `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:221`.
     pub fn has_next_line_221<V>(formatter: &csc_formatter<V>) -> bool {
         formatter.ptr_iter + 1 < formatter.ptrs.len()
     }
 
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:227`.
+    /// Translation of `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:227`.
     pub fn chunk_line_227<V: write_value_type>(
         lf: line_formatter,
         ptrs: Vec<usize>,
@@ -5297,7 +3764,7 @@ pub mod formatters {
         }
     }
 
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:238`.
+    /// Translation of `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:238`.
     pub fn operator_line_238<V: write_value_type>(c: &chunk_line_225<V>) -> String {
         let mut out = String::new();
         for column_number in c.ptr_iter..c.ptr_end {
@@ -5325,7 +3792,7 @@ pub mod formatters {
         out
     }
 
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:282`.
+    /// Translation of `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:282`.
     pub fn next_chunk_line_282<V: write_value_type>(
         formatter: &mut csc_formatter<V>,
         options: &write_options,
@@ -5347,7 +3814,7 @@ pub mod formatters {
         c
     }
 
-    /// Stub for `array_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:314`.
+    /// Translation of `array_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:314`.
     pub fn array_formatter_line_314<V: write_value_type>(
         lf: line_formatter,
         values: Vec<V>,
@@ -5365,12 +3832,12 @@ pub mod formatters {
         }
     }
 
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:317`.
+    /// Translation of `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:317`.
     pub fn has_next_line_317<V>(formatter: &array_formatter<V>) -> bool {
         formatter.cur_col != formatter.ncols
     }
 
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:323`.
+    /// Translation of `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:323`.
     pub fn chunk_line_323<V: write_value_type>(
         lf: line_formatter,
         values: Vec<V>,
@@ -5389,7 +3856,7 @@ pub mod formatters {
         }
     }
 
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:326`.
+    /// Translation of `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:326`.
     pub fn operator_line_326<V: write_value_type>(c: &chunk_line_321<V>) -> String {
         let mut out = String::new();
         for row in 0..c.nrows {
@@ -5411,7 +3878,7 @@ pub mod formatters {
         out
     }
 
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:351`.
+    /// Translation of `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:351`.
     pub fn next_chunk_line_351<V: write_value_type>(
         formatter: &mut array_formatter<V>,
         _options: &write_options,
@@ -5428,7 +3895,7 @@ pub mod formatters {
         c
     }
 
-    /// Stub for `dense_2d_call_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:372`.
+    /// Translation of `dense_2d_call_formatter` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:372`.
     pub fn dense_2d_call_formatter_line_372<V: write_value_type>(
         lf: line_formatter,
         values: Vec<V>,
@@ -5444,12 +3911,12 @@ pub mod formatters {
         }
     }
 
-    /// Stub for `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:375`.
+    /// Translation of `has_next` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:375`.
     pub fn has_next_line_375<V>(formatter: &dense_2d_call_formatter<V>) -> bool {
         formatter.col_iter < formatter.ncols
     }
 
-    /// Stub for `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:381`.
+    /// Translation of `chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:381`.
     pub fn chunk_line_381<V: write_value_type>(
         lf: line_formatter,
         values: Vec<V>,
@@ -5468,7 +3935,7 @@ pub mod formatters {
         }
     }
 
-    /// Stub for `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:384`.
+    /// Translation of `operator()` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:384`.
     pub fn operator_line_384<V: write_value_type>(c: &chunk_line_379<V>) -> String {
         let mut out = String::new();
         for col in c.col_iter..c.col_end {
@@ -5482,7 +3949,7 @@ pub mod formatters {
         out
     }
 
-    /// Stub for `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:406`.
+    /// Translation of `next_chunk` at `fast_matrix_market/include/fast_matrix_market/formatters.hpp:406`.
     pub fn next_chunk_line_406<V: write_value_type>(
         formatter: &mut dense_2d_call_formatter<V>,
         options: &write_options,
@@ -5517,7 +3984,7 @@ pub mod header {
     pub const K_MATRIX_MARKET_BANNER: &str = "%%MatrixMarket";
     pub const K_MATRIX_MARKET_BANNER2: &str = "%MatrixMarket";
 
-    /// Stub for `parse_enum` at `fast_matrix_market/include/fast_matrix_market/header.hpp:24`.
+    /// Translation of `parse_enum` at `fast_matrix_market/include/fast_matrix_market/header.hpp:24`.
     pub fn parse_enum_line_24(s: &str, values: &[&str]) -> Result<usize, invalid_argument> {
         let lower = s.to_ascii_lowercase();
         for (index, value) in values.iter().enumerate() {
@@ -5531,20 +3998,20 @@ pub mod header {
         )))
     }
 
-    /// Stub for `is_line_all_spaces` at `fast_matrix_market/include/fast_matrix_market/header.hpp:45`.
+    /// Translation of `is_line_all_spaces` at `fast_matrix_market/include/fast_matrix_market/header.hpp:45`.
     pub fn is_line_all_spaces_line_45(line: &str) -> bool {
         let line = line.strip_suffix('\n').unwrap_or(line);
         chunking::is_all_spaces_line_59(line)
     }
 
-    /// Stub for `strip_trailing_cr` at `fast_matrix_market/include/fast_matrix_market/header.hpp:60`.
+    /// Translation of `strip_trailing_cr` at `fast_matrix_market/include/fast_matrix_market/header.hpp:60`.
     pub fn strip_trailing_cr_line_60(line: &mut String) {
         if line.ends_with('\r') {
             line.pop();
         }
     }
 
-    /// Stub for `get_storage_nnz` at `fast_matrix_market/include/fast_matrix_market/header.hpp:71`.
+    /// Translation of `get_storage_nnz` at `fast_matrix_market/include/fast_matrix_market/header.hpp:71`.
     pub fn get_storage_nnz_line_71(
         header: &matrix_market_header,
         options: read_options,
@@ -5580,7 +4047,7 @@ pub mod header {
         }
     }
 
-    /// Stub for `read_comment` at `fast_matrix_market/include/fast_matrix_market/header.hpp:116`.
+    /// Translation of `read_comment` at `fast_matrix_market/include/fast_matrix_market/header.hpp:116`.
     pub fn read_comment_line_116(header: &mut matrix_market_header, line: &str) -> bool {
         if is_line_all_spaces_line_45(line) {
             return true;
@@ -5602,7 +4069,7 @@ pub mod header {
         true
     }
 
-    /// Stub for `parse_header_enum` at `fast_matrix_market/include/fast_matrix_market/header.hpp:145`.
+    /// Translation of `parse_header_enum` at `fast_matrix_market/include/fast_matrix_market/header.hpp:145`.
     pub fn parse_header_enum_line_145(
         s: &str,
         values: &[&str],
@@ -5620,7 +4087,7 @@ pub mod header {
         ))
     }
 
-    /// Stub for `read_header` at `fast_matrix_market/include/fast_matrix_market/header.hpp:166`.
+    /// Translation of `read_header` at `fast_matrix_market/include/fast_matrix_market/header.hpp:166`.
     pub fn read_header_line_166<R: BufRead>(
         instream: &mut R,
         header: &mut matrix_market_header,
@@ -5839,7 +4306,7 @@ pub mod header {
         Ok(lines_read)
     }
 
-    /// Stub for `write_header` at `fast_matrix_market/include/fast_matrix_market/header.hpp:278`.
+    /// Translation of `write_header` at `fast_matrix_market/include/fast_matrix_market/header.hpp:278`.
     pub fn write_header_line_278<W: Write>(
         os: &mut W,
         header: &matrix_market_header,
@@ -6037,7 +4504,7 @@ pub mod parse_handlers {
         pub ncols: i64,
     }
 
-    /// Stub for `tuple_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:50`.
+    /// Translation of `tuple_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:50`.
     pub fn tuple_parse_handler_line_50<V: Clone + Default>(iter: usize) -> tuple_parse_handler<V> {
         tuple_parse_handler {
             flags: 1,
@@ -6047,7 +4514,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:52`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:52`.
     pub fn handle_line_52<V: Clone + Default>(
         handler: &mut tuple_parse_handler<V>,
         row: i64,
@@ -6063,7 +4530,7 @@ pub mod parse_handlers {
         handler.iter += 1;
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:57`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:57`.
     pub fn get_chunk_handler_line_57<V>(
         handler: &tuple_parse_handler<V>,
         offset_from_begin: i64,
@@ -6076,7 +4543,7 @@ pub mod parse_handlers {
         ret
     }
 
-    /// Stub for `triplet_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:76`.
+    /// Translation of `triplet_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:76`.
     pub fn triplet_parse_handler_line_76<V: Clone + Default>(
         rows: usize,
         cols: usize,
@@ -6096,7 +4563,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:81`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:81`.
     pub fn handle_line_81<V>(handler: &mut triplet_parse_handler<V>, row: i64, col: i64, value: V)
     where
         V: Clone + Default,
@@ -6120,7 +4587,7 @@ pub mod parse_handlers {
         handler.values += 1;
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:91`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:91`.
     pub fn handle_line_91<V: Clone + Default>(
         handler: &mut triplet_parse_handler<V>,
         row: i64,
@@ -6129,7 +4596,7 @@ pub mod parse_handlers {
         handle_line_81(handler, row, col, V::default());
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:100`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:100`.
     pub fn get_chunk_handler_line_100<V>(
         handler: &triplet_parse_handler<V>,
         offset_from_begin: i64,
@@ -6145,7 +4612,7 @@ pub mod parse_handlers {
         ret
     }
 
-    /// Stub for `triplet_pattern_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:126`.
+    /// Translation of `triplet_pattern_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:126`.
     pub fn triplet_pattern_parse_handler_line_126(
         rows: usize,
         cols: usize,
@@ -6161,7 +4628,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:130`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:130`.
     pub fn handle_line_130(handler: &mut triplet_pattern_parse_handler, row: i64, col: i64) {
         if handler.rows >= handler.row_values.len() {
             handler.row_values.resize(handler.rows + 1, 0);
@@ -6175,7 +4642,7 @@ pub mod parse_handlers {
         handler.cols += 1;
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:138`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:138`.
     pub fn get_chunk_handler_line_138(
         handler: &triplet_pattern_parse_handler,
         offset_from_begin: i64,
@@ -6187,7 +4654,7 @@ pub mod parse_handlers {
         ret
     }
 
-    /// Stub for `triplet_calling_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:160`.
+    /// Translation of `triplet_calling_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:160`.
     pub fn triplet_calling_parse_handler_line_160<V>(
         rows: Vec<i64>,
         cols: Vec<i64>,
@@ -6206,7 +4673,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:165`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:165`.
     pub fn handle_line_165<V>(
         handler: &mut triplet_calling_parse_handler<V>,
         row: i64,
@@ -6231,7 +4698,7 @@ pub mod parse_handlers {
         handler.offset += 1;
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:173`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:173`.
     pub fn get_chunk_handler_line_173<V>(
         handler: &triplet_calling_parse_handler<V>,
         offset_from_begin: i64,
@@ -6244,7 +4711,7 @@ pub mod parse_handlers {
         ret
     }
 
-    /// Stub for `doublet_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:195`.
+    /// Translation of `doublet_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:195`.
     pub fn doublet_parse_handler_line_195<V: Clone + Default>(
         index: usize,
         values: usize,
@@ -6260,7 +4727,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:199`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:199`.
     pub fn handle_line_199<V>(handler: &mut doublet_parse_handler<V>, row: i64, col: i64, value: V)
     where
         V: Clone + Default,
@@ -6279,7 +4746,7 @@ pub mod parse_handlers {
         handler.values += 1;
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:207`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:207`.
     pub fn get_chunk_handler_line_207<V>(
         handler: &doublet_parse_handler<V>,
         offset_from_begin: i64,
@@ -6294,7 +4761,7 @@ pub mod parse_handlers {
         ret
     }
 
-    /// Stub for `dense_2d_call_adding_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:229`.
+    /// Translation of `dense_2d_call_adding_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:229`.
     pub fn dense_2d_call_adding_parse_handler_line_229<V: dense_parse_value>(
         nrows: i64,
         ncols: i64,
@@ -6307,7 +4774,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:231`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:231`.
     pub fn handle_line_231<V: dense_parse_value>(
         handler: &mut dense_2d_call_adding_parse_handler<V>,
         row: i64,
@@ -6321,7 +4788,7 @@ pub mod parse_handlers {
         handler.values[offset].add_assign_value(&value);
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:235`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:235`.
     pub fn get_chunk_handler_line_235<V: dense_parse_value>(
         handler: &dense_2d_call_adding_parse_handler<V>,
         _offset_from_begin: i64,
@@ -6329,7 +4796,7 @@ pub mod parse_handlers {
         handler.clone()
     }
 
-    /// Stub for `dense_adding_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:253`.
+    /// Translation of `dense_adding_parse_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:253`.
     pub fn dense_adding_parse_handler_line_253<V: dense_parse_value>(
         values: Vec<V>,
         order: storage_order,
@@ -6345,7 +4812,7 @@ pub mod parse_handlers {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:256`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:256`.
     pub fn handle_line_256<V: dense_parse_value>(
         handler: &mut dense_adding_parse_handler<V>,
         row: i64,
@@ -6363,7 +4830,7 @@ pub mod parse_handlers {
         handler.values[offset].add_assign_value(&value);
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:266`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/parse_handlers.hpp:266`.
     pub fn get_chunk_handler_line_266<V: dense_parse_value>(
         handler: &dense_adding_parse_handler<V>,
         _offset_from_begin: i64,
@@ -6413,7 +4880,7 @@ pub mod read_body {
         pub handler: Vec<(i64, i64, V)>,
     }
 
-    /// Stub for `pattern_parse_adapter` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:32`.
+    /// Translation of `pattern_parse_adapter` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:32`.
     pub fn pattern_parse_adapter_line_32<V: Clone + Default>(
         handler: Vec<(i64, i64, V)>,
         fwd_value: V,
@@ -6425,7 +4892,7 @@ pub mod read_body {
         }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:35`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:35`.
     pub fn handle_line_35<V: Clone + Default>(
         adapter: &mut pattern_parse_adapter<V>,
         row: i64,
@@ -6434,7 +4901,7 @@ pub mod read_body {
         adapter.handler.push((row, col, adapter.fwd_value.clone()));
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:39`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:39`.
     pub fn handle_line_39<V: Clone + Default>(
         adapter: &mut pattern_parse_adapter<V>,
         row: i64,
@@ -6444,7 +4911,7 @@ pub mod read_body {
         adapter.handler.push((row, col, val));
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:43`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:43`.
     pub fn get_chunk_handler_line_43<V>(
         adapter: &pattern_parse_adapter<V>,
         offset_from_start: i64,
@@ -6458,14 +4925,14 @@ pub mod read_body {
         ret
     }
 
-    /// Stub for `complex_parse_adapter` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:67`.
+    /// Translation of `complex_parse_adapter` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:67`.
     pub fn complex_parse_adapter_line_67<V: triplet_value_type>(
         handler: Vec<(i64, i64, V)>,
     ) -> complex_parse_adapter<V> {
         complex_parse_adapter { flags: 1, handler }
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:69`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:69`.
     pub fn handle_line_69<V: triplet_value_type>(
         adapter: &mut complex_parse_adapter<V>,
         row: i64,
@@ -6474,7 +4941,7 @@ pub mod read_body {
         adapter.handler.push((row, col, V::pattern_value()));
     }
 
-    /// Stub for `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:73`.
+    /// Translation of `handle` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:73`.
     pub fn handle_line_73<V: triplet_value_type>(
         adapter: &mut complex_parse_adapter<V>,
         row: i64,
@@ -6485,7 +4952,7 @@ pub mod read_body {
         adapter.handler.push((row, col, value));
     }
 
-    /// Stub for `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:77`.
+    /// Translation of `get_chunk_handler` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:77`.
     pub fn get_chunk_handler_line_77<V>(
         adapter: &complex_parse_adapter<V>,
         offset_from_start: i64,
@@ -6499,17 +4966,17 @@ pub mod read_body {
         ret
     }
 
-    /// Stub for `limit_parallelism_for_value_type` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:94`.
+    /// Translation of `limit_parallelism_for_value_type` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:94`.
     pub fn limit_parallelism_for_value_type_line_94(_parallelism_selected: bool) -> bool {
         false
     }
 
-    /// Stub for `limit_parallelism_for_value_type` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:99`.
+    /// Translation of `limit_parallelism_for_value_type` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:99`.
     pub fn limit_parallelism_for_value_type_line_99(parallelism_selected: bool) -> bool {
         parallelism_selected
     }
 
-    /// Stub for `get_symmetric_value` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:108`.
+    /// Translation of `get_symmetric_value` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:108`.
     pub fn get_symmetric_value_line_108<V: triplet_value_type>(
         value: &V,
         symmetry: symmetry_type,
@@ -6517,7 +4984,7 @@ pub mod read_body {
         Ok(value.symmetric_value(symmetry))
     }
 
-    /// Stub for `generalize_symmetry_coordinate` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:127`.
+    /// Translation of `generalize_symmetry_coordinate` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:127`.
     pub fn generalize_symmetry_coordinate_line_127<V: triplet_value_type>(
         header: &matrix_market_header,
         _options: &read_options,
@@ -6538,7 +5005,7 @@ pub mod read_body {
         Ok(ret)
     }
 
-    /// Stub for `generalize_symmetry_array` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:165`.
+    /// Translation of `generalize_symmetry_array` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:165`.
     pub fn generalize_symmetry_array_line_165<V: triplet_value_type>(
         header: &matrix_market_header,
         row: i64,
@@ -6556,7 +5023,7 @@ pub mod read_body {
         }
     }
 
-    /// Stub for `read_real_or_complex` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:193`.
+    /// Translation of `read_real_or_complex` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:193`.
     pub fn read_real_or_complex_line_193<V: triplet_value_type>(
         fields: &[&str],
         header: &matrix_market_header,
@@ -6623,7 +5090,7 @@ pub mod read_body {
         }
     }
 
-    /// Stub for `read_chunk_matrix_coordinate` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:213`.
+    /// Translation of `read_chunk_matrix_coordinate` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:213`.
     pub fn read_chunk_matrix_coordinate_line_213<V: triplet_value_type>(
         chunk: &str,
         header: &matrix_market_header,
@@ -6784,7 +5251,7 @@ pub mod read_body {
         Ok((line, entries))
     }
 
-    /// Stub for `read_chunk_vector_coordinate` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:281`.
+    /// Translation of `read_chunk_vector_coordinate` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:281`.
     pub fn read_chunk_vector_coordinate_line_281<V: triplet_value_type>(
         chunk: &str,
         header: &matrix_market_header,
@@ -6848,7 +5315,7 @@ pub mod read_body {
         Ok((line, entries))
     }
 
-    /// Stub for `read_chunk_array` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:332`.
+    /// Translation of `read_chunk_array` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:332`.
     pub fn read_chunk_array_line_332<V: triplet_value_type>(
         chunk: &str,
         header: &matrix_market_header,
@@ -6914,7 +5381,7 @@ pub mod read_body {
         Ok((line, entries))
     }
 
-    /// Stub for `read_coordinate_body_sequential` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:412`.
+    /// Translation of `read_coordinate_body_sequential` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:412`.
     pub fn read_coordinate_body_sequential_line_412<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -6942,7 +5409,7 @@ pub mod read_body {
         Ok((lc, entries))
     }
 
-    /// Stub for `read_array_body_sequential` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:436`.
+    /// Translation of `read_array_body_sequential` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:436`.
     pub fn read_array_body_sequential_line_436<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -6969,7 +5436,7 @@ pub mod read_body {
         Ok((lc, entries))
     }
 
-    /// Stub for `read_matrix_market_body_no_adapters` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:459`.
+    /// Translation of `read_matrix_market_body_no_adapters` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:459`.
     pub fn read_matrix_market_body_no_adapters_line_459<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -7009,7 +5476,7 @@ pub mod read_body {
         Ok(entries)
     }
 
-    /// Stub for `read_matrix_market_body_no_pattern` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:525`.
+    /// Translation of `read_matrix_market_body_no_pattern` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:525`.
     pub fn read_matrix_market_body_no_pattern_line_525<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -7018,7 +5485,7 @@ pub mod read_body {
         read_matrix_market_body_no_adapters_line_459::<V>(instream, header, options)
     }
 
-    /// Stub for `read_matrix_market_body_no_pattern` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:543`.
+    /// Translation of `read_matrix_market_body_no_pattern` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:543`.
     pub fn read_matrix_market_body_no_pattern_line_543<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -7034,7 +5501,7 @@ pub mod read_body {
         }
     }
 
-    /// Stub for `read_matrix_market_body` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:562`.
+    /// Translation of `read_matrix_market_body` at `fast_matrix_market/include/fast_matrix_market/read_body.hpp:562`.
     pub fn read_matrix_market_body_line_562<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -7063,12 +5530,12 @@ pub mod read_body_threads {
         pub counts: line_counts,
     }
 
-    /// Stub for `line_count_result_s` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:19`.
+    /// Translation of `line_count_result_s` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:19`.
     pub fn line_count_result_s_line_19(chunk: String, counts: line_counts) -> line_count_result_s {
         line_count_result_s { chunk, counts }
     }
 
-    /// Stub for `count_chunk_lines` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:24`.
+    /// Translation of `count_chunk_lines` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:24`.
     pub fn count_chunk_lines_line_24(chunk: String) -> line_count_result_s {
         let (file_line, empty_lines) = super::chunking::count_lines_line_66(&chunk);
         line_count_result_s_line_19(
@@ -7080,7 +5547,7 @@ pub mod read_body_threads {
         )
     }
 
-    /// Stub for `read_body_threads` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:33`.
+    /// Translation of `read_body_threads` at `fast_matrix_market/include/fast_matrix_market/read_body_threads.hpp:33`.
     pub fn read_body_threads_line_33<V: triplet_value_type>(
         instream: &mut impl BufRead,
         header: &matrix_market_header,
@@ -7252,7 +5719,7 @@ pub mod thirdparty_task_thread_pool {
         pub num_inflight_tasks: i64,
     }
 
-    /// Stub for `task_thread_pool` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:137`.
+    /// Translation of `task_thread_pool` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:137`.
     pub fn task_thread_pool_line_137(num_threads: usize) -> task_thread_pool {
         let mut pool = task_thread_pool {
             threads: Vec::new(),
@@ -7283,14 +5750,14 @@ pub mod thirdparty_task_thread_pool {
         pool
     }
 
-    /// Stub for `~task_thread_pool` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:149`.
+    /// Translation of `~task_thread_pool` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:149`.
     pub fn task_thread_pool_line_149(pool: &mut task_thread_pool) {
         unpause_line_218(pool);
         wait_for_tasks_line_291(pool);
         stop_all_threads_line_356(pool);
     }
 
-    /// Stub for `clear_task_queue` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:160`.
+    /// Translation of `clear_task_queue` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:160`.
     pub fn clear_task_queue_line_160(pool: &mut task_thread_pool) {
         pool.queued_tasks.clear();
         let mut state = pool.shared.state.lock().unwrap();
@@ -7298,35 +5765,35 @@ pub mod thirdparty_task_thread_pool {
         pool.shared.task_finished_cv.notify_all();
     }
 
-    /// Stub for `get_num_queued_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:170`.
+    /// Translation of `get_num_queued_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:170`.
     pub fn get_num_queued_tasks_line_170(pool: &task_thread_pool) -> usize {
         pool.shared.state.lock().unwrap().tasks.len()
     }
 
-    /// Stub for `get_num_running_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:180`.
+    /// Translation of `get_num_running_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:180`.
     pub fn get_num_running_tasks_line_180(pool: &task_thread_pool) -> usize {
         pool.shared.state.lock().unwrap().num_inflight_tasks.max(0) as usize
     }
 
-    /// Stub for `get_num_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:190`.
+    /// Translation of `get_num_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:190`.
     pub fn get_num_tasks_line_190(pool: &task_thread_pool) -> usize {
         let state = pool.shared.state.lock().unwrap();
         state.tasks.len() + state.num_inflight_tasks.max(0) as usize
     }
 
-    /// Stub for `get_num_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:200`.
+    /// Translation of `get_num_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:200`.
     pub fn get_num_threads_line_200(pool: &task_thread_pool) -> usize {
         pool.threads.len()
     }
 
-    /// Stub for `pause` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:210`.
+    /// Translation of `pause` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:210`.
     pub fn pause_line_210(pool: &mut task_thread_pool) {
         let mut state = pool.shared.state.lock().unwrap();
         state.pool_paused = true;
         pool.pool_paused = true;
     }
 
-    /// Stub for `unpause` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:218`.
+    /// Translation of `unpause` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:218`.
     pub fn unpause_line_218(pool: &mut task_thread_pool) {
         let mut state = pool.shared.state.lock().unwrap();
         state.pool_paused = false;
@@ -7334,12 +5801,12 @@ pub mod thirdparty_task_thread_pool {
         pool.shared.task_cv.notify_all();
     }
 
-    /// Stub for `is_paused` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:229`.
+    /// Translation of `is_paused` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:229`.
     pub fn is_paused_line_229(pool: &task_thread_pool) -> bool {
         pool.shared.state.lock().unwrap().pool_paused
     }
 
-    /// Stub for `std::future<R> submit` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:248`.
+    /// Translation of `std::future<R> submit` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:248`.
     pub fn std_future_r_submit_line_248<F, R>(
         pool: &mut task_thread_pool,
         func: F,
@@ -7355,7 +5822,7 @@ pub mod thirdparty_task_thread_pool {
         rx
     }
 
-    /// Stub for `submit_detach` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:260`.
+    /// Translation of `submit_detach` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:260`.
     pub fn submit_detach_line_260<F>(pool: &mut task_thread_pool, func: F)
     where
         F: FnOnce() + Send + 'static,
@@ -7366,7 +5833,7 @@ pub mod thirdparty_task_thread_pool {
         pool.shared.task_cv.notify_one();
     }
 
-    /// Stub for `submit_detach` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:272`.
+    /// Translation of `submit_detach` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:272`.
     pub fn submit_detach_line_272<F>(pool: &mut task_thread_pool, func: F)
     where
         F: FnOnce() + Send + 'static,
@@ -7374,7 +5841,7 @@ pub mod thirdparty_task_thread_pool {
         submit_detach_line_260(pool, func);
     }
 
-    /// Stub for `wait_for_queued_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:281`.
+    /// Translation of `wait_for_queued_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:281`.
     pub fn wait_for_queued_tasks_line_281(pool: &mut task_thread_pool) {
         let mut state = pool.shared.state.lock().unwrap();
         state.notify_task_finish = true;
@@ -7386,7 +5853,7 @@ pub mod thirdparty_task_thread_pool {
         state.notify_task_finish = false;
     }
 
-    /// Stub for `wait_for_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:291`.
+    /// Translation of `wait_for_tasks` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:291`.
     pub fn wait_for_tasks_line_291(pool: &mut task_thread_pool) {
         let mut state = pool.shared.state.lock().unwrap();
         state.notify_task_finish = true;
@@ -7400,7 +5867,7 @@ pub mod thirdparty_task_thread_pool {
         state.notify_task_finish = false;
     }
 
-    /// Stub for `worker_main` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:303`.
+    /// Translation of `worker_main` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:303`.
     pub fn worker_main_line_303(pool: &mut task_thread_pool) {
         let shared = pool.shared.clone();
         loop {
@@ -7436,7 +5903,7 @@ pub mod thirdparty_task_thread_pool {
         }
     }
 
-    /// Stub for `start_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:345`.
+    /// Translation of `start_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:345`.
     pub fn start_threads_line_345(pool: &mut task_thread_pool, num_threads: usize) {
         let count = if num_threads < 1 {
             std::thread::available_parallelism()
@@ -7482,7 +5949,7 @@ pub mod thirdparty_task_thread_pool {
         }
     }
 
-    /// Stub for `stop_all_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:356`.
+    /// Translation of `stop_all_threads` at `fast_matrix_market/include/fast_matrix_market/thirdparty/task_thread_pool.hpp:356`.
     pub fn stop_all_threads_line_356(pool: &mut task_thread_pool) {
         pool.pool_running = false;
         {
@@ -7621,7 +6088,7 @@ pub mod types {
     #[derive(Clone, Debug, Default, PartialEq)]
     pub struct can_read_complex {}
 
-    /// Stub for `matrix_market_header` at `fast_matrix_market/include/fast_matrix_market/types.hpp:48`.
+    /// Translation of `matrix_market_header` at `fast_matrix_market/include/fast_matrix_market/types.hpp:48`.
     pub fn matrix_market_header_line_48() -> matrix_market_header {
         matrix_market_header {
             object: object_type::matrix,
@@ -7637,7 +6104,7 @@ pub mod types {
         }
     }
 
-    /// Stub for `matrix_market_header` at `fast_matrix_market/include/fast_matrix_market/types.hpp:49`.
+    /// Translation of `matrix_market_header` at `fast_matrix_market/include/fast_matrix_market/types.hpp:49`.
     pub fn matrix_market_header_line_49(vector_length: i64) -> matrix_market_header {
         let mut header = matrix_market_header_line_48();
         header.object = object_type::vector;
@@ -7645,7 +6112,7 @@ pub mod types {
         header
     }
 
-    /// Stub for `matrix_market_header` at `fast_matrix_market/include/fast_matrix_market/types.hpp:50`.
+    /// Translation of `matrix_market_header` at `fast_matrix_market/include/fast_matrix_market/types.hpp:50`.
     pub fn matrix_market_header_line_50(nrows: i64, ncols: i64) -> matrix_market_header {
         let mut header = matrix_market_header_line_48();
         header.nrows = nrows;
@@ -7660,27 +6127,27 @@ pub mod write_body {
     use super::Placeholder;
     use std::io::Write;
 
-    /// Stub for `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:16`.
+    /// Translation of `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:16`.
     pub fn get_field_type_line_16<T>(_type: *const T) -> field_type {
         field_type::integer
     }
 
-    /// Stub for `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:24`.
+    /// Translation of `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:24`.
     pub fn get_field_type_line_24<T>(_type: *const T) -> field_type {
         field_type::real
     }
 
-    /// Stub for `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:32`.
+    /// Translation of `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:32`.
     pub fn get_field_type_line_32<T>(_type: *const T) -> field_type {
         field_type::complex
     }
 
-    /// Stub for `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:40`.
+    /// Translation of `get_field_type` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:40`.
     pub fn get_field_type_line_40(_type: *const pattern_placeholder_type) -> field_type {
         field_type::pattern
     }
 
-    /// Stub for `write_body_sequential` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:50`.
+    /// Translation of `write_body_sequential` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:50`.
     pub fn write_body_sequential_line_50<W: Write>(
         os: &mut W,
         chunks: &[String],
@@ -7692,7 +6159,7 @@ pub mod write_body {
         Ok(())
     }
 
-    /// Stub for `write_body` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:66`.
+    /// Translation of `write_body` at `fast_matrix_market/include/fast_matrix_market/write_body.hpp:66`.
     pub fn write_body_line_66<W: Write>(
         os: &mut W,
         chunks: &[String],
@@ -7707,7 +6174,7 @@ pub mod write_body_threads {
     use super::Placeholder;
     use std::io::Write;
 
-    /// Stub for `write_body_threads` at `fast_matrix_market/include/fast_matrix_market/write_body_threads.hpp:20`.
+    /// Translation of `write_body_threads` at `fast_matrix_market/include/fast_matrix_market/write_body_threads.hpp:20`.
     pub fn write_body_threads_line_20<W: Write>(
         os: &mut W,
         chunks: &[String],

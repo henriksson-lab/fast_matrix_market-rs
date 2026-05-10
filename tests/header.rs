@@ -10,9 +10,7 @@ use std::io::Cursor;
 
 #[test]
 fn reads_coordinate_real_general_fixture_header() {
-    let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut input = Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
     let mut header = matrix_market_header_line_48();
 
     let lines = read_header_line_166(&mut input, &mut header).unwrap();
@@ -33,7 +31,7 @@ fn reads_coordinate_real_general_fixture_header() {
 #[test]
 fn reads_array_integer_fixture_header() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_array_integer_general.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_array_integer_general.mtx"
     ));
     let mut header = matrix_market_header_line_48();
 
@@ -64,7 +62,7 @@ fn header_dimensions_use_translated_integer_parser() {
 #[test]
 fn rejects_bad_banner_with_line_number() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/invalid/invalid_bad_banner.mtx"
+        "fixtures/upstream/tests/matrices/invalid/invalid_bad_banner.mtx"
     ));
     let mut header = matrix_market_header_line_48();
 
@@ -95,9 +93,7 @@ fn rejects_extra_dimension_tokens_like_upstream() {
 
 #[test]
 fn writes_header_matching_upstream_comment_format() {
-    let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut input = Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
     let mut header = matrix_market_header_line_48();
     read_header_line_166(&mut input, &mut header).unwrap();
 

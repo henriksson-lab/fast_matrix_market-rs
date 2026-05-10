@@ -1,20 +1,20 @@
 # Local Matrix Market benchmark fixtures.
 # Prefer externally sourced SuiteSparse-style files when available; these
 # upstream fixtures cover the main field/format/symmetry paths without network.
-fast_matrix_market/tests/matrices/kepner_gilbert_graph.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_real_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_integer_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_pattern_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_pattern_symmetric.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_complex_general.mtx
-fast_matrix_market/tests/matrices/vector_coordinate_complex.mtx
-fast_matrix_market/python/tests/matrices/scipy_crashes/vector_coordinate_real_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_array_real_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_array_integer_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_array_complex_general.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_real_symmetric.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_real_skew-symmetric.mtx
-fast_matrix_market/python/tests/matrices/matrix_coordinate_complex_hermitian.mtx
-fast_matrix_market/tests/matrices/symmetry/coordinate_symmetric_row_general.mtx
-fast_matrix_market/tests/matrices/symmetry/coordinate_skew_symmetric_row_general.mtx
-fast_matrix_market/tests/matrices/symmetry/coordinate_hermitian_row_general.mtx
+tests/fixtures/upstream/tests/matrices/kepner_gilbert_graph.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_real_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_integer_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_pattern_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_pattern_symmetric.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_complex_general.mtx
+tests/fixtures/upstream/tests/matrices/vector_coordinate_complex.mtx
+tests/fixtures/upstream/python/tests/matrices/scipy_crashes/vector_coordinate_real_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_array_real_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_array_integer_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_array_complex_general.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_real_symmetric.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_real_skew-symmetric.mtx
+tests/fixtures/upstream/python/tests/matrices/matrix_coordinate_complex_hermitian.mtx
+tests/fixtures/upstream/tests/matrices/symmetry/coordinate_symmetric_row_general.mtx
+tests/fixtures/upstream/tests/matrices/symmetry/coordinate_skew_symmetric_row_general.mtx
+tests/fixtures/upstream/tests/matrices/symmetry/coordinate_hermitian_row_general.mtx

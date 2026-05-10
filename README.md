@@ -1,8 +1,13 @@
 # fast_matrix_market-rs
 
-Rust translation of [`fast_matrix_market`](https://github.com/alugowski/fast_matrix_market), commit `b6172c96ef73d16b2c10917373bacec1a7583a31`
+Partial Rust translation of [`fast_matrix_market`](https://github.com/alugowski/fast_matrix_market), commit `b6172c96ef73d16b2c10917373bacec1a7583a31`
 
 **undergoing translation**
+
+This crate is not a complete translation of upstream `fast_matrix_market`.
+Out-of-scope integration bindings are not included.
+The published crate is self-contained and does not require the original C++
+source checkout.
 
 ## Scope and delimitations
 
@@ -21,11 +26,10 @@ In scope:
   translated core/app paths.
 * Single-threaded and multi-threaded reads for the supported core paths.
 
-Out of scope:
+Out of scope or incomplete:
 
-* Direct bindings for Blaze, Eigen, CXSparse, GraphBLAS, and Armadillo. Stubs
-  for those upstream integration APIs may exist only to preserve the translated
-  function map.
+* Direct bindings for Blaze, Eigen, CXSparse, GraphBLAS, and Armadillo. Those
+  upstream integration APIs are deliberately omitted.
 * A high-level sparse matrix type. Sparse reads return rows, columns, and values
   rather than a CSR/CSC matrix object.
 * API polish. Function names intentionally retain source-line suffixes to make
@@ -89,7 +93,7 @@ If you use the upstream fast_matrix_market work, cite:
 
 Lugowski, Adam. "fast_matrix_market: Fast and Full-Featured Matrix Market I/O Library". Released 2023-01-12. DOI: 10.5281/zenodo.10223767. URL: https://github.com/alugowski/fast_matrix_market
 
-The upstream `CITATION.cff` is in `fast_matrix_market/CITATION.cff`.
+The upstream `CITATION.cff` is copied to `CITATION.cff`.
 
 ## License
 

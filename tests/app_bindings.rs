@@ -45,7 +45,7 @@ fn write_opts_with_precision(precision: i64) -> write_options {
 #[test]
 fn array_binding_reads_dense_fixture() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3_array.mtx"
+        "fixtures/upstream/tests/matrices/eye3_array.mtx"
     ));
 
     let (nrows, ncols, values) = read_matrix_market_array_line_66::<Vec<f64>>(
@@ -64,7 +64,7 @@ fn array_binding_reads_dense_fixture() {
 #[test]
 fn array_binding_reads_complex_dense_fixture() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_array_complex_general.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_array_complex_general.mtx"
     ));
 
     let (nrows, ncols, values) = read_matrix_market_array_line_66::<Vec<f64>>(
@@ -83,7 +83,7 @@ fn array_binding_reads_complex_dense_fixture() {
 #[test]
 fn array_binding_reads_typed_dense_values() {
     let mut real_input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3_array.mtx"
+        "fixtures/upstream/tests/matrices/eye3_array.mtx"
     ));
 
     let (nrows, ncols, values) = read_matrix_market_array_line_66::<f64>(
@@ -99,7 +99,7 @@ fn array_binding_reads_typed_dense_values() {
     assert_eq!(values[8], 1.0);
 
     let mut complex_input = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_array_complex_general.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_array_complex_general.mtx"
     ));
 
     let (nrows, ncols, values) = read_matrix_market_array_line_66::<(f64, f64)>(
@@ -138,9 +138,7 @@ fn array_binding_specialized_reader_uses_shared_float_parser() {
 
 #[test]
 fn triplet_binding_reads_coordinate_fixture() {
-    let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut input = Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
 
     let (nrows, ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<f64>(&mut input, &read_opts()).unwrap();
@@ -183,9 +181,7 @@ fn triplet_binding_fast_reader_rejects_partial_coordinate_indices() {
 
 #[test]
 fn triplet_binding_reads_typed_scalar_and_complex_values() {
-    let mut real_input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut real_input = Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
     let (_nrows, _ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<f64>(&mut real_input, &read_opts()).unwrap();
     assert_eq!(rows, vec![0, 1, 2]);
@@ -193,7 +189,7 @@ fn triplet_binding_reads_typed_scalar_and_complex_values() {
     assert_eq!(values, vec![1.0, 1.0, 1.0]);
 
     let mut complex_input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/vector_coordinate_complex.mtx"
+        "fixtures/upstream/tests/matrices/vector_coordinate_complex.mtx"
     ));
     let (_nrows, _ncols, _rows, _cols, values) =
         read_matrix_market_triplet_line_126::<(f64, f64)>(&mut complex_input, &read_opts())
@@ -201,7 +197,7 @@ fn triplet_binding_reads_typed_scalar_and_complex_values() {
     assert!(values.iter().any(|value| value.1 != 0.0));
 
     let mut pattern_input = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_coordinate_pattern_general.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_coordinate_pattern_general.mtx"
     ));
     let (_nrows, _ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<()>(&mut pattern_input, &read_opts()).unwrap();
@@ -212,7 +208,7 @@ fn triplet_binding_reads_typed_scalar_and_complex_values() {
 #[test]
 fn triplet_binding_enforces_template_value_compatibility() {
     let mut complex_as_real = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/vector_coordinate_complex.mtx"
+        "fixtures/upstream/tests/matrices/vector_coordinate_complex.mtx"
     ));
     let err =
         read_matrix_market_triplet_line_126::<f64>(&mut complex_as_real, &read_opts()).unwrap_err();
@@ -222,16 +218,15 @@ fn triplet_binding_enforces_template_value_compatibility() {
     );
 
     let mut pattern_input = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_coordinate_pattern_general.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_coordinate_pattern_general.mtx"
     ));
     let (_nrows, _ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<()>(&mut pattern_input, &read_opts()).unwrap();
     assert_eq!(rows.len(), values.len());
     assert_eq!(cols.len(), values.len());
 
-    let mut real_as_complex = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/eye3.mtx"
-    ));
+    let mut real_as_complex =
+        Cursor::new(include_str!("fixtures/upstream/tests/matrices/eye3.mtx"));
     let (_nrows, _ncols, _rows, _cols, values) =
         read_matrix_market_triplet_line_126::<(f64, f64)>(&mut real_as_complex, &read_opts())
             .unwrap();

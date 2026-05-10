@@ -49,11 +49,11 @@ fn sorted_triplets<V: Copy + PartialOrd>(
 #[test]
 fn nist_freeformat_variants_match_coordinate_entries() {
     let fixtures = [
-        include_str!("../fast_matrix_market/tests/matrices/nist_ex1.mtx"),
-        include_str!("../fast_matrix_market/tests/matrices/nist_ex1_freeformat.mtx"),
-        include_str!("../fast_matrix_market/tests/matrices/nist_ex1_more_freeformat.mtx"),
+        include_str!("fixtures/upstream/tests/matrices/nist_ex1.mtx"),
+        include_str!("fixtures/upstream/tests/matrices/nist_ex1_freeformat.mtx"),
+        include_str!("fixtures/upstream/tests/matrices/nist_ex1_more_freeformat.mtx"),
         include_str!(
-            "../fast_matrix_market/tests/matrices/permissive/windows_lineendings_nist_ex1_more_freeformat.mtx"
+            "fixtures/upstream/tests/matrices/permissive/windows_lineendings_nist_ex1_more_freeformat.mtx"
         ),
     ];
     let mut expected = vec![
@@ -81,7 +81,7 @@ fn nist_freeformat_variants_match_coordinate_entries() {
 #[test]
 fn graph_fixture_reads_all_coordinate_edges() {
     let mut input = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/kepner_gilbert_graph.mtx"
+        "fixtures/upstream/tests/matrices/kepner_gilbert_graph.mtx"
     ));
     let (nrows, ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<f64>(&mut input, &read_opts()).unwrap();
@@ -103,12 +103,12 @@ fn graph_fixture_reads_all_coordinate_edges() {
 #[test]
 fn permissive_banner_and_indentation_fixtures_parse() {
     let fixtures = [
-        include_str!("../fast_matrix_market/tests/matrices/permissive/permissive_lines_indented.mtx"),
+        include_str!("fixtures/upstream/tests/matrices/permissive/permissive_lines_indented.mtx"),
         include_str!(
-            "../fast_matrix_market/tests/matrices/permissive/permissive_banner_one_percent_eye3.mtx"
+            "fixtures/upstream/tests/matrices/permissive/permissive_banner_one_percent_eye3.mtx"
         ),
         include_str!(
-            "../fast_matrix_market/tests/matrices/permissive/permissive_banner_leading_spaces_eye3.mtx"
+            "fixtures/upstream/tests/matrices/permissive/permissive_banner_leading_spaces_eye3.mtx"
         ),
     ];
 
@@ -126,7 +126,7 @@ fn permissive_banner_and_indentation_fixtures_parse() {
 
 #[test]
 fn two_column_array_fixture_respects_storage_order() {
-    let fixture = include_str!("../fast_matrix_market/tests/matrices/2col_array.mtx");
+    let fixture = include_str!("fixtures/upstream/tests/matrices/2col_array.mtx");
 
     let mut row_major = Cursor::new(fixture);
     let (nrows, ncols, values) = read_matrix_market_array_line_66::<f64>(
@@ -154,7 +154,7 @@ fn threaded_small_chunks_match_fixture_ordering() {
     let options = threaded_small_chunk_opts();
 
     let mut coordinate = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/nist_ex1.mtx"
+        "fixtures/upstream/tests/matrices/nist_ex1.mtx"
     ));
     let (nrows, ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<f64>(&mut coordinate, &options).unwrap();
@@ -178,7 +178,7 @@ fn threaded_small_chunks_match_fixture_ordering() {
     );
 
     let mut array = Cursor::new(include_str!(
-        "../fast_matrix_market/tests/matrices/2col_array.mtx"
+        "fixtures/upstream/tests/matrices/2col_array.mtx"
     ));
     let (nrows, ncols, values) =
         read_matrix_market_array_line_66::<f64>(&mut array, storage_order::row_major, &options)
@@ -276,7 +276,7 @@ fn threaded_offset_write_reads_pattern_coordinate() {
     assert_eq!(values, vec![(), (), (), ()]);
 
     let mut fixture = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_coordinate_pattern_general.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_coordinate_pattern_general.mtx"
     ));
     let (nrows, ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<()>(&mut fixture, &options).unwrap();
@@ -379,7 +379,7 @@ fn threaded_offset_write_reports_truncated_files() {
 #[test]
 fn python_symmetry_coordinate_fixtures_generalize_like_app_api() {
     let mut hermitian = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_coordinate_complex_hermitian.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_coordinate_complex_hermitian.mtx"
     ));
     let (nrows, ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<(f64, f64)>(&mut hermitian, &read_opts()).unwrap();
@@ -402,7 +402,7 @@ fn python_symmetry_coordinate_fixtures_generalize_like_app_api() {
         .any(|((&row, &col), &value)| (row, col, value) == (2, 2, (30.0, 3.0))));
 
     let mut skew = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_coordinate_real_skew-symmetric.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_coordinate_real_skew-symmetric.mtx"
     ));
     let (_nrows, _ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<f64>(&mut skew, &read_opts()).unwrap();
@@ -424,7 +424,7 @@ fn python_symmetry_coordinate_fixtures_generalize_like_app_api() {
         .any(|((&row, &col), &value)| (row, col, value) == (2, 2, 30.0)));
 
     let mut pattern = Cursor::new(include_str!(
-        "../fast_matrix_market/python/tests/matrices/matrix_coordinate_pattern_symmetric.mtx"
+        "fixtures/upstream/python/tests/matrices/matrix_coordinate_pattern_symmetric.mtx"
     ));
     let (_nrows, _ncols, rows, cols, values) =
         read_matrix_market_triplet_line_126::<()>(&mut pattern, &read_opts()).unwrap();
