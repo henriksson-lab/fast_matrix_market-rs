@@ -64,11 +64,7 @@ This blurb might be out of date. Go to [this page](https://github.com/henriksson
 
 ## Citation
 
-If you use the upstream fast_matrix_market work, cite:
-
 Lugowski, Adam. "fast_matrix_market: Fast and Full-Featured Matrix Market I/O Library". Released 2023-01-12. DOI: 10.5281/zenodo.10223767. URL: https://github.com/alugowski/fast_matrix_market
-
-The upstream `CITATION.cff` is copied to `CITATION.cff`.
 
 ## License
 
