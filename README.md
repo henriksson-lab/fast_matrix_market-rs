@@ -62,6 +62,53 @@ But:
 This blurb might be out of date. Go to [this page](https://github.com/henriksson-lab/rustification) for the latest information and further information about how we approach translation
 
 
+## Benchmarks
+
+Benchmarked on 2026-07-07 against the checked-in original C++ `fast_matrix_market` snapshot with:
+
+```sh
+bash tools/run_threaded_benchmarks.sh
+```
+
+Environment: Linux 6.8.0-58-generic x86_64, Intel Xeon Gold 6138, 40 logical CPUs, `rustc 1.92.0`, `g++ 11.4.0`. Each case reads the same fixture 5 times. Ratios are Rust divided by C++, so lower is better for both time and RSS. Peak RSS is measured with `/usr/bin/time -f %M`.
+
+| Fixture | Threads | Rust s | C++ s | Time ratio | Rust RSS KiB | C++ RSS KiB | RSS ratio |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `kepner_gilbert_graph.mtx` | 1 | 0.004169 | 0.004189 | 1.00 | 3840 | 4696 | 0.82 |
+| `kepner_gilbert_graph.mtx` | 10 | 0.007137 | 0.009251 | 0.77 | 2880 | 4744 | 0.61 |
+| `matrix_coordinate_real_general.mtx` | 1 | 0.002560 | 0.004172 | 0.61 | 3200 | 4692 | 0.68 |
+| `matrix_coordinate_real_general.mtx` | 10 | 0.007371 | 0.009969 | 0.74 | 2880 | 4736 | 0.61 |
+| `matrix_coordinate_integer_general.mtx` | 1 | 0.005797 | 0.004186 | 1.38 | 3200 | 5012 | 0.64 |
+| `matrix_coordinate_integer_general.mtx` | 10 | 0.007713 | 0.010025 | 0.77 | 2560 | 4740 | 0.54 |
+| `matrix_coordinate_pattern_general.mtx` | 1 | 0.002541 | 0.004175 | 0.61 | 3200 | 4692 | 0.68 |
+| `matrix_coordinate_pattern_general.mtx` | 10 | 0.007264 | 0.011643 | 0.62 | 2880 | 4740 | 0.61 |
+| `matrix_coordinate_pattern_symmetric.mtx` | 1 | 0.002582 | 0.004415 | 0.58 | 3200 | 5012 | 0.64 |
+| `matrix_coordinate_pattern_symmetric.mtx` | 10 | 0.010249 | 0.010413 | 0.98 | 2880 | 4740 | 0.61 |
+| `matrix_coordinate_complex_general.mtx` | 1 | 0.002600 | 0.004216 | 0.62 | 3200 | 4692 | 0.68 |
+| `matrix_coordinate_complex_general.mtx` | 10 | 0.007381 | 0.009280 | 0.80 | 2880 | 4480 | 0.64 |
+| `vector_coordinate_complex.mtx` | 1 | 0.002584 | 0.004320 | 0.60 | 3200 | 4696 | 0.68 |
+| `vector_coordinate_complex.mtx` | 10 | 0.008884 | 0.009133 | 0.97 | 3200 | 5060 | 0.63 |
+| `vector_coordinate_real_general.mtx` | 1 | 0.002577 | 0.005568 | 0.46 | 3200 | 4696 | 0.68 |
+| `vector_coordinate_real_general.mtx` | 10 | 0.007236 | 0.009919 | 0.73 | 2880 | 4736 | 0.61 |
+| `matrix_array_real_general.mtx` | 1 | 0.002535 | 0.004259 | 0.60 | 2880 | 4696 | 0.61 |
+| `matrix_array_real_general.mtx` | 10 | 0.008687 | 0.009042 | 0.96 | 2880 | 4740 | 0.61 |
+| `matrix_array_integer_general.mtx` | 1 | 0.002576 | 0.004225 | 0.61 | 3200 | 5016 | 0.64 |
+| `matrix_array_integer_general.mtx` | 10 | 0.007031 | 0.009558 | 0.74 | 2880 | 4736 | 0.61 |
+| `matrix_array_complex_general.mtx` | 1 | 0.002566 | 0.004313 | 0.59 | 3200 | 5012 | 0.64 |
+| `matrix_array_complex_general.mtx` | 10 | 0.012545 | 0.010627 | 1.18 | 4172 | 4480 | 0.93 |
+| `matrix_coordinate_real_symmetric.mtx` | 1 | 0.002617 | 0.004210 | 0.62 | 3200 | 5012 | 0.64 |
+| `matrix_coordinate_real_symmetric.mtx` | 10 | 0.007373 | 0.009716 | 0.76 | 3200 | 4740 | 0.68 |
+| `matrix_coordinate_real_skew-symmetric.mtx` | 1 | 0.002566 | 0.004276 | 0.60 | 2880 | 4692 | 0.61 |
+| `matrix_coordinate_real_skew-symmetric.mtx` | 10 | 0.007268 | 0.010251 | 0.71 | 2880 | 4736 | 0.61 |
+| `matrix_coordinate_complex_hermitian.mtx` | 1 | 0.002545 | 0.004210 | 0.60 | 2880 | 4692 | 0.61 |
+| `matrix_coordinate_complex_hermitian.mtx` | 10 | 0.008385 | 0.010065 | 0.83 | 3200 | 4736 | 0.68 |
+| `coordinate_symmetric_row_general.mtx` | 1 | 0.002627 | 0.004828 | 0.54 | 2880 | 4692 | 0.61 |
+| `coordinate_symmetric_row_general.mtx` | 10 | 0.009135 | 0.009972 | 0.92 | 3200 | 4740 | 0.68 |
+| `coordinate_skew_symmetric_row_general.mtx` | 1 | 0.002643 | 0.004207 | 0.63 | 3200 | 5012 | 0.64 |
+| `coordinate_skew_symmetric_row_general.mtx` | 10 | 0.009276 | 0.011064 | 0.84 | 3200 | 4480 | 0.71 |
+| `coordinate_hermitian_row_general.mtx` | 1 | 0.002552 | 0.004221 | 0.60 | 2880 | 4692 | 0.61 |
+| `coordinate_hermitian_row_general.mtx` | 10 | 0.009227 | 0.009971 | 0.93 | 3200 | 4480 | 0.71 |
+
 ## Citation
 
 Lugowski, Adam. "fast_matrix_market: Fast and Full-Featured Matrix Market I/O Library". Released 2023-01-12. DOI: 10.5281/zenodo.10223767. URL: https://github.com/alugowski/fast_matrix_market
